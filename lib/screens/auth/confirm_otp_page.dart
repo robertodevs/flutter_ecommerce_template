@@ -1,4 +1,3 @@
-
 import 'package:ecommerce_int2/app_properties.dart';
 import 'package:ecommerce_int2/screens/intro_page.dart';
 import 'package:flutter/material.dart';
@@ -170,33 +169,39 @@ class _ConfirmOtpPageState extends State<ConfirmOtpPage> {
                       title,
                       Spacer(),
                       subTitle,
-                      Spacer(flex: 2),
+                      Spacer(flex: 1),
                       Padding(
-                        padding: const EdgeInsets.only(right:28.0),
+                        padding: const EdgeInsets.only(right: 28.0),
                         child: Center(
                           child: PinCodeTextField(
                             controller: new TextEditingController(),
                             highlightColor: Colors.white,
-                            pinBoxDecoration: (color) {
-                              return BoxDecoration(
-                                  color: Color.fromRGBO(255, 255, 255, 0.8),
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5)));
-                            },
-                            maxLength: 6,
-                            pinBoxHeight: 40,
-                            pinBoxWidth: 40,
+                            highlightAnimation: true,
+                            highlightAnimationBeginColor: Colors.white,
+                            highlightAnimationEndColor: Theme.of(context).primaryColor,
+                            pinTextAnimatedSwitcherDuration: Duration(milliseconds: 500),
+                            wrapAlignment: WrapAlignment.center,
+                            hasTextBorderColor: Colors.transparent,
+                            highlightPinBoxColor: Colors.white,
+                            autofocus: true,
+                            pinBoxHeight: 60,
+                            pinBoxWidth: 60,
+                            pinBoxRadius: 5,
+                            defaultBorderColor: Colors.transparent,
+                            pinBoxColor: Color.fromRGBO(255, 255, 255, 0.8),
+                            maxLength: 4,
                           ),
                         ),
                       ),
-                      Spacer(),
+                      Spacer(flex: 1),
 //                      otpCode,
                       Padding(
-                        padding: const EdgeInsets.only(right:28.0),
+                        padding: const EdgeInsets.only(right: 28.0),
                         child: verifyButton,
                       ),
                       Spacer(flex: 2),
-                      resendText
+                      resendText,
+                      Spacer()
                     ],
                   ),
                 )
