@@ -8,7 +8,6 @@
          FlutterApplication and put your custom class here. -->
     <uses-permission android:name="android.permission.INTERNET" />
     <application
-        android:name="io.flutter.app.FlutterApplication"
         android:label="Shope"
         android:icon="@mipmap/launcher_icon">
         <activity
