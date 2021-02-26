@@ -11,8 +11,8 @@ class RatingDialog extends StatelessWidget {
     Widget payNow = InkWell(
       onTap: () async {
         Navigator.of(context).pop();
-        Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CheckOutPage()));
-
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (_) => CheckOutPage()));
       },
       child: Container(
         height: 60,
@@ -68,7 +68,7 @@ class RatingDialog extends StatelessWidget {
                     ]),
               ),
             ),
-            FlutterRatingBar(
+            RatingBar(
 //                      borderColor: Color(0xffFF8993),
 //                      fillColor: Color(0xffFF8993),
 
@@ -76,10 +76,6 @@ class RatingDialog extends StatelessWidget {
               allowHalfRating: false,
               initialRating: 1,
               itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-              fullRatingWidget:
-                  Icon(Icons.favorite, color: Color(0xffFF8993), size: 32),
-              noRatingWidget: Icon(Icons.favorite_border,
-                  color: Color(0xffFF8993), size: 32),
               onRatingUpdate: (value) {
 //              setState(() {
 //                rating = value;
@@ -87,6 +83,16 @@ class RatingDialog extends StatelessWidget {
 
                 print(value);
               },
+              ratingWidget: RatingWidget(
+                empty:
+                    Icon(Icons.favorite_border, color: Color(0xffFF8993), size: 20),
+                full: Icon(
+                  Icons.favorite,
+                  color: Color(0xffFF8993),
+                  size: 20,
+                ),
+                half: null,
+              ),
             ),
             Container(
                 margin: EdgeInsets.symmetric(vertical: 16.0),
