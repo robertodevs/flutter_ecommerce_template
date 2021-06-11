@@ -28,11 +28,12 @@ class _RatingPageState extends State<RatingPage> {
               onPressed: () {
                 showDialog(
                     context: context,
-                    child: Dialog(
-                      shape: BeveledRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(10))),
-                      child: RatingDialog(),
-                    ));
+                    builder: (_) => Dialog(
+                          shape: BeveledRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          child: RatingDialog(),
+                        ));
               },
               color: Colors.black,
             ),

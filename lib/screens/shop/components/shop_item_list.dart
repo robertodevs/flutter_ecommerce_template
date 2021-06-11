@@ -96,8 +96,8 @@ class _ShopItemListState extends State<ShopItemList> {
                                 color: Colors.grey[400],
                               ),
                             )),
-                        child: NumberPicker.integer(
-                          initialValue: quantity,
+                        child: NumberPicker(
+                          value: quantity,
                           minValue: 1,
                           maxValue: 10,
                           onChanged: (value) {
@@ -105,8 +105,8 @@ class _ShopItemListState extends State<ShopItemList> {
                               quantity = value;
                             });
                           },
-                          itemExtent: 30,
-                          listViewWidth: 40,
+                          itemHeight: 30,
+                          itemWidth: 40,
                         ),
                       )
                     ])),
