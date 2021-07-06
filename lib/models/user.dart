@@ -117,7 +117,8 @@ class Location {
         this.timezone});
 
   Location.fromJson(Map<String, dynamic> json) {
-    street = json['street'];
+    var streetAddress = Street.fromJson(json['street']);
+    street = "${streetAddress.number} ${streetAddress.name}";
     city = json['city'];
     state = json['state'];
     postcode = json['postcode'].toString();
@@ -142,6 +143,15 @@ class Location {
       data['timezone'] = this.timezone.toJson();
     }
     return data;
+  }
+}
+
+class Street {
+  int number;
+  String name;
+  Street.fromJson(Map<String, dynamic> json) {
+    number = json['number'];
+    name = json['name'];
   }
 }
 
