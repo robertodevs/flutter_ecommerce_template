@@ -22,6 +22,6 @@ Flutter is Google’s portable UI toolkit for building beautiful, natively-compi
 <a href="https://play.google.com/store/apps/details?id=com.int2.ecommerce_int2"><img src="assets/promotional/google-play-badge.png" title="Shope Flutter e-Commerce" alt="youtube-video" style="height: 30px !important;width: 150px !important;"></a>
 
 ## Support me
-If this is template is useful for you and you want to support me [buy me a coffe!](https://www.buymeacoffee.com/SaNhE76x9). This will give me motivation to keep doing more content like this. 
+If this template is useful for you and you want to support me [buy me a coff!e](https://www.buymeacoffee.com/SaNhE76x9). This will give me motivation to keep doing more content like this. 
 
 Do you want to add more features? [Reach me out](https://lnk.bio/9dQ4)
