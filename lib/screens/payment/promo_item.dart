@@ -9,7 +9,7 @@ class PromoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(top: 20),
-      height:280,
+      height: 280,
       child: Stack(
         children: <Widget>[
           Align(
@@ -49,7 +49,7 @@ class PromoItem extends StatelessWidget {
                                       left: 32.0, top: 8.0, bottom: 8.0),
                                   child: Row(
                                     mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
+                                        MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       ColorOption(Colors.red),
                                       Text(
@@ -99,7 +99,8 @@ class PromoItem extends StatelessWidget {
 //                            )
                         ]),
                     Container(
-                      padding: EdgeInsets.only(left: 16.0,right: 16.0,top: 32.0,bottom: 16.0),
+                      padding: EdgeInsets.only(
+                          left: 16.0, right: 16.0, top: 32.0, bottom: 16.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
@@ -111,7 +112,7 @@ class PromoItem extends StatelessWidget {
                             padding: EdgeInsets.only(left: 16.0),
                             decoration: BoxDecoration(
                               borderRadius:
-                              BorderRadius.all(Radius.circular(5)),
+                                  BorderRadius.all(Radius.circular(5)),
                               color: Colors.grey[200],
                             ),
                             child: TextField(
@@ -126,11 +127,17 @@ class PromoItem extends StatelessWidget {
                   ],
                 )),
           ),
-          Positioned(top: 5, child: ShopProductDisplay(Product(
-              'assets/headphones.png',
-              'Boat roackerz 400 On-Ear Bluetooth Headphones',
-              'description',
-              45.3))),
+          Positioned(
+            top: 5,
+            child: ShopProductDisplay(
+              Product(
+                  'assets/headphones.png',
+                  'Boat roackerz 400 On-Ear Bluetooth Headphones',
+                  'description',
+                  45.3),
+              onPressed: () {},
+            ),
+          ),
         ],
       ),
     );

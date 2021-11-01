@@ -69,29 +69,20 @@ class RatingDialog extends StatelessWidget {
               ),
             ),
             RatingBar(
-//                      borderColor: Color(0xffFF8993),
-//                      fillColor: Color(0xffFF8993),
-
               itemSize: 32,
               allowHalfRating: false,
               initialRating: 1,
               itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-              onRatingUpdate: (value) {
-//              setState(() {
-//                rating = value;
-//              });
-
-                print(value);
-              },
+              onRatingUpdate: (value) {},
               ratingWidget: RatingWidget(
-                empty:
-                    Icon(Icons.favorite_border, color: Color(0xffFF8993), size: 20),
+                empty: Icon(Icons.favorite_border,
+                    color: Color(0xffFF8993), size: 20),
                 full: Icon(
                   Icons.favorite,
                   color: Color(0xffFF8993),
                   size: 20,
                 ),
-                half: null,
+                half: SizedBox(),
               ),
             ),
             Container(

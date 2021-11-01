@@ -15,8 +15,8 @@ class WalletPage extends StatefulWidget {
 }
 
 class _WalletPageState extends State<WalletPage> with TickerProviderStateMixin {
-  AnimationController animController;
-  Animation<double> openOptions;
+  late AnimationController animController;
+  late Animation<double> openOptions;
 
   List<User> users = [];
 
@@ -43,284 +43,292 @@ class _WalletPageState extends State<WalletPage> with TickerProviderStateMixin {
       child: SafeArea(
         child: LayoutBuilder(
           builder: (builder, constraints) => SingleChildScrollView(
-                physics: ClampingScrollPhysics(),
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Align(
-                            alignment: Alignment(1, 0),
-                            child: SizedBox(
-                              height: kTextTabBarHeight,
-                              child: IconButton(
-                                onPressed: ()=>Navigator.of(context).push(MaterialPageRoute(builder:(_)=>PaymentHistoryPage())),
-                                icon:  SvgPicture.asset('assets/icons/reload_icon.svg', color: Colors.red,),
-                              ),
-                            )),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'Payment',
-                              style: TextStyle(
-                                color: darkGrey,
-                                fontSize: 22,
-                                fontWeight: FontWeight.bold,
-                              ),
+            physics: ClampingScrollPhysics(),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: constraints.maxHeight),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Align(
+                        alignment: Alignment(1, 0),
+                        child: SizedBox(
+                          height: kTextTabBarHeight,
+                          child: IconButton(
+                            onPressed: () => Navigator.of(context).push(
+                                MaterialPageRoute(
+                                    builder: (_) => PaymentHistoryPage())),
+                            icon: SvgPicture.asset(
+                              'assets/icons/reload_icon.svg',
+                              color: Colors.red,
                             ),
-                            CloseButton()
-                          ],
+                          ),
+                        )),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'Payment',
+                          style: TextStyle(
+                            color: darkGrey,
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
-                      ),
-                      Text('Current account balance'),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              '\$',
-                              style: TextStyle(
+                        CloseButton()
+                      ],
+                    ),
+                  ),
+                  Text('Current account balance'),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          '\$',
+                          style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 24,
+                          ),
+                        ),
+                        SizedBox(width: 8.0),
+                        Text('54.24',
+                            style: TextStyle(
                                 color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 24,
-                              ),
-                            ),
-                            SizedBox(width: 8.0),
-                            Text('54.24',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 48,
-                                    fontWeight: FontWeight.bold))
-                          ],
+                                fontSize: 48,
+                                fontWeight: FontWeight.bold))
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 100,
+                    child: Stack(
+                      children: <Widget>[
+                        Center(
+                          child: Container(
+                            width: openOptions.value,
+                            height: 80,
+                            padding: const EdgeInsets.symmetric(horizontal: 32),
+                            decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(45)),
+                                border: Border.all(color: yellow, width: 1.5)),
+                            child: openOptions.value < 300
+                                ? Container()
+                                : Align(
+                                    alignment: Alignment(0, 0),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: <Widget>[
+                                        InkWell(
+                                            onTap: () => Navigator.of(context)
+                                                .push(MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        SendPage())),
+                                            child: Text('Pay')),
+                                        InkWell(
+                                            onTap: () => Navigator.of(context)
+                                                .push(MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        RequestPage())),
+                                            child: Text('Request')),
+                                      ],
+                                    ),
+                                  ),
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 100,
-                        child: Stack(
-                          children: <Widget>[
-                            Center(
-                              child: Container(
-                                width: openOptions.value,
-                                height: 80,
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 32),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius:
-                                        BorderRadius.all(Radius.circular(45)),
-                                    border:
-                                        Border.all(color: yellow, width: 1.5)),
-                                child: openOptions.value < 300
-                                    ? Container()
-                                    : Align(
-                                        alignment: Alignment(0, 0),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: <Widget>[
-                                            InkWell(
-                                                onTap: () =>
-                                                    Navigator.of(context).push(
-                                                        MaterialPageRoute(
-                                                            builder: (_) =>
-                                                                SendPage())),
-                                                child: Text('Pay')),
-                                            InkWell(
-                                                onTap: () =>
-                                                    Navigator.of(context).push(
-                                                        MaterialPageRoute(
-                                                            builder: (_) =>
-                                                                RequestPage())),
-                                                child: Text('Request')),
-                                          ],
-                                        ),
-                                      ),
-                              ),
-                            ),
-                            Center(
-                                child: CustomPaint(
-                                    painter: YellowDollarButton(),
-                                    child: GestureDetector(
-                                      onTap: () {
-                                        animController.addListener(() {
-                                          setState(() {});
-                                        });
-                                        if (openOptions.value == 300)
-                                          animController.reverse();
-                                        else
-                                          animController.forward();
-                                      },
-                                      child: Container(
-                                          width: 110,
-                                          height: 110,
-                                          child: Center(
-                                              child: Text('\$',
-                                                  style: TextStyle(
-                                                      color: Color.fromRGBO(
-                                                          255, 255, 255, 0.5),
-                                                      fontSize: 32)))),
-                                    )))
-                          ],
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Text(
-                            openOptions.value > 0 ? '' : 'Tap to pay / request',
-                            style: TextStyle(fontSize: 10)),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('Quick Money Request'),
-                      ),
-                      Flexible(
-                        child: Center(
-                          child: users.length==0?CupertinoActivityIndicator():Container(
-                                  height: 150,
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 8.0),
-                                  child: ListView(
-                                      scrollDirection: Axis.horizontal,
-                                      children: [
-                                        Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 8.0),
-                                          child: IconButton(
-                                            onPressed: () {},
-                                            icon: Container(
-                                              decoration: BoxDecoration(
-                                                  border: Border.all(
-                                                    color: Colors.black,
-                                                  ),
-                                                  borderRadius: BorderRadius.all(
-                                                      Radius.circular(10))),
-                                              child: Icon(Icons.add),
+                        Center(
+                            child: CustomPaint(
+                                painter: YellowDollarButton(),
+                                child: GestureDetector(
+                                  onTap: () {
+                                    animController.addListener(() {
+                                      setState(() {});
+                                    });
+                                    if (openOptions.value == 300)
+                                      animController.reverse();
+                                    else
+                                      animController.forward();
+                                  },
+                                  child: Container(
+                                      width: 110,
+                                      height: 110,
+                                      child: Center(
+                                          child: Text('\$',
+                                              style: TextStyle(
+                                                  color: Color.fromRGBO(
+                                                      255, 255, 255, 0.5),
+                                                  fontSize: 32)))),
+                                )))
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                        openOptions.value > 0 ? '' : 'Tap to pay / request',
+                        style: TextStyle(fontSize: 10)),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Quick Money Request'),
+                  ),
+                  Flexible(
+                      child: Center(
+                    child: users.length == 0
+                        ? CupertinoActivityIndicator()
+                        : Container(
+                            height: 150,
+                            padding: const EdgeInsets.symmetric(vertical: 8.0),
+                            child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0),
+                                    child: IconButton(
+                                      onPressed: () {},
+                                      icon: Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: Colors.black,
                                             ),
-                                          ),
-                                        ),
-                                        ...users
-                                            .map((user) => InkWell(
-                                          onTap: () => Navigator.of(context).push(
-                                              MaterialPageRoute(
-                                                  builder: (_) => RequestAmountPage(user))),
-                                              child: Container(
-                                                  width: 100,
-                                                  height: 200,
-                                                  margin: const EdgeInsets.only(
-                                                      left: 8.0, right: 8.0),
-                                                  decoration: BoxDecoration(
-                                                      color: Colors.white,
-                                                      borderRadius:
-                                                          BorderRadius.all(
-                                                              Radius.circular(5))),
-                                                  child: Column(
-                                                    mainAxisSize: MainAxisSize.min,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment.center,
-                                                    children: <Widget>[
-                                                      CircleAvatar(
-                                                        maxRadius: 24,
-                                                        backgroundImage:
-                                                            NetworkImage(user
-                                                                .picture.thumbnail),
-                                                      ),
-                                                      Padding(
-                                                        padding: const EdgeInsets
-                                                                .fromLTRB(
-                                                            4.0, 16.0, 4.0, 0.0),
-                                                        child: Text(
-                                                            user.name.first +
-                                                                ' ' +
-                                                                user.name.last,
-                                                            textAlign:
-                                                                TextAlign.center,
-                                                            style: TextStyle(
-                                                              fontSize: 14.0,
-                                                            )),
-                                                      ),
-                                                      Padding(
-                                                        padding:
-                                                            const EdgeInsets.only(
-                                                                top: 8.0),
-                                                        child: Text(
-                                                          user.phone,
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))),
+                                        child: Icon(Icons.add),
+                                      ),
+                                    ),
+                                  ),
+                                  ...users
+                                      .map((user) => InkWell(
+                                            onTap: () => Navigator.of(context)
+                                                .push(MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        RequestAmountPage(
+                                                            user))),
+                                            child: Container(
+                                                width: 100,
+                                                height: 200,
+                                                margin: const EdgeInsets.only(
+                                                    left: 8.0, right: 8.0),
+                                                decoration: BoxDecoration(
+                                                    color: Colors.white,
+                                                    borderRadius:
+                                                        BorderRadius.all(
+                                                            Radius.circular(
+                                                                5))),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: <Widget>[
+                                                    CircleAvatar(
+                                                      maxRadius: 24,
+                                                      backgroundImage:
+                                                          NetworkImage(user
+                                                              .picture
+                                                              .thumbnail),
+                                                    ),
+                                                    Padding(
+                                                      padding: const EdgeInsets
+                                                              .fromLTRB(
+                                                          4.0, 16.0, 4.0, 0.0),
+                                                      child: Text(
+                                                          user.name.first +
+                                                              ' ' +
+                                                              user.name.last,
                                                           textAlign:
                                                               TextAlign.center,
                                                           style: TextStyle(
-                                                              fontSize: 10),
-                                                        ),
+                                                            fontSize: 14.0,
+                                                          )),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 8.0),
+                                                      child: Text(
+                                                        user.phone,
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: TextStyle(
+                                                            fontSize: 10),
                                                       ),
-                                                    ],
-                                                  )),
-                                            ))
-                                            .toList(),
-                                      ]),
-                                ),
-                        )
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text('Hot Deals'),
-                      ),
-                      Flexible(
-                        child: Container(
-                          height: 232,
-                          color: Color(0xffFAF1E2),
-                          padding: const EdgeInsets.symmetric(vertical: 16.0),
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 10,
-                            itemBuilder: (_, index) => Container(
-                                  margin: const EdgeInsets.symmetric(
-                                      horizontal: 8.0),
-                                  padding: const EdgeInsets.all(16.0),
-                                  width: 140,
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10))),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding: const EdgeInsets.only(bottom:16.0),
-                                        child: Icon(Icons.tab),
-                                      ),
-                                      Padding(
-                                       padding: const EdgeInsets.symmetric(vertical:8.0),
-                                        child: Text('Dicount Voucher',
-                                            style: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 16.0,
-                                                fontWeight: FontWeight.bold)),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(vertical:8.0),
-                                        child: Text('10% off on any pizzahut products',style: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 10.0,)),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                                    ),
+                                                  ],
+                                                )),
+                                          ))
+                                      .toList(),
+                                ]),
+                          ),
+                  )),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Hot Deals'),
+                  ),
+                  Flexible(
+                    child: Container(
+                      height: 232,
+                      color: Color(0xffFAF1E2),
+                      padding: const EdgeInsets.symmetric(vertical: 16.0),
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 10,
+                        itemBuilder: (_, index) => Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 8.0),
+                          padding: const EdgeInsets.all(16.0),
+                          width: 140,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(10))),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 16.0),
+                                child: Icon(Icons.tab),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Text('Dicount Voucher',
+                                    style: TextStyle(
+                                        color: Colors.grey,
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.bold)),
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 8.0),
+                                child: Text('10% off on any pizzahut products',
+                                    style: TextStyle(
+                                      color: Colors.grey,
+                                      fontSize: 10.0,
+                                    )),
+                              ),
+                            ],
                           ),
                         ),
-                      )
-                    ],
-                  ),
-                ),
+                      ),
+                    ),
+                  )
+                ],
               ),
+            ),
+          ),
         ),
       ),
     );

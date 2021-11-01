@@ -20,10 +20,10 @@ class _PaymentPageState extends State<PaymentPage> {
   ScrollController scrollController = ScrollController();
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
-    scrollController.addListener((){
-      if(scrollController.position.userScrollDirection.index==1){
+    scrollController.addListener(() {
+      if (scrollController.position.userScrollDirection.index == 1) {
         FocusScope.of(context).requestFocus(FocusNode());
       }
     });
@@ -79,9 +79,7 @@ class _PaymentPageState extends State<PaymentPage> {
       backgroundColor: Colors.white,
       body: LayoutBuilder(
         builder: (_, constraints) => GestureDetector(
-          onPanDown: (val) {
-//            FocusScope.of(context).requestFocus(FocusNode());
-          },
+          onPanDown: (val) {},
           behavior: HitTestBehavior.opaque,
           child: SingleChildScrollView(
             controller: scrollController,
@@ -178,13 +176,13 @@ class _PaymentPageState extends State<PaymentPage> {
                             .map((c) => InkWell(
                                   onTap: () {
                                     setState(() {
-                                      active = c;
+                                      active = c ?? Colors.red;
                                     });
                                   },
                                   child: Transform.scale(
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: ColorOption(c),
+                                        child: ColorOption(c ?? Colors.red),
                                       ),
                                       scale: active == c ? 1.2 : 1),
                                 ))

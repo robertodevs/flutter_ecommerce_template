@@ -1,23 +1,20 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:ecommerce_int2/app_properties.dart';
 import 'package:ecommerce_int2/models/product.dart';
 import 'package:ecommerce_int2/screens/product/product_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_page_indicator/flutter_page_indicator.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 class ProductList extends StatelessWidget {
   List<Product> products;
 
   final SwiperController swiperController = SwiperController();
 
-  ProductList({Key key, this.products}) : super(key: key);
+  ProductList({required this.products});
 
   @override
   Widget build(BuildContext context) {
-    double cardHeight = MediaQuery.of(context).size.height/2.7;
-    double cardWidth = MediaQuery.of(context).size.width/1.8;
-    if(products==null)
-      products = [];
+    double cardHeight = MediaQuery.of(context).size.height / 2.7;
+    double cardWidth = MediaQuery.of(context).size.width / 1.8;
 
     return SizedBox(
       height: cardHeight,
@@ -25,10 +22,7 @@ class ProductList extends StatelessWidget {
         itemCount: products.length,
         itemBuilder: (_, index) {
           return ProductCard(
-            height: cardHeight,
-            width: cardWidth,
-            product: products[index]
-          );
+              height: cardHeight, width: cardWidth, product: products[index]);
         },
         scale: 0.8,
         controller: swiperController,
@@ -37,20 +31,20 @@ class ProductList extends StatelessWidget {
         fade: 0.5,
         pagination: SwiperCustomPagination(
           builder: (context, config) {
-            if (config.itemCount > 20) {
+            if (config!.itemCount! > 20) {
               print(
                   "The itemCount is too big, we suggest use FractionPaginationBuilder instead of DotSwiperPaginationBuilder in this sitituation");
             }
             Color activeColor = mediumYellow;
-            Color color = Colors.grey[300];
+            Color color = Colors.grey.withOpacity(.3);
             double size = 10.0;
             double space = 5.0;
 
             if (config.indicatorLayout != PageIndicatorLayout.NONE &&
                 config.layout == SwiperLayout.DEFAULT) {
               return new PageIndicator(
-                count: config.itemCount,
-                controller: config.pageController,
+                count: config.itemCount!,
+                controller: config.pageController!,
                 layout: config.indicatorLayout,
                 size: size,
                 activeColor: activeColor,
@@ -61,8 +55,8 @@ class ProductList extends StatelessWidget {
 
             List<Widget> dots = [];
 
-            int itemCount = config.itemCount;
-            int activeIndex = config.activeIndex;
+            int itemCount = config.itemCount!;
+            int activeIndex = config.activeIndex!;
 
             for (int i = 0; i < itemCount; ++i) {
               bool active = i == activeIndex;
@@ -104,20 +98,17 @@ class ProductCard extends StatelessWidget {
   final double height;
   final double width;
 
-
-
-  const ProductCard({Key key, this.product,this.height,this.width})
-      : super(key: key);
+  const ProductCard({
+    required this.product,
+    required this.height,
+    required this.width,
+  });
 
   @override
   Widget build(BuildContext context) {
-
     return InkWell(
-      onTap: () => Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => ProductPage(
-        product: product
-
-      ))),
+      onTap: () => Navigator.of(context).push(
+          MaterialPageRoute(builder: (_) => ProductPage(product: product))),
       child: Stack(
         children: <Widget>[
           Container(
@@ -144,7 +135,7 @@ class ProductCard extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            product.name ?? '',
+                            product.name,
                             style:
                                 TextStyle(color: Colors.white, fontSize: 16.0),
                           ),
@@ -161,7 +152,7 @@ class ProductCard extends StatelessWidget {
                           color: Color.fromRGBO(224, 69, 10, 1),
                         ),
                         child: Text(
-                          '\$${product.price ?? 0.0}',
+                          '\$${product.price}',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -178,9 +169,9 @@ class ProductCard extends StatelessWidget {
             child: Hero(
               tag: product.image,
               child: Image.asset(
-                product.image ?? '',
-                height: height/1.7,
-                width: width/1.4,
+                product.image,
+                height: height / 1.7,
+                width: width / 1.4,
                 fit: BoxFit.contain,
               ),
             ),

@@ -6,21 +6,13 @@ class CategoryCard extends StatelessWidget {
   final String categoryName;
   final String assetPath;
 
-  CategoryCard(
-      {Key key,
-        this.controller,
-        this.begin,
-        this.end,
-        this.categoryName,
-        this.assetPath})
-      :
-
-  // Each animation defined here transforms its value during the subset
-  // of the controller's duration defined by the animation's interval.
-  // For example the opacity animation transforms its value during
-  // the first 10% of the controller's duration.
-
-        height = Tween<double>(begin: 150, end: 250.0).animate(
+  CategoryCard({
+    required this.controller,
+    required this.begin,
+    required this.end,
+    required this.categoryName,
+    required this.assetPath,
+  })  : height = Tween<double>(begin: 150, end: 250.0).animate(
           CurvedAnimation(
             parent: controller,
             curve: Interval(
@@ -39,8 +31,7 @@ class CategoryCard extends StatelessWidget {
               curve: Curves.ease,
             ),
           ),
-        ),
-        super(key: key);
+        );
 
   final Animation<double> controller;
   final Animation<double> height;
@@ -49,7 +40,7 @@ class CategoryCard extends StatelessWidget {
   // This function is called each time the controller "ticks" a new frame.
   // When it runs, all of the animation's values will have been
   // updated to reflect the controller's current value.
-  Widget _buildAnimation(BuildContext context, Widget child) {
+  Widget _buildAnimation(BuildContext context, Widget? child) {
     return Container(
       height: height.value,
       width: MediaQuery.of(context).size.width,
@@ -89,7 +80,7 @@ class CategoryCard extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(24))),
                 padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
                 child: Text(
                   'View more',
                   style: TextStyle(color: end, fontWeight: FontWeight.bold),
@@ -117,9 +108,12 @@ class StaggeredCardCard extends StatefulWidget {
   final String categoryName;
   final String assetPath;
 
-  const StaggeredCardCard(
-      {Key key, this.begin, this.end, this.categoryName, this.assetPath})
-      : super(key: key);
+  const StaggeredCardCard({
+    required this.begin,
+    required this.end,
+    required this.categoryName,
+    required this.assetPath,
+  });
 
   @override
   _StaggeredCardCardState createState() => _StaggeredCardCardState();
@@ -127,7 +121,7 @@ class StaggeredCardCard extends StatefulWidget {
 
 class _StaggeredCardCardState extends State<StaggeredCardCard>
     with TickerProviderStateMixin {
-  AnimationController _controller;
+  late AnimationController _controller;
   bool isActive = false;
 
   @override

@@ -2,10 +2,11 @@ import 'package:ecommerce_int2/models/category.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
-
   final Category category;
 
-  const CategoryCard({Key key, this.category}) : super(key: key);
+  const CategoryCard({
+    required this.category,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +33,12 @@ class CategoryCard extends StatelessWidget {
                 height: 80,
                 width: 90,
                 decoration: BoxDecoration(
-                    gradient:RadialGradient(colors: [category.begin,category.end],
+                    gradient: RadialGradient(
+                        colors: [category.begin, category.end],
                         center: Alignment(0, 0),
                         radius: 0.8,
                         focal: Alignment(0, 0),
-                        focalRadius: 0.1)
-                ),
+                        focalRadius: 0.1)),
                 padding: EdgeInsets.all(8.0),
                 child: Center(
                   child: Image.asset(category.image),

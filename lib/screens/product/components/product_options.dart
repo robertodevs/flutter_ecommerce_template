@@ -8,7 +8,10 @@ import 'shop_bottomSheet.dart';
 class ProductOption extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
   final Product product;
-  const ProductOption(this.scaffoldKey, {Key key, this.product}) : super(key: key);
+  const ProductOption(
+    this.scaffoldKey, {
+    required this.product,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +47,8 @@ class ProductOption extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () async {
-                      Navigator.of(context).push(MaterialPageRoute(builder: (_)=>CheckOutPage()));
-
+                      Navigator.of(context).push(
+                          MaterialPageRoute(builder: (_) => CheckOutPage()));
                     },
                     child: Container(
                       width: MediaQuery.of(context).size.width / 2.5,
@@ -69,7 +72,7 @@ class ProductOption extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      scaffoldKey.currentState.showBottomSheet((context) {
+                      scaffoldKey.currentState!.showBottomSheet((context) {
                         return ShopBottomSheet();
                       });
                     },

@@ -1,14 +1,13 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:ecommerce_int2/app_properties.dart';
 import 'package:ecommerce_int2/models/product.dart';
 import 'package:ecommerce_int2/screens/address/add_address_page.dart';
 import 'package:ecommerce_int2/screens/payment/unpaid_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
 
 import 'components/credit_card.dart';
 import 'components/shop_item_list.dart';
 
-//TODO: NOT DONE. WHEEL SCROLL QUANTITY
 class CheckOutPage extends StatefulWidget {
   @override
   _CheckOutPageState createState() => _CheckOutPageState();
@@ -18,21 +17,12 @@ class _CheckOutPageState extends State<CheckOutPage> {
   SwiperController swiperController = SwiperController();
 
   List<Product> products = [
-    Product(
-        'assets/headphones.png',
-        'Boat roackerz 400 On-Ear Bluetooth Headphones',
-        'description',
-        45.3),
-    Product(
-        'assets/headphones_2.png',
-        'Boat roackerz 100 On-Ear Bluetooth Headphones',
-        'description',
-        22.3),
-    Product(
-        'assets/headphones_3.png',
-        'Boat roackerz 300 On-Ear Bluetooth Headphones',
-        'description',
-        58.3)
+    Product('assets/headphones.png',
+        'Boat roackerz 400 On-Ear Bluetooth Headphones', 'description', 45.3),
+    Product('assets/headphones_2.png',
+        'Boat roackerz 100 On-Ear Bluetooth Headphones', 'description', 22.3),
+    Product('assets/headphones_3.png',
+        'Boat roackerz 300 On-Ear Bluetooth Headphones', 'description', 58.3)
   ];
 
   @override
@@ -73,8 +63,8 @@ class _CheckOutPageState extends State<CheckOutPage> {
         actions: <Widget>[
           IconButton(
             icon: Image.asset('assets/icons/denied_wallet.png'),
-              onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => UnpaidPage())),
+            onPressed: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => UnpaidPage())),
           )
         ],
         title: Text(
@@ -119,11 +109,14 @@ class _CheckOutPageState extends State<CheckOutPage> {
                   height: 300,
                   child: Scrollbar(
                     child: ListView.builder(
-                      itemBuilder: (_, index) => ShopItemList(products[index],onRemove: (){
-                        setState(() {
-                          products.remove(products[index]);
-                        });
-                      },),
+                      itemBuilder: (_, index) => ShopItemList(
+                        products[index],
+                        onRemove: () {
+                          setState(() {
+                            products.remove(products[index]);
+                          });
+                        },
+                      ),
                       itemCount: products.length,
                     ),
                   ),

@@ -19,7 +19,6 @@ class _RatingPageState extends State<RatingPage> {
         backgroundColor: Colors.grey[100],
         appBar: AppBar(
           backgroundColor: Colors.transparent,
-          brightness: Brightness.light,
           iconTheme: IconThemeData(color: Colors.black),
           elevation: 0.0,
           actions: <Widget>[
@@ -27,12 +26,15 @@ class _RatingPageState extends State<RatingPage> {
               icon: Image.asset('assets/icons/comment.png'),
               onPressed: () {
                 showDialog(
-                    context: context,
-                    child: Dialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return Dialog(
                       shape: BeveledRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(10))),
                       child: RatingDialog(),
-                    ));
+                    );
+                  },
+                );
               },
               color: Colors.black,
             ),
@@ -104,7 +106,7 @@ class _RatingPageState extends State<RatingPage> {
                                       color: Color(0xffFF8993),
                                       size: 20,
                                     ),
-                                    half: null,
+                                    half: SizedBox(),
                                   ),
                                   onRatingUpdate: (value) {
                                     setState(() {
@@ -182,8 +184,6 @@ class _RatingPageState extends State<RatingPage> {
                                                   const EdgeInsets.symmetric(
                                                       vertical: 8.0),
                                               child: RatingBar(
-//                                borderColor: Color(0xffFF8993),
-//                                fillColor: Color(0xffFF8993),
                                                 ignoreGestures: true,
                                                 itemSize: 20,
                                                 allowHalfRating: true,
@@ -201,7 +201,7 @@ class _RatingPageState extends State<RatingPage> {
                                                     color: Color(0xffFF8993),
                                                     size: 20,
                                                   ),
-                                                  half: null,
+                                                  half: SizedBox(),
                                                 ),
                                                 onRatingUpdate: (value) {
                                                   setState(() {

@@ -4,7 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 class CustomBottomBar extends StatelessWidget {
   final TabController controller;
 
-  const CustomBottomBar({Key key, this.controller}) : super(key: key);
+  const CustomBottomBar({
+    required this.controller,
+  });
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
@@ -13,9 +15,9 @@ class CustomBottomBar extends StatelessWidget {
         children: <Widget>[
           IconButton(
             icon: SvgPicture.asset(
-                    'assets/icons/home_icon.svg',
-                    fit: BoxFit.fitWidth,
-                    ),
+              'assets/icons/home_icon.svg',
+              fit: BoxFit.fitWidth,
+            ),
             onPressed: () {
               controller.animateTo(0);
             },

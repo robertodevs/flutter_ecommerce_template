@@ -76,7 +76,7 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
                           color: Color(0xffFF8993),
                           size: 20,
                         ),
-                        half: null,
+                        half: SizedBox(),
                       ),
                       onRatingUpdate: (value) {
                         setState(() {
@@ -144,8 +144,6 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
                                   padding:
                                       const EdgeInsets.symmetric(vertical: 8.0),
                                   child: RatingBar(
-//                                borderColor: Color(0xffFF8993),
-//                                fillColor: Color(0xffFF8993),
                                     ignoreGestures: true,
                                     itemSize: 20,
                                     allowHalfRating: true,
@@ -160,7 +158,7 @@ class _RatingBottomSheetState extends State<RatingBottomSheet> {
                                         color: Color(0xffFF8993),
                                         size: 20,
                                       ),
-                                      half: null,
+                                      half: SizedBox(),
                                     ),
                                     onRatingUpdate: (value) {
                                       setState(() {

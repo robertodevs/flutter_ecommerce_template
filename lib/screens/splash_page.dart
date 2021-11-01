@@ -9,8 +9,8 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen>
     with SingleTickerProviderStateMixin {
-  Animation<double> opacity;
-  AnimationController controller;
+  late Animation<double> opacity;
+  late AnimationController controller;
 
   @override
   void initState() {

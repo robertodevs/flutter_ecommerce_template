@@ -6,7 +6,9 @@ import 'package:flutter/material.dart';
 class ProductDisplay extends StatelessWidget {
   final Product product;
 
-  const ProductDisplay({Key key, this.product}) : super(key: key);
+  const ProductDisplay({
+    required this.product,
+  });
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -15,7 +17,7 @@ class ProductDisplay extends StatelessWidget {
             top: 30.0,
             right: 0,
             child: Container(
-                width: MediaQuery.of(context).size.width/1.5,
+                width: MediaQuery.of(context).size.width / 1.5,
                 height: 85,
                 padding: EdgeInsets.only(right: 24),
                 decoration: new BoxDecoration(
@@ -30,7 +32,7 @@ class ProductDisplay extends StatelessWidget {
                           blurRadius: 6.0),
                     ]),
                 child: Align(
-                  alignment: Alignment(1,0),
+                  alignment: Alignment(1, 0),
                   child: RichText(
                       text: TextSpan(children: [
                     TextSpan(
@@ -40,13 +42,13 @@ class ProductDisplay extends StatelessWidget {
                             fontWeight: FontWeight.w400,
                             fontFamily: "Montserrat",
                             fontSize: 36.0)),
-                        TextSpan(
-                            text: '.58',
-                            style: const TextStyle(
-                                color: const Color(0xFFFFFFFF),
-                                fontWeight: FontWeight.w400,
-                                fontFamily: "Montserrat",
-                                fontSize: 18.0))
+                    TextSpan(
+                        text: '.58',
+                        style: const TextStyle(
+                            color: const Color(0xFFFFFFFF),
+                            fontWeight: FontWeight.w400,
+                            fontFamily: "Montserrat",
+                            fontSize: 18.0))
                   ])),
                 ))),
         Align(
@@ -65,10 +67,9 @@ class ProductDisplay extends StatelessWidget {
                       child: Hero(
                         tag: product.image,
                         child: Image.asset(
-
                           product.image,
                           fit: BoxFit.contain,
-                          height:230,
+                          height: 230,
                           width: 230,
                         ),
                       ),
@@ -83,9 +84,8 @@ class ProductDisplay extends StatelessWidget {
           left: 20.0,
           bottom: 0.0,
           child: RawMaterialButton(
-            onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                    builder: (_) => RatingPage())),
+            onPressed: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => RatingPage())),
             constraints: const BoxConstraints(minWidth: 45, minHeight: 45),
             child:
                 Icon(Icons.favorite, color: Color.fromRGBO(255, 137, 147, 1)),

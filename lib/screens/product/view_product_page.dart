@@ -12,20 +12,16 @@ import 'components/product_options.dart';
 class ViewProductPage extends StatefulWidget {
   final Product product;
 
-  ViewProductPage({Key key, this.product}) : super(key: key);
+  ViewProductPage({required this.product});
 
   @override
-  _ViewProductPageState createState() => _ViewProductPageState(product);
+  _ViewProductPageState createState() => _ViewProductPageState();
 }
 
 class _ViewProductPageState extends State<ViewProductPage> {
-  final Product product;
-
-  _ViewProductPageState(this.product);
-
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  int active;
+  int active = 0;
 
   ///list of product colors
   List<Widget> colors() {
@@ -63,7 +59,7 @@ class _ViewProductPageState extends State<ViewProductPage> {
     Widget description = Padding(
       padding: const EdgeInsets.all(24.0),
       child: Text(
-        product.description,
+        widget.product.description,
         maxLines: 5,
         semanticsLabel: '...',
         overflow: TextOverflow.ellipsis,
@@ -80,7 +76,10 @@ class _ViewProductPageState extends State<ViewProductPage> {
           iconTheme: IconThemeData(color: darkGrey),
           actions: <Widget>[
             IconButton(
-              icon: new SvgPicture.asset('assets/icons/search_icon.svg', fit: BoxFit.scaleDown,),
+              icon: new SvgPicture.asset(
+                'assets/icons/search_icon.svg',
+                fit: BoxFit.scaleDown,
+              ),
               onPressed: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (_) => SearchPage())),
             )
@@ -101,7 +100,7 @@ class _ViewProductPageState extends State<ViewProductPage> {
               children: <Widget>[
                 ProductOption(
                   _scaffoldKey,
-                  product: product,
+                  product: widget.product,
                 ),
                 description,
                 Padding(
@@ -119,12 +118,12 @@ class _ViewProductPageState extends State<ViewProductPage> {
                     RawMaterialButton(
                       onPressed: () {
                         showModalBottomSheet(
-                            context: context,
-                            builder: (context) {
-                              return RatingBottomSheet();
-                            },
-                            //elevation: 0,
-                            //backgroundColor: Colors.transparent
+                          context: context,
+                          builder: (context) {
+                            return RatingBottomSheet();
+                          },
+                          //elevation: 0,
+                          //backgroundColor: Colors.transparent
                         );
                       },
                       constraints:

@@ -7,9 +7,9 @@ import 'package:numberpicker/numberpicker.dart';
 
 class ShopItemList extends StatefulWidget {
   final Product product;
-  final Function onRemove;
+  final VoidCallback onRemove;
 
-  ShopItemList(this.product, {Key key, this.onRemove}) : super(key: key);
+  ShopItemList(this.product, {required this.onRemove});
 
   @override
   _ShopItemListState createState() => _ShopItemListState();
@@ -80,35 +80,31 @@ class _ShopItemListState extends State<ShopItemList> {
                           ],
                         ),
                       ),
-//TODO: Work on scroll quantity
                       Theme(
-                        data: ThemeData(
-                            accentColor: Colors.black,
-                            textTheme: TextTheme(
-                              headline: TextStyle(
+                          data: ThemeData(
+                              accentColor: Colors.black,
+                              textTheme: TextTheme(
+                                headline6: TextStyle(
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 14,
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.bold),
+                                bodyText1: TextStyle(
                                   fontFamily: 'Montserrat',
-                                  fontSize: 14,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold),
-                              body1: TextStyle(
-                                fontFamily: 'Montserrat',
-                                fontSize: 12,
-                                color: Colors.grey[400],
-                              ),
-                            )),
-                        child: NumberPicker.integer(
-                          initialValue: quantity,
-                          minValue: 1,
-                          maxValue: 10,
-                          onChanged: (value) {
-                            setState(() {
-                              quantity = value;
-                            });
-                          },
-                          itemExtent: 30,
-                          listViewWidth: 40,
-                        ),
-                      )
+                                  fontSize: 12,
+                                  color: Colors.grey[400],
+                                ),
+                              )),
+                          child: NumberPicker(
+                            value: quantity,
+                            minValue: 1,
+                            maxValue: 10,
+                            onChanged: (value) {
+                              setState(() {
+                                quantity = value;
+                              });
+                            },
+                          ))
                     ])),
           ),
           Positioned(

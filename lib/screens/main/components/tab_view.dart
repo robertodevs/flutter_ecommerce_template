@@ -1,8 +1,5 @@
-import 'package:ecommerce_int2/app_properties.dart';
 import 'package:ecommerce_int2/models/category.dart';
-
 import 'package:flutter/material.dart';
-
 import 'category_card.dart';
 import 'recommended_list.dart';
 
@@ -48,7 +45,9 @@ class TabView extends StatelessWidget {
 
   final TabController tabController;
 
-  TabView({Key key, this.tabController}) : super(key: key);
+  TabView({
+    required this.tabController,
+  });
 
   @override
   Widget build(BuildContext context) {

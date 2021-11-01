@@ -10,7 +10,7 @@ import 'view_product_page.dart';
 class ProductPage extends StatefulWidget {
   final Product product;
 
-  ProductPage({Key key, this.product}) : super(key: key);
+  ProductPage({required this.product});
 
   @override
   _ProductPageState createState() => _ProductPageState(product);
@@ -26,9 +26,11 @@ class _ProductPageState extends State<ProductPage> {
     double width = MediaQuery.of(context).size.width;
     double bottomPadding = MediaQuery.of(context).padding.bottom;
 
-    Widget viewProductButton  = InkWell(
-      onTap: () => Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => ViewProductPage(product: product,))),
+    Widget viewProductButton = InkWell(
+      onTap: () => Navigator.of(context).push(MaterialPageRoute(
+          builder: (_) => ViewProductPage(
+                product: product,
+              ))),
       child: Container(
         height: 80,
         width: width / 1.5,
@@ -61,15 +63,18 @@ class _ProductPageState extends State<ProductPage> {
         iconTheme: IconThemeData(color: darkGrey),
         actions: <Widget>[
           IconButton(
-              icon: new SvgPicture.asset('assets/icons/search_icon.svg', fit: BoxFit.scaleDown,), onPressed: ()=> Navigator.of(context).push(
-              MaterialPageRoute(builder: (_) => SearchPage())),)
+            icon: new SvgPicture.asset(
+              'assets/icons/search_icon.svg',
+              fit: BoxFit.scaleDown,
+            ),
+            onPressed: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (_) => SearchPage())),
+          )
         ],
         title: Text(
           'Headphones',
           style: const TextStyle(
-              color: darkGrey,
-              fontWeight: FontWeight.w500,
-              fontSize: 18.0),
+              color: darkGrey, fontWeight: FontWeight.w500, fontSize: 18.0),
         ),
       ),
       body: Stack(
@@ -81,25 +86,25 @@ class _ProductPageState extends State<ProductPage> {
                 SizedBox(
                   height: 80.0,
                 ),
-                ProductDisplay(product: product,),
+                ProductDisplay(
+                  product: product,
+                ),
                 SizedBox(
                   height: 16.0,
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 20.0,right: 16.0),
+                  padding: const EdgeInsets.only(left: 20.0, right: 16.0),
                   child: Text(
-                   product.name,
+                    product.name,
                     style: const TextStyle(
                         color: const Color(0xFFFEFEFE),
                         fontWeight: FontWeight.w600,
                         fontSize: 20.0),
                   ),
                 ),
-
                 SizedBox(
                   height: 24.0,
                 ),
-
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0),
                   child: Row(
@@ -131,8 +136,7 @@ class _ProductPageState extends State<ProductPage> {
                 Padding(
                     padding:
                         EdgeInsets.only(left: 20.0, right: 40.0, bottom: 130),
-                    child: new Text(
-                        product.description,
+                    child: new Text(product.description,
                         style: const TextStyle(
                             color: const Color(0xfefefefe),
                             fontWeight: FontWeight.w800,
@@ -158,8 +162,7 @@ class _ProductPageState extends State<ProductPage> {
                       end: FractionalOffset.bottomCenter)),
               width: width,
               height: 120,
-              child: Center(
-                  child: viewProductButton),
+              child: Center(child: viewProductButton),
             ),
           ),
         ],
