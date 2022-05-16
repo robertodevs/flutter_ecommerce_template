@@ -34,9 +34,10 @@ dependencies:
   numberpicker: ^2.1.1
   flare_splash_screen: ^4.0.0
   flutter_svg: ^0.23.0+1
-  get: ^4.6.3
+  get: 4.6.1
   dio: ^4.0.6
   get_storage: ^2.0.3
+  path_provider: ^2.0.10
 
 
 dev_dependencies:
