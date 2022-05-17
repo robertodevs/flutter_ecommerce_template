@@ -1,24 +1,25 @@
-
 import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'register_page.dart';
 
-class                            WelcomeBackPage extends StatefulWidget {
+class WelcomeBackPage extends StatefulWidget {
   @override
   _WelcomeBackPageState createState() => _WelcomeBackPageState();
 }
 
 class _WelcomeBackPageState extends State<WelcomeBackPage> {
-  TextEditingController email =
-      TextEditingController(text: 'example@email.com');
+  TextEditingController email = TextEditingController();
 
-  TextEditingController password = TextEditingController(text: '12345678');
+  TextEditingController password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AuthService>();
     Widget welcomeBack = Text(
-      'Welcome Back Roberto,',
+      'Welcome Back',
       style: TextStyle(
           color: Colors.white,
           fontSize: 34.0,
@@ -47,8 +48,7 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
       bottom: 40,
       child: InkWell(
         onTap: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (_) => RegisterPage()));
+          controller.login(email.text.trim(), password.text.trim());
         },
         child: Container(
           width: MediaQuery.of(context).size.width / 2,
@@ -149,20 +149,17 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
     );
 
     return Scaffold(
-
       body: Stack(
         children: <Widget>[
-
           Container(
             decoration: BoxDecoration(
-              image: DecorationImage(image: AssetImage('assets/background.jpg'),
-                  fit: BoxFit.cover)
-            ),
+                image: DecorationImage(
+                    image: AssetImage('assets/background.jpg'),
+                    fit: BoxFit.cover)),
           ),
           Container(
             decoration: BoxDecoration(
-                color: transparentYellow,
-
+              color: transparentYellow,
             ),
           ),
           Padding(

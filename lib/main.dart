@@ -1,3 +1,5 @@
+import 'package:ecommerce_int2/data/provider/auth.provider.dart';
+import 'package:ecommerce_int2/data/repository/auth.repository.dart';
 import 'package:ecommerce_int2/screens/splash_page.dart';
 import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:ecommerce_int2/services/network.service.dart';
@@ -11,8 +13,11 @@ void main() {
 
 void initDependencies() {
   Get
-    ..put<AuthService>(AuthService())
-    ..put(NetWorkService(Get.find<AuthService>()));
+    ..put(NetWorkService(Get.find<AuthService>()))
+    ..put(AuthProvider(Get.find<NetWorkService>()))
+    ..put(AuthRepository(Get.find<AuthProvider>()))
+    ..put<AuthService>(AuthService(Get.find<AuthRepository>()))
+    ;
 }
 
 class MyApp extends StatelessWidget {
