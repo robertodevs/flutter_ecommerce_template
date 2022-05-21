@@ -43,4 +43,12 @@ class AuthRepository {
       throw Exception("Wrong email");
     }
   }
+
+  Future<void> resetPassword(String password) async {
+    final response =
+        await provider.forgotPassword(password);
+    if (response.statusCode != 200) {
+      throw Exception("Wrong email");
+    }
+  }
 }

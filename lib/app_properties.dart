@@ -22,3 +22,4 @@ screenAwareSize(int size, BuildContext context) {
 }
 
 const String accessToken = "accessToken";
+const String user = "user";

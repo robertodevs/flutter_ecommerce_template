@@ -26,6 +26,7 @@ class AuthService extends GetxService {
     try {
       final res = await repository.getUserInfo();
       userModel = res;
+      store.write(user, userModel!.toJson());
       Navigator.of(Get.context!)
           .pushReplacement(MaterialPageRoute(builder: (_) => MainPage()));
     } catch (e) {
@@ -80,5 +81,11 @@ class AuthService extends GetxService {
     store.remove(accessToken);
     Navigator.of(Get.context!)
         .pushReplacement(MaterialPageRoute(builder: (_) => WelcomeBackPage()));
+  }
+
+  void resetPassword(String password) {
+    try {
+      repository.resetPassword(password);
+    } catch (e) {}
   }
 }
