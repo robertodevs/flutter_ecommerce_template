@@ -35,16 +35,14 @@ class AuthService extends GetxService {
     }
   }
 
-  Future<bool> login(String username, String password) async {
+  Future<void> login(String username, String password) async {
     try {
       final res = await repository.login(username, password);
+      setAccessToken(res.token);
       userModel = res.user;
       Navigator.of(Get.context!)
           .pushReplacement(MaterialPageRoute(builder: (_) => MainPage()));
-      return true;
-    } catch (e) {
-      return false;
-    }
+    } catch (e) {}
   }
 
   void setAccessToken(String token) {
