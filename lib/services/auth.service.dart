@@ -14,7 +14,7 @@ class AuthService extends GetxService {
 
   @override
   void onInit() {
-    verifyUser();
+    getUserInfo();
     super.onInit();
   }
 
@@ -22,7 +22,7 @@ class AuthService extends GetxService {
 
   AuthService(this.repository);
 
-  void verifyUser() async {
+  void getUserInfo() async {
     try {
       final res = await repository.getUserInfo();
       userModel = res;
@@ -38,15 +38,15 @@ class AuthService extends GetxService {
   Future<void> login(String username, String password) async {
     try {
       final res = await repository.login(username, password);
-      setAccessToken(res.token);
-      userModel = res.user;
+      await setAccessToken(res.token);
+      getUserInfo();
       Navigator.of(Get.context!)
           .pushReplacement(MaterialPageRoute(builder: (_) => MainPage()));
     } catch (e) {}
   }
 
-  void setAccessToken(String token) {
-    store.write(accessToken, token);
+  Future<void> setAccessToken(String token) async {
+    await store.write(accessToken, token);
   }
 
   String getAccessToken() {
