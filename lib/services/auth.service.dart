@@ -42,7 +42,9 @@ class AuthService extends GetxService {
       getUserInfo();
       Navigator.of(Get.context!)
           .pushReplacement(MaterialPageRoute(builder: (_) => MainPage()));
-    } catch (e) {}
+    } catch (e) {
+      print(e);
+    }
   }
 
   Future<void> setAccessToken(String token) async {
@@ -68,7 +70,6 @@ class AuthService extends GetxService {
   Future<void> forgetPassword(String email) async {
     try {
       repository.forgotPassword(email);
-    } on Exception catch (e) {
     } finally {
       Navigator.of(Get.context!).pushReplacement(
           MaterialPageRoute(builder: (_) => WelcomeBackPage()));

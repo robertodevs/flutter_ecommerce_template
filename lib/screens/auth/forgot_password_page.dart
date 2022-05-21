@@ -1,4 +1,3 @@
-
 import 'package:ecommerce_int2/app_properties.dart';
 import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:flutter/material.dart';
@@ -6,7 +5,6 @@ import 'package:country_code_picker/country_code_picker.dart';
 import 'package:get/get.dart';
 
 
-import 'confirm_otp_page.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   @override
@@ -124,7 +122,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
-                prefix(),
                 Flexible(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8.0),

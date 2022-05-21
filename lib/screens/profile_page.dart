@@ -4,11 +4,14 @@ import 'package:ecommerce_int2/screens/payment/payment_page.dart';
 import 'package:ecommerce_int2/screens/settings/settings_page.dart';
 import 'package:ecommerce_int2/screens/tracking_page.dart';
 import 'package:ecommerce_int2/screens/wallet/wallet_page.dart';
+import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AuthService>();
     return Scaffold(
       backgroundColor: Color(0xffF9F9F9),
       body: SafeArea(
@@ -26,7 +29,7 @@ class ProfilePage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Rose Helbert',
+                    controller.userModel!.name,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),

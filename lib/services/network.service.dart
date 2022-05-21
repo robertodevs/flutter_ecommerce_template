@@ -1,9 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:ecommerce_int2/interceptor/dio_interceptor.dart';
-import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:path_provider/path_provider.dart';
-
 
 class HttpResponse<T> {
   HttpResponse({
@@ -24,16 +22,14 @@ class HttpResponse<T> {
 }
 
 class NetWorkService {
-  late final Dio? _dio;
+  Dio _dio = Dio();
 
-  NetWorkService();
+  NetWorkService() {
+    _dio.interceptors.add(DioInterceptors());
+  }
 
   Dio getDio() {
-    if(_dio == null) {
-    Dio _dio = Dio();
-    _dio.interceptors.add(DioInterceptors());
-    }
-    return _dio!;
+    return _dio;
   }
 
   String? getUriQueryParam(Uri uri, String key) {

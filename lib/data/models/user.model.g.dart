@@ -13,7 +13,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
     json['lastName'] as String?,
     json['email'] as String?,
     json['role'] as String?,
-    json['resetToken'] as String?,
+    json['resetPasswordToken'] as String?,
   );
 }
 

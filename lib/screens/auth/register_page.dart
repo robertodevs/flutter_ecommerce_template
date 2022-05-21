@@ -1,10 +1,7 @@
-
 import 'package:ecommerce_int2/app_properties.dart';
 import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'forgot_password_page.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -81,7 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
 
     Widget registerForm = Container(
-      height: 300,
+      height: 350,
       child: Stack(
         children: <Widget>[
           Container(

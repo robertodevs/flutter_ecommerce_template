@@ -10,6 +10,8 @@ class UserModel {
   final String? role;
   final String? resetToken;
 
+  String get name => (firstName ?? '') + ' ' + (lastName ?? '');
+
   UserModel(this.id, this.firstName, this.lastName, this.email, this.role, this.resetToken);
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
