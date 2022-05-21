@@ -1,4 +1,6 @@
+import 'package:ecommerce_int2/data/provider/address.provider.dart';
 import 'package:ecommerce_int2/data/provider/auth.provider.dart';
+import 'package:ecommerce_int2/data/repository/address.repository.dart';
 import 'package:ecommerce_int2/data/repository/auth.repository.dart';
 import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:ecommerce_int2/services/network.service.dart';
@@ -10,6 +12,8 @@ class Dependency {
       ..put(NetWorkService())
       ..put(AuthProvider(Get.find<NetWorkService>()))
       ..put(AuthRepository(Get.find<AuthProvider>()))
-      ..put(AuthService(Get.find<AuthRepository>()));
+      ..put(AuthService(Get.find<AuthRepository>()))
+      ..put(AddressProvider(Get.find<NetWorkService>()))
+      ..put(AddressRepository(Get.find<AddressProvider>()));
   }
 }

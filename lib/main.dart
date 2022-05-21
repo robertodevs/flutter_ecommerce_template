@@ -2,8 +2,10 @@ import 'package:ecommerce_int2/dependencies.dart';
 import 'package:ecommerce_int2/screens/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 void main() {
+  GetStorage.init();
   Dependency.init();
   runApp(MyApp());
 }
@@ -13,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'eCommerce int2',
+      title: 'E-commerce',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         brightness: Brightness.light,

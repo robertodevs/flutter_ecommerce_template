@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class DioInterceptors extends InterceptorsWrapper {
+  
   final _store = GetStorage();
 
   DioInterceptors();
@@ -16,7 +17,7 @@ class DioInterceptors extends InterceptorsWrapper {
     String? token = _store.read(accessToken);
     if (token != null && token.isNotEmpty) {
       options.headers.addAll({
-        HttpHeaders.authorizationHeader: 'Bearer $token',
+        HttpHeaders.authorizationHeader: token,
       });
     }
 

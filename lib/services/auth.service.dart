@@ -14,7 +14,7 @@ class AuthService extends GetxService {
 
   @override
   void onInit() {
-    verifyUser();
+    getUserInfo();
     super.onInit();
   }
 
@@ -22,10 +22,11 @@ class AuthService extends GetxService {
 
   AuthService(this.repository);
 
-  void verifyUser() async {
+  void getUserInfo() async {
     try {
       final res = await repository.getUserInfo();
       userModel = res;
+      store.write(user, userModel!.toJson());
       Navigator.of(Get.context!)
           .pushReplacement(MaterialPageRoute(builder: (_) => MainPage()));
     } catch (e) {
@@ -34,20 +35,20 @@ class AuthService extends GetxService {
     }
   }
 
-  Future<bool> login(String username, String password) async {
+  Future<void> login(String username, String password) async {
     try {
       final res = await repository.login(username, password);
-      userModel = res.user;
+      await setAccessToken(res.token);
+      getUserInfo();
       Navigator.of(Get.context!)
           .pushReplacement(MaterialPageRoute(builder: (_) => MainPage()));
-      return true;
     } catch (e) {
-      return false;
+      print(e);
     }
   }
 
-  void setAccessToken(String token) {
-    store.write(accessToken, token);
+  Future<void> setAccessToken(String token) async {
+    await store.write(accessToken, token);
   }
 
   String getAccessToken() {
@@ -69,7 +70,6 @@ class AuthService extends GetxService {
   Future<void> forgetPassword(String email) async {
     try {
       repository.forgotPassword(email);
-    } on Exception catch (e) {
     } finally {
       Navigator.of(Get.context!).pushReplacement(
           MaterialPageRoute(builder: (_) => WelcomeBackPage()));
@@ -80,5 +80,11 @@ class AuthService extends GetxService {
     store.remove(accessToken);
     Navigator.of(Get.context!)
         .pushReplacement(MaterialPageRoute(builder: (_) => WelcomeBackPage()));
+  }
+
+  void resetPassword(String password) {
+    try {
+      repository.resetPassword(password);
+    } catch (e) {}
   }
 }
