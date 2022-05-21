@@ -11,7 +11,7 @@ class AuthRepository {
 
   Future<LoginResult> login(String username, password) async {
     final response = await provider.login(username, password);
-    if(response.statusCode != 200) {
+    if (response.statusCode != 200) {
       throw Exception("Login failed");
     }
     final result = LoginResult.fromJson(response.body);
@@ -20,12 +20,27 @@ class AuthRepository {
 
   Future<UserModel> getUserInfo() async {
     final response = await provider.getUserInfo();
-    if(response.statusCode != 200) {
+    if (response.statusCode != 200) {
       throw Exception("Login failed");
     }
     final result = UserModel.fromJson(response.body);
     return result;
   }
 
+  Future<void> register(String username, String password, String firstName,
+      String lastName) async {
+    final response =
+        await provider.register(username, password, firstName, lastName);
+    if (response.statusCode != 200) {
+      throw Exception("Register failed");
+    }
+  }
 
+  Future<void> forgotPassword(String email,) async {
+    final response =
+        await provider.forgotPassword(email);
+    if (response.statusCode != 200) {
+      throw Exception("Wrong email");
+    }
+  }
 }

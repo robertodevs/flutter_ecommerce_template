@@ -2,14 +2,13 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:ecommerce_int2/app_properties.dart';
 import 'package:ecommerce_int2/services/auth.service.dart';
+import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
 class DioInterceptors extends InterceptorsWrapper {
   final _store = GetStorage();
 
-  final AuthService authService;
-
-  DioInterceptors(this.authService);
+  DioInterceptors();
 
   @override
   Future onRequest(
@@ -27,7 +26,7 @@ class DioInterceptors extends InterceptorsWrapper {
   @override
   void onError(DioError err, ErrorInterceptorHandler handler) {
     if (err.response?.statusCode == 401) {
-      authService.logout();
+      Get.find<AuthService>().logout();
     }
     super.onError(err, handler);
   }

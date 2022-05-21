@@ -1,4 +1,5 @@
 import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/screens/auth/forgot_password_page.dart';
 import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -134,7 +135,9 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Get.to(() => ForgotPasswordPage());
+            },
             child: Text(
               'Reset password',
               style: TextStyle(
@@ -145,6 +148,24 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
             ),
           ),
         ],
+      ),
+    );
+
+    
+    Widget register = Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: InkWell(
+        onTap: () {
+          Get.to(() => RegisterPage());
+        },
+        child: Text(
+          'Register new account',
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+            fontSize: 14.0,
+          ),
+        ),
       ),
     );
 
@@ -174,7 +195,9 @@ class _WelcomeBackPageState extends State<WelcomeBackPage> {
                 Spacer(flex: 2),
                 loginForm,
                 Spacer(flex: 2),
-                forgotPassword
+                register,
+                Spacer(flex: 1),
+                forgotPassword,
               ],
             ),
           )

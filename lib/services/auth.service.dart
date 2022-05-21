@@ -1,3 +1,4 @@
+import 'package:ecommerce_int2/app_properties.dart';
 import 'package:ecommerce_int2/data/models/user.model.dart';
 import 'package:ecommerce_int2/data/repository/auth.repository.dart';
 import 'package:ecommerce_int2/screens/auth/welcome_back_page.dart';
@@ -45,9 +46,39 @@ class AuthService extends GetxService {
     }
   }
 
-  void setAccessToken(String accessToken) {}
+  void setAccessToken(String token) {
+    store.write(accessToken, token);
+  }
 
-  void getAccessToken() {}
+  String getAccessToken() {
+    final String? token = store.read(accessToken);
+    if (token == null) throw Exception("Access token not available");
+    return token;
+  }
 
-  void logout() {}
+  Future<void> register(String username, String password, String firstName,
+      String lastName) async {
+    try {
+      repository.register(username, password, firstName, lastName);
+    } on Exception catch (e) {
+      Navigator.of(Get.context!).pushReplacement(
+          MaterialPageRoute(builder: (_) => WelcomeBackPage()));
+    }
+  }
+
+  Future<void> forgetPassword(String email) async {
+    try {
+      repository.forgotPassword(email);
+    } on Exception catch (e) {
+    } finally {
+      Navigator.of(Get.context!).pushReplacement(
+          MaterialPageRoute(builder: (_) => WelcomeBackPage()));
+    }
+  }
+
+  void logout() {
+    store.remove(accessToken);
+    Navigator.of(Get.context!)
+        .pushReplacement(MaterialPageRoute(builder: (_) => WelcomeBackPage()));
+  }
 }

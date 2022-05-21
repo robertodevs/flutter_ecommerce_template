@@ -24,15 +24,14 @@ class HttpResponse<T> {
 }
 
 class NetWorkService {
-  final AuthService authService;
   late final Dio? _dio;
 
-  NetWorkService(this.authService);
+  NetWorkService();
 
   Dio getDio() {
     if(_dio == null) {
     Dio _dio = Dio();
-    _dio.interceptors.add(DioInterceptors(authService));
+    _dio.interceptors.add(DioInterceptors());
     }
     return _dio!;
   }
