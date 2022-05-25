@@ -24,7 +24,7 @@ class CategoryList {
 class Category {
   String? categoryId;
   String? categoryName;
-  List<Subcategories>? subcategories;
+  List<SubCategory>? subcategories;
 
   Category({this.categoryId, this.categoryName, this.subcategories});
 
@@ -32,9 +32,9 @@ class Category {
     categoryId = json['category_id'];
     categoryName = json['category_name'];
     if (json['subcategories'] != null) {
-      subcategories = <Subcategories>[];
+      subcategories = <SubCategory>[];
       json['subcategories'].forEach((v) {
-        subcategories!.add(new Subcategories.fromJson(v));
+        subcategories!.add(new SubCategory.fromJson(v));
       });
     }
   }
@@ -51,7 +51,7 @@ class Category {
   }
 }
 
-class Subcategories {
+class SubCategory {
   String? sId;
   String? name;
   String? description;
@@ -61,7 +61,7 @@ class Subcategories {
   String? slug;
   int? iV;
 
-  Subcategories(
+  SubCategory(
       {this.sId,
       this.name,
       this.description,
@@ -71,7 +71,7 @@ class Subcategories {
       this.slug,
       this.iV});
 
-  Subcategories.fromJson(Map<String, dynamic> json) {
+  SubCategory.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     name = json['name'];
     description = json['description'];

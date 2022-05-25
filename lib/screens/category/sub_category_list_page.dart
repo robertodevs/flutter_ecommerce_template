@@ -1,13 +1,18 @@
 import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/data/models/category.model.dart';
 import 'package:ecommerce_int2/data/repository/category.repository.dart';
-import 'package:ecommerce_int2/screens/category/category.controller.dart';
+import 'package:ecommerce_int2/screens/category/sub_category.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import 'components/staggered_category_card.dart';
 
-class CategoryListPage extends StatelessWidget {
+class SubCategoryListPage extends StatelessWidget {
+
+  final Category category;
+
+  const SubCategoryListPage({Key? key, required this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +21,8 @@ class CategoryListPage extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(top: kToolbarHeight),
         padding: EdgeInsets.symmetric(horizontal: 16.0),
-        child: GetBuilder<CategoryController>(
-          init: CategoryController(Get.find<CategoryRepository>()),
+        child: GetBuilder<SubCategoryController>(
+          init: SubCategoryController(Get.find<CategoryRepository>(), category),
           builder: (controller) => Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
@@ -26,7 +31,7 @@ class CategoryListPage extends StatelessWidget {
                 child: Padding(
                   padding: EdgeInsets.symmetric(vertical: 16.0),
                   child: Text(
-                    'Category List',
+                    'Sub Category List',
                     style: TextStyle(
                       color: darkGrey,
                       fontSize: 22,
@@ -63,7 +68,7 @@ class CategoryListPage extends StatelessWidget {
                     child: StaggeredCardCard(
                       begin: const Color(0xffFCE183),
                       end:  const Color(0xffF68D7F),
-                      categoryName: controller.tempList[index].categoryName ?? "",
+                      categoryName: controller.tempList[index].name ?? "",
                       assetPath:  'assets/jeans_5.png',
                     ),
                   ),
