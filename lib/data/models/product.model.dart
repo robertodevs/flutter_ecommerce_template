@@ -1,16 +1,16 @@
-class Product {
-  List<Products>? products;
+class ProductList {
+  List<Product>? products;
   int? page;
   int? pages;
   int? totalProducts;
 
-  Product({this.products, this.page, this.pages, this.totalProducts});
+  ProductList({this.products, this.page, this.pages, this.totalProducts});
 
-  Product.fromJson(Map<String, dynamic> json) {
+  ProductList.fromJson(Map<String, dynamic> json) {
     if (json['products'] != null) {
-      products = <Products>[];
+      products = <Product>[];
       json['products'].forEach((v) {
-        products!.add(new Products.fromJson(v));
+        products!.add(new Product.fromJson(v));
       });
     }
     page = json['page'];
@@ -30,7 +30,7 @@ class Product {
   }
 }
 
-class Products {
+class Product {
   String? sId;
   String? name;
   String? imageUrl;
@@ -49,7 +49,7 @@ class Products {
   int? totalReviews;
   int? averageRating;
 
-  Products(
+  Product(
       {this.sId,
       this.name,
       this.imageUrl,
@@ -68,7 +68,7 @@ class Products {
       this.totalReviews,
       this.averageRating});
 
-  Products.fromJson(Map<String, dynamic> json) {
+  Product.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     name = json['name'];
     imageUrl = json['imageUrl'];

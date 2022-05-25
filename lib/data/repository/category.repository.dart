@@ -6,12 +6,12 @@ class CategoryRepository {
 
   CategoryRepository(this.provider);
 
-  Future<Category> getAllCategories() async {
+  Future<CategoryList> getAllCategories() async {
     final response = await provider.getCategories();
     if (response.statusCode != 200) {
       throw Exception("Get category failed");
     }
-    final result = Category.fromJson(response.body);
+    final result = CategoryList.fromJson(response.body);
     return result;
   }
 

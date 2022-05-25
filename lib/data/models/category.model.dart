@@ -1,13 +1,13 @@
-class Category {
-  List<Categories>? categories;
+class CategoryList {
+  List<Category>? categories;
 
-  Category({this.categories});
+  CategoryList({this.categories});
 
-  Category.fromJson(Map<String, dynamic> json) {
+  CategoryList.fromJson(Map<String, dynamic> json) {
     if (json['categories'] != null) {
-      categories = <Categories>[];
+      categories = <Category>[];
       json['categories'].forEach((v) {
-        categories!.add(new Categories.fromJson(v));
+        categories!.add(new Category.fromJson(v));
       });
     }
   }
@@ -21,14 +21,14 @@ class Category {
   }
 }
 
-class Categories {
+class Category {
   String? categoryId;
   String? categoryName;
   List<Subcategories>? subcategories;
 
-  Categories({this.categoryId, this.categoryName, this.subcategories});
+  Category({this.categoryId, this.categoryName, this.subcategories});
 
-  Categories.fromJson(Map<String, dynamic> json) {
+  Category.fromJson(Map<String, dynamic> json) {
     categoryId = json['category_id'];
     categoryName = json['category_name'];
     if (json['subcategories'] != null) {

@@ -6,21 +6,21 @@ class ProductRepository {
 
   ProductRepository(this.provider);
 
-  Future<Product> getProducts(ProductFilter filter) async {
+  Future<ProductList> getProducts(ProductFilter filter) async {
     final response = await provider.getProducts(filter);
     if (response.statusCode != 200) {
       throw Exception("Get products failed");
     }
-    final result = Product.fromJson(response.body);
+    final result = ProductList.fromJson(response.body);
     return result;
   }
 
-  Future<Product> searchProduct(String keyword) async {
+  Future<ProductList> searchProduct(String keyword) async {
     final response = await provider.searchProducts(keyword);
     if (response.statusCode != 200) {
       throw Exception("Get products failed");
     }
-    final result = Product.fromJson(response.body);
+    final result = ProductList.fromJson(response.body);
     return result;
   }
 
