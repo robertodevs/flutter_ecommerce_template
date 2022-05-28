@@ -1,4 +1,4 @@
-import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/data/models/user.model.dart';
 import 'package:ecommerce_int2/data/repository/auth.repository.dart';
 import 'package:ecommerce_int2/screens/auth/welcome_back_page.dart';

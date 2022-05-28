@@ -1,11 +1,11 @@
-import 'package:ecommerce_int2/api_service.dart';
+import 'package:ecommerce_int2/utils/api_service.dart';
 import 'package:ecommerce_int2/models/user.dart';
 import 'package:ecommerce_int2/screens/request_money/request_amount_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../app_properties.dart';
+import '../../utils/app_properties.dart';
 
 class RequestPage extends StatefulWidget {
   @override

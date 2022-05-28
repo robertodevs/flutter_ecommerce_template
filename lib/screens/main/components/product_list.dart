@@ -1,15 +1,15 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:ecommerce_int2/app_properties.dart';
-import 'package:ecommerce_int2/models/product.dart';
+import 'package:ecommerce_int2/data/models/product.model.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/screens/product/product_page.dart';
 import 'package:flutter/material.dart';
 
-class ProductList extends StatelessWidget {
+class ProductListView extends StatelessWidget {
   List<Product> products;
 
   final SwiperController swiperController = SwiperController();
 
-  ProductList({required this.products});
+  ProductListView({required this.products});
 
   @override
   Widget build(BuildContext context) {
@@ -135,7 +135,7 @@ class ProductCard extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Text(
-                            product.name,
+                            product.name ?? "",
                             style:
                                 TextStyle(color: Colors.white, fontSize: 16.0),
                           ),
@@ -167,9 +167,9 @@ class ProductCard extends StatelessWidget {
           ),
           Positioned(
             child: Hero(
-              tag: product.image,
+              tag: product.imageUrl!,
               child: Image.asset(
-                product.image,
+                product.imageUrl!,
                 height: height / 1.7,
                 width: width / 1.4,
                 fit: BoxFit.contain,

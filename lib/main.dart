@@ -1,4 +1,4 @@
-import 'package:ecommerce_int2/dependencies.dart';
+import 'package:ecommerce_int2/utils/dependencies.dart';
 import 'package:ecommerce_int2/screens/splash_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

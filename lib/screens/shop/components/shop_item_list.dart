@@ -1,5 +1,5 @@
-import 'package:ecommerce_int2/app_properties.dart';
-import 'package:ecommerce_int2/models/product.dart';
+import 'package:ecommerce_int2/data/models/product.model.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/screens/product/components/color_list.dart';
 import 'package:ecommerce_int2/screens/product/components/shop_product.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +46,7 @@ class _ShopItemListState extends State<ShopItemList> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              widget.product.name,
+                              widget.product.name ?? 'Product',
                               textAlign: TextAlign.right,
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,

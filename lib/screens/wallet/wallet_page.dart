@@ -1,5 +1,5 @@
-import 'package:ecommerce_int2/api_service.dart';
-import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/utils/api_service.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/models/user.dart';
 import 'package:ecommerce_int2/screens/payment_history_page.dart';
 import 'package:ecommerce_int2/screens/request_money/request_amount_page.dart';

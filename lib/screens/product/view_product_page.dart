@@ -1,10 +1,10 @@
-import 'package:ecommerce_int2/models/product.dart';
 import 'package:ecommerce_int2/screens/product/components/rating_bottomSheet.dart';
-import 'package:ecommerce_int2/screens/search_page.dart';
+import 'package:ecommerce_int2/screens/search_products/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../../app_properties.dart';
+import '../../data/models/product.model.dart';
+import '../../utils/app_properties.dart';
 import 'components/color_list.dart';
 import 'components/more_products.dart';
 import 'components/product_options.dart';
@@ -59,7 +59,7 @@ class _ViewProductPageState extends State<ViewProductPage> {
     Widget description = Padding(
       padding: const EdgeInsets.all(24.0),
       child: Text(
-        widget.product.description,
+        widget.product.description ?? 'description',
         maxLines: 5,
         semanticsLabel: '...',
         overflow: TextOverflow.ellipsis,
@@ -98,10 +98,10 @@ class _ViewProductPageState extends State<ViewProductPage> {
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: <Widget>[
-                ProductOption(
-                  _scaffoldKey,
-                  product: widget.product,
-                ),
+                // ProductOption(
+                //   _scaffoldKey,
+                //   product: widget.product,
+                // ),
                 description,
                 Padding(
                   padding: const EdgeInsets.all(24.0),

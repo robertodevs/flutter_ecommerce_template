@@ -38,6 +38,7 @@ dependencies:
   dio: ^4.0.6
   get_storage: ^2.0.3
   path_provider: ^2.0.10
+  pull_to_refresh: ^2.0.0
 
 
 dev_dependencies:

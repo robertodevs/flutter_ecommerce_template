@@ -1,7 +1,11 @@
 import 'package:ecommerce_int2/data/provider/address.provider.dart';
 import 'package:ecommerce_int2/data/provider/auth.provider.dart';
+import 'package:ecommerce_int2/data/provider/category.provider.dart';
+import 'package:ecommerce_int2/data/provider/product.provider.dart';
 import 'package:ecommerce_int2/data/repository/address.repository.dart';
 import 'package:ecommerce_int2/data/repository/auth.repository.dart';
+import 'package:ecommerce_int2/data/repository/category.repository.dart';
+import 'package:ecommerce_int2/data/repository/product.repository.dart';
 import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:ecommerce_int2/services/network.service.dart';
 import 'package:get/get.dart';
@@ -14,6 +18,11 @@ class Dependency {
       ..put(AuthRepository(Get.find<AuthProvider>()))
       ..put(AuthService(Get.find<AuthRepository>()))
       ..put(AddressProvider(Get.find<NetWorkService>()))
-      ..put(AddressRepository(Get.find<AddressProvider>()));
+      ..put(AddressRepository(Get.find<AddressProvider>()))
+      ..put(CategoryProvider(Get.find<NetWorkService>()))
+      ..put(CategoryRepository(Get.find<CategoryProvider>()))
+      ..put(ProductProvider(Get.find<NetWorkService>()))
+      ..put(ProductRepository(Get.find<ProductProvider>()))
+      ;
   }
 }
