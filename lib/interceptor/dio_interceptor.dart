@@ -1,6 +1,6 @@
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';

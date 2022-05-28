@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
-import 'models/user.dart';
+import '../models/user.dart';
 
 class ApiService {
   static String url(int nrResults) {

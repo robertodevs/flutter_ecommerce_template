@@ -1,4 +1,4 @@
-import 'package:ecommerce_int2/models/product.dart';
+import 'package:ecommerce_int2/data/models/product.model.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
@@ -26,7 +26,7 @@ class ProductCard extends StatelessWidget {
                     width: MediaQuery.of(context).size.width / 2 - 64,
                     height: MediaQuery.of(context).size.width / 2 - 64,
                     child: Image.asset(
-                      product.image,
+                      product.imageUrl!,
                     ),
                   ),
                 ),
@@ -42,7 +42,7 @@ class ProductCard extends StatelessWidget {
                                 topLeft: Radius.circular(10),
                                 bottomLeft: Radius.circular(10))),
                         child: Text(
-                          product.name,
+                          product.name ?? "Product",
                           textAlign: TextAlign.right,
                           style: TextStyle(
                             fontSize: 12.0,

@@ -1,5 +1,5 @@
-import 'package:ecommerce_int2/app_properties.dart';
-import 'package:ecommerce_int2/models/product.dart';
+import 'package:ecommerce_int2/data/models/product.model.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/screens/shop/check_out_page.dart';
 import 'package:flutter/material.dart';
 
@@ -12,21 +12,21 @@ class ShopBottomSheet extends StatefulWidget {
 
 class _ShopBottomSheetState extends State<ShopBottomSheet> {
   List<Product> products = [
-    Product(
-        'assets/headphones.png',
-        'Boat roackerz 400 On-Ear Bluetooth Headphones',
-        'description',
-        45.3),
-    Product(
-        'assets/headphones_2.png',
-        'Boat roackerz 100 On-Ear Bluetooth Headphones',
-        'description',
-        22.3),
-    Product(
-        'assets/headphones_3.png',
-        'Boat roackerz 300 On-Ear Bluetooth Headphones',
-        'description',
-        58.3)
+    // Product(
+    //     'assets/headphones.png',
+    //     'Boat roackerz 400 On-Ear Bluetooth Headphones',
+    //     'description',
+    //     45.3),
+    // Product(
+    //     'assets/headphones_2.png',
+    //     'Boat roackerz 100 On-Ear Bluetooth Headphones',
+    //     'description',
+    //     22.3),
+    // Product(
+    //     'assets/headphones_3.png',
+    //     'Boat roackerz 300 On-Ear Bluetooth Headphones',
+    //     'description',
+    //     58.3)
   ];
 
   @override

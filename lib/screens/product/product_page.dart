@@ -1,6 +1,6 @@
-import 'package:ecommerce_int2/app_properties.dart';
-import 'package:ecommerce_int2/models/product.dart';
-import 'package:ecommerce_int2/screens/search_page.dart';
+import 'package:ecommerce_int2/data/models/product.model.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
+import 'package:ecommerce_int2/screens/search_products/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -95,7 +95,7 @@ class _ProductPageState extends State<ProductPage> {
                 Padding(
                   padding: const EdgeInsets.only(left: 20.0, right: 16.0),
                   child: Text(
-                    product.name,
+                    product.name ?? "",
                     style: const TextStyle(
                         color: const Color(0xFFFEFEFE),
                         fontWeight: FontWeight.w600,
@@ -136,7 +136,7 @@ class _ProductPageState extends State<ProductPage> {
                 Padding(
                     padding:
                         EdgeInsets.only(left: 20.0, right: 40.0, bottom: 130),
-                    child: new Text(product.description,
+                    child: new Text(product.description ?? "",
                         style: const TextStyle(
                             color: const Color(0xfefefefe),
                             fontWeight: FontWeight.w800,

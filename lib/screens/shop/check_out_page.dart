@@ -1,6 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:ecommerce_int2/app_properties.dart';
-import 'package:ecommerce_int2/models/product.dart';
+import 'package:ecommerce_int2/data/models/product.model.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/screens/address/add_address_page.dart';
 import 'package:ecommerce_int2/screens/payment/unpaid_page.dart';
 import 'package:flutter/material.dart';
@@ -17,12 +17,21 @@ class _CheckOutPageState extends State<CheckOutPage> {
   SwiperController swiperController = SwiperController();
 
   List<Product> products = [
-    Product('assets/headphones.png',
-        'Boat roackerz 400 On-Ear Bluetooth Headphones', 'description', 45.3),
-    Product('assets/headphones_2.png',
-        'Boat roackerz 100 On-Ear Bluetooth Headphones', 'description', 22.3),
-    Product('assets/headphones_3.png',
-        'Boat roackerz 300 On-Ear Bluetooth Headphones', 'description', 58.3)
+    Product(
+        imageUrl: 'assets/headphones.png',
+        name: 'Boat roackerz 400 On-Ear Bluetooth Headphones',
+        description: 'description',
+        price: 45000),
+    Product(
+        imageUrl: 'assets/headphones_2.png',
+        name: 'Boat roackerz 100 On-Ear Bluetooth Headphones',
+        description: 'description',
+        price: 22000),
+    Product(
+        imageUrl: 'assets/headphones_3.png',
+        name: 'Boat roackerz 300 On-Ear Bluetooth Headphones',
+        description: 'description',
+        price: 58000)
   ];
 
   @override

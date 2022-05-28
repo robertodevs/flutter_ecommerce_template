@@ -1,4 +1,4 @@
-import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/screens/rating/rating_page.dart';
 import 'package:ecommerce_int2/screens/tracking_page.dart';
 import 'package:flutter/material.dart';

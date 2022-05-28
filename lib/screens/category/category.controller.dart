@@ -25,6 +25,7 @@ class CategoryController extends GetxController {
   void getCategoryList() {
     repository.getAllCategories().then((value) {
       categoryList = value;
+      tempList = categoryList.categories!;
       update();
     }, onError: (exeption) => print(exeption));
   }

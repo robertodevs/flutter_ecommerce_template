@@ -18,6 +18,12 @@ class SubCategoryController extends GetxController {
 
   List<SubCategory> tempList = [];
 
+  @override
+  void onInit() {
+    tempList = list;
+    super.onInit();
+  }
+
   void onChanged(String value) {
     if (value.isNotEmpty) {
       list.forEach((subCategory) {

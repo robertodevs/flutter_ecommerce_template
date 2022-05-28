@@ -1,6 +1,7 @@
-import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/data/repository/category.repository.dart';
 import 'package:ecommerce_int2/screens/category/category.controller.dart';
+import 'package:ecommerce_int2/screens/category/sub_category_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,6 @@ import 'package:get/get.dart';
 import 'components/staggered_category_card.dart';
 
 class CategoryListPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -62,9 +62,12 @@ class CategoryListPage extends StatelessWidget {
                     ),
                     child: StaggeredCardCard(
                       begin: const Color(0xffFCE183),
-                      end:  const Color(0xffF68D7F),
-                      categoryName: controller.tempList[index].categoryName ?? "",
-                      assetPath:  'assets/jeans_5.png',
+                      end: const Color(0xffF68D7F),
+                      categoryName:
+                          controller.tempList[index].categoryName ?? "",
+                      assetPath: 'assets/jeans_5.png',
+                      onViewMore: () => Get.to(SubCategoryListPage(
+                          category: controller.tempList[index])),
                     ),
                   ),
                 ),

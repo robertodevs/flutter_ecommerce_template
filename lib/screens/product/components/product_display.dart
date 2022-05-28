@@ -1,5 +1,5 @@
-import 'package:ecommerce_int2/app_properties.dart';
-import 'package:ecommerce_int2/models/product.dart';
+import 'package:ecommerce_int2/data/models/product.model.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/screens/rating/rating_page.dart';
 import 'package:flutter/material.dart';
 
@@ -65,9 +65,9 @@ class ProductDisplay extends StatelessWidget {
                     ),
                     child: Container(
                       child: Hero(
-                        tag: product.image,
+                        tag: product.imageUrl!,
                         child: Image.asset(
-                          product.image,
+                          product.imageUrl!,
                           fit: BoxFit.contain,
                           height: 230,
                           width: 230,
