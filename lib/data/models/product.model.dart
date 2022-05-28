@@ -4,6 +4,8 @@ class ProductList {
   int? pages;
   int? totalProducts;
 
+  List<Product> get random => [products!.first, products!.last, products![1]];
+
   ProductList({this.products, this.page, this.pages, this.totalProducts});
 
   ProductList.fromJson(Map<String, dynamic> json) {
