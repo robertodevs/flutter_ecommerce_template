@@ -1,5 +1,7 @@
 import 'package:ecommerce_int2/data/models/product.model.dart';
 import 'package:ecommerce_int2/data/repository/product.repository.dart';
+import 'package:ecommerce_int2/screens/product/components/product_card.dart';
+import 'package:ecommerce_int2/screens/product/product_page.dart';
 import 'package:ecommerce_int2/screens/search_products/search_controller.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/screens/product/view_product_page.dart';
@@ -19,24 +21,6 @@ class _SearchPageState extends State<SearchPage>
   String selectedPeriod = "";
   String selectedCategory = "";
   String selectedPrice = "";
-
-  List<Product> products = [
-    // Product(
-    //     'assets/headphones_2.png',
-    //     'Skullcandy headset L325',
-    //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
-    //     102.99),
-    // Product(
-    //     'assets/headphones_3.png',
-    //     'Skullcandy headset X25',
-    //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
-    //     55.99),
-    // Product(
-    //     'assets/headphones.png',
-    //     'Blackzy PRO hedphones M003',
-    //     'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Nec nam aliquam sem et tortor consequat id porta nibh. Orci porta non pulvinar neque laoreet suspendisse. Id nibh tortor id aliquet. Dui sapien eget mi proin. Viverra vitae congue eu consequat ac felis donec. Etiam dignissim diam quis enim lobortis scelerisque fermentum dui faucibus. Vulputate mi sit amet mauris commodo quis imperdiet. Vel fringilla est ullamcorper eget nulla facilisi etiam dignissim. Sit amet cursus sit amet dictum sit amet justo. Mattis pellentesque id nibh tortor. Sed blandit libero volutpat sed cras ornare arcu dui. Fermentum et sollicitudin ac orci phasellus. Ipsum nunc aliquet bibendum enim facilisis gravida. Viverra suspendisse potenti nullam ac tortor. Dapibus ultrices in iaculis nunc sed. Nisi porta lorem mollis aliquam ut porttitor leo a. Phasellus egestas tellus rutrum tellus pellentesque. Et malesuada fames ac turpis egestas maecenas pharetra convallis. Commodo ullamcorper a lacus vestibulum sed arcu non odio. Urna id volutpat lacus laoreet non curabitur gravida arcu ac. Eros in cursus turpis massa. Eget mauris pharetra et ultrices neque.',
-    //     152.99),
-  ];
 
   List<String> timeFilter = [
     'Brand',
@@ -116,26 +100,7 @@ class _SearchPageState extends State<SearchPage>
                     Border(bottom: BorderSide(color: Colors.orange, width: 1))),
             child: TextField(
               controller: searchController,
-              onChanged: (value) {
-                if (value.isNotEmpty) {
-                  List<Product> tempList = [];
-                  products.forEach((product) {
-                    if (product.name!.toLowerCase().contains(value)) {
-                      tempList.add(product);
-                    }
-                  });
-                  setState(() {
-                    searchResults.clear();
-                    searchResults.addAll(tempList);
-                  });
-                  return;
-                } else {
-                  setState(() {
-                    searchResults.clear();
-                    searchResults.addAll(products);
-                  });
-                }
-              },
+              onChanged: (value) => controller.onChanged(value),
               cursorColor: darkGrey,
               decoration: InputDecoration(
                 contentPadding: EdgeInsets.zero,
@@ -158,30 +123,29 @@ class _SearchPageState extends State<SearchPage>
             ),
           ),
           Flexible(
-            child: Container(
-              color: Colors.orange[50],
-              child: SmartRefresher(
-                enablePullDown: true,
-                enablePullUp: true,
-                controller: controller.refreshController,
-                onLoading: controller.onLoadMore,
-                onRefresh: controller.onRefresh,
-                header: WaterDropHeader(),
-                child: ListView.builder(
-                    itemCount: controller.list.length,
-                    itemBuilder: (_, index) => Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16.0),
-                        child: ListTile(
-                          onTap: () =>
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (_) => ViewProductPage(
-                                        product: controller.list[index],
-                                      ))),
-                          title: Text(controller.list[index].name ?? ''),
-                        ))),
+              child: Container(
+            color: Colors.orange[50],
+            child: SmartRefresher(
+              enablePullDown: true,
+              enablePullUp: true,
+              controller: controller.refreshController,
+              onLoading: controller.onLoadMore,
+              onRefresh: controller.onRefresh,
+              header: WaterDropHeader(),
+              child: ListView.builder(
+                itemCount: controller.list.length,
+                itemBuilder: (_, index) => Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.0),
+                    child: ProductCard(
+                      controller.list[index],
+                      () => Navigator.of(context).push(MaterialPageRoute(
+                          builder: (_) => ProductPage(
+                                product: controller.list[index],
+                              ))),
+                    )),
               ),
             ),
-          )
+          ))
         ],
       ),
     );

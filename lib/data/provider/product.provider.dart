@@ -11,7 +11,7 @@ class ProductProvider {
   ProductProvider(this.networkService);
 
   final String getAllProductsUrl =
-      'https://ecommerce-api-dut.herokuapp.com/api/category/list';
+      'https://ecommerce-api-dut.herokuapp.com/api/product/list';
 
   final String searchProductUrl =
       'https://ecommerce-api-dut.herokuapp.com/api/product/list/search/';
