@@ -53,19 +53,6 @@ class _SplashScreenState extends State<SplashScreen>
                       opacity: opacity.value,
                       child: new Image.asset('assets/logo.png')),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: RichText(
-                    text: TextSpan(
-                        style: TextStyle(color: Colors.black),
-                        children: [
-                          TextSpan(text: 'Powered by '),
-                          TextSpan(
-                              text: 'int2.io',
-                              style: TextStyle(fontWeight: FontWeight.bold))
-                        ]),
-                  ),
-                )
               ],
             ),
           ),
