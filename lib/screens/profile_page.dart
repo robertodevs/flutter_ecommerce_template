@@ -54,21 +54,21 @@ class ProfilePage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            IconButton(
-                              icon: Image.asset('assets/icons/wallet.png'),
-                              onPressed:()=> Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (_) => WalletPage())),
-                            ),
-                            Text(
-                              'Wallet',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
+                        // Column(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   children: <Widget>[
+                        //     IconButton(
+                        //       icon: Image.asset('assets/icons/wallet.png'),
+                        //       onPressed:()=> Navigator.of(context).push(
+                        //           MaterialPageRoute(
+                        //               builder: (_) => WalletPage())),
+                        //     ),
+                        //     Text(
+                        //       'Wallet',
+                        //       style: TextStyle(fontWeight: FontWeight.bold),
+                        //     )
+                        //   ],
+                        // ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -78,26 +78,26 @@ class ProfilePage extends StatelessWidget {
                                 MaterialPageRoute(builder: (_) => TrackingPage())),
                             ),
                             Text(
-                              'Shipped',
+                              'Orders',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             )
                           ],
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            IconButton(
-                              icon: Image.asset('assets/icons/card.png'),
-                              onPressed:()=> Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (_) => PaymentPage())),
-                            ),
-                            Text(
-                              'Payment',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
+                        // Column(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   children: <Widget>[
+                        //     IconButton(
+                        //       icon: Image.asset('assets/icons/card.png'),
+                        //       onPressed:()=> Navigator.of(context).push(
+                        //           MaterialPageRoute(
+                        //               builder: (_) => PaymentPage())),
+                        //     ),
+                        //     Text(
+                        //       'Payment',
+                        //       style: TextStyle(fontWeight: FontWeight.bold),
+                        //     )
+                        //   ],
+                        // ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
