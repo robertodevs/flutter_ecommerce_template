@@ -21,7 +21,7 @@ class _ShopItemListState extends State<ShopItemList> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 20),
+      margin: EdgeInsets.symmetric(vertical: 10),
       height: 130,
       child: Stack(
         children: <Widget>[

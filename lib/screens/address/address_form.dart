@@ -15,8 +15,7 @@ class AddAddressForm extends StatelessWidget {
       : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 500,
+    return Flexible(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,6 +32,7 @@ class AddAddressForm extends StatelessWidget {
                   border: InputBorder.none, hintText: address.address),
             ),
           ),
+          const SizedBox(height: 16,),
           Container(
             padding: EdgeInsets.only(left: 16.0, top: 4.0, bottom: 4.0),
             decoration: BoxDecoration(

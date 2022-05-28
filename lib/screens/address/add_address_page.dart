@@ -72,7 +72,6 @@ class AddAddressPage extends StatelessWidget {
                         ? 20
                         : MediaQuery.of(context).padding.bottom),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Container(
@@ -123,10 +122,13 @@ class AddAddressPage extends StatelessWidget {
                             );
                           }),
                     ),
+                    const SizedBox(height: 16),
                     AddAddressForm(
                         address: controller.selectedAddress,
                         addr: address,
                         city: city),
+                    const SizedBox(height: 16),
+
                     Center(child: buildFinishButton(controller))
                   ],
                 ),
