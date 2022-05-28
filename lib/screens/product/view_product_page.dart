@@ -7,7 +7,6 @@ import '../../data/models/product.model.dart';
 import '../../utils/app_properties.dart';
 import 'components/color_list.dart';
 import 'components/more_products.dart';
-import 'components/product_options.dart';
 
 class ViewProductPage extends StatefulWidget {
   final Product product;
@@ -85,7 +84,7 @@ class _ViewProductPageState extends State<ViewProductPage> {
             )
           ],
           title: Text(
-            'Headphones',
+            widget.product.name ?? 'Product',
             style: const TextStyle(
                 color: darkGrey,
                 fontWeight: FontWeight.w500,
@@ -103,39 +102,6 @@ class _ViewProductPageState extends State<ViewProductPage> {
                 //   product: widget.product,
                 // ),
                 description,
-                Padding(
-                  padding: const EdgeInsets.all(24.0),
-                  child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
-                    Flexible(
-                      child: ColorList([
-                        Colors.red,
-                        Colors.blue,
-                        Colors.purple,
-                        Colors.green,
-                        Colors.yellow
-                      ]),
-                    ),
-                    RawMaterialButton(
-                      onPressed: () {
-                        showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return RatingBottomSheet();
-                          },
-                          //elevation: 0,
-                          //backgroundColor: Colors.transparent
-                        );
-                      },
-                      constraints:
-                          const BoxConstraints(minWidth: 45, minHeight: 45),
-                      child: Icon(Icons.favorite,
-                          color: Color.fromRGBO(255, 137, 147, 1)),
-                      elevation: 0.0,
-                      shape: CircleBorder(),
-                      fillColor: Color.fromRGBO(255, 255, 255, 0.4),
-                    ),
-                  ]),
-                ),
                 MoreProducts()
               ],
             ),

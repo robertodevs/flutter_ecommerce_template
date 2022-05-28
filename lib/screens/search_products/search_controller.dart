@@ -13,11 +13,20 @@ class SearchProductController extends GetxController {
 
   TextEditingController searchController = TextEditingController();
 
-RefreshController refreshController =
+  RefreshController refreshController =
       RefreshController(initialRefresh: false);
   int currentPage = 1;
 
-  ProductFilter filter = ProductFilter(sortOrder: SortOrder(iId: -1));
+  int total = 0;
+
+  ProductFilter filter = ProductFilter(
+      sortOrder: SortOrder(iId: -1),
+      pageNumber: 1,
+      rating: 0,
+      min: 1,
+      max: 500000,
+      subcategory: '',
+      order: 0);
 
   final Debounce debounce = Debounce(milliseconds: 2000);
 
@@ -25,27 +34,31 @@ RefreshController refreshController =
 
   @override
   void onInit() {
+    getProduct();
     super.onInit();
   }
 
-  void getProduct() async {
+  Future<void> getProduct() async {
     final res = await repository.getProducts(filter);
+    total = res.totalProducts ?? 0;
     list.addAll(res.products!);
-    refreshController.loadComplete();
     update();
   }
 
-  void onRefresh() {
+  void onRefresh() async {
     list.clear();
     currentPage = 1;
     filter.pageNumber = 1;
-    getProduct();
+    await getProduct();
+    refreshController.refreshCompleted();
   }
 
-  void onLoadMore() {
-    ++ currentPage;
+  void onLoadMore() async {
+    if(list.length == total) return;
+    ++currentPage;
     filter.pageNumber = currentPage;
-    getProduct();
+    await getProduct();
+    refreshController.loadComplete();
   }
 
   void onChanged(String value) {
