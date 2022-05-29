@@ -73,7 +73,7 @@ class _SearchPageState extends State<SearchPage>
 
   Widget _getLowerLayer(SearchProductController controller) {
     return Container(
-      margin: const EdgeInsets.only(top: kToolbarHeight),
+      margin: const EdgeInsets.only(top: 16),
       child: Column(
         children: <Widget>[
           Padding(

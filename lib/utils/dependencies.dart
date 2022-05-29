@@ -8,6 +8,7 @@ import 'package:ecommerce_int2/data/repository/auth.repository.dart';
 import 'package:ecommerce_int2/data/repository/cart.repository.dart';
 import 'package:ecommerce_int2/data/repository/category.repository.dart';
 import 'package:ecommerce_int2/data/repository/product.repository.dart';
+import 'package:ecommerce_int2/screens/shop/cart.controller.dart';
 import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:ecommerce_int2/services/network.service.dart';
 import 'package:get/get.dart';
@@ -27,6 +28,7 @@ class Dependency {
       ..put(ProductRepository(Get.find<ProductProvider>()))
       ..put(CartProvider(Get.find<NetWorkService>()))
       ..put(CartRepository(Get.find<CartProvider>()))
+      ..put(CartController(Get.find<CartRepository>()), permanent: true)
       ;
   }
 }

@@ -2,7 +2,6 @@ import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/data/models/category.model.dart';
 import 'package:ecommerce_int2/data/repository/category.repository.dart';
 import 'package:ecommerce_int2/screens/category/sub_category.controller.dart';
-import 'package:ecommerce_int2/screens/product/view_product_page.dart';
 import 'package:ecommerce_int2/screens/search_products/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -21,26 +20,28 @@ class SubCategoryListPage extends StatelessWidget {
     return Material(
       color: Color(0xffF9F9F9),
       child: Container(
-        margin: const EdgeInsets.only(top: kToolbarHeight),
+        margin: const EdgeInsets.only(top: 16),
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: GetBuilder<SubCategoryController>(
           init: SubCategoryController(Get.find<CategoryRepository>(), category),
           builder: (controller) => Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Align(
-                alignment: Alignment(-1, 0),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 16.0),
-                  child: Text(
-                    'Sub Category List',
-                    style: TextStyle(
-                      color: darkGrey,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
+              Row(
+                children: [
+                  BackButton(onPressed: () => Get.back(),),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 16.0),
+                    child: Text(
+                      'Sub Category List',
+                      style: TextStyle(
+                        color: darkGrey,
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
               Container(
                 padding: EdgeInsets.only(left: 16.0),

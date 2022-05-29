@@ -6,9 +6,9 @@ part 'login.result.g.dart';
 class LoginResult {
   final String token;
   final bool success;
-  final UserModel user;
+  final UserModel data;
 
-  LoginResult(this.token, this.success, this.user);
+  LoginResult(this.token, this.success, this.data);
 
   
   factory LoginResult.fromJson(Map<String, dynamic> json) =>

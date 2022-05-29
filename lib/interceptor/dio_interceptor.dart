@@ -17,7 +17,7 @@ class DioInterceptors extends InterceptorsWrapper {
     String? token = _store.read(accessToken);
     if (token != null && token.isNotEmpty) {
       options.headers.addAll({
-        HttpHeaders.authorizationHeader: token,
+        HttpHeaders.authorizationHeader: 'Bearer $token',
       });
     }
 

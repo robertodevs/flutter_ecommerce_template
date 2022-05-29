@@ -3,6 +3,7 @@ import 'package:ecommerce_int2/data/models/user.model.dart';
 import 'package:ecommerce_int2/data/repository/auth.repository.dart';
 import 'package:ecommerce_int2/screens/auth/welcome_back_page.dart';
 import 'package:ecommerce_int2/screens/main/main_page.dart';
+import 'package:ecommerce_int2/utils/message_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -12,15 +13,17 @@ class AuthService extends GetxService {
 
   final store = GetStorage();
 
+  UserModel? userModel;
+
+  AuthService(this.repository);
+
   @override
   void onInit() {
+    // login('manmaihuu@gmail.com', '123456A');
     getUserInfo();
     super.onInit();
   }
 
-  UserModel? userModel;
-
-  AuthService(this.repository);
 
   void getUserInfo() async {
     try {
@@ -37,7 +40,9 @@ class AuthService extends GetxService {
 
   Future<void> login(String username, String password) async {
     try {
+      MessageDialog.showLoading();
       final res = await repository.login(username, password);
+      MessageDialog.hideLoading();
       await setAccessToken(res.token);
       getUserInfo();
       Navigator.of(Get.context!)

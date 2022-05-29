@@ -14,7 +14,7 @@ class CategoryListPage extends StatelessWidget {
     return Material(
       color: Color(0xffF9F9F9),
       child: Container(
-        margin: const EdgeInsets.only(top: kToolbarHeight),
+        margin: const EdgeInsets.only(top: 16),
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: GetBuilder<CategoryController>(
           init: CategoryController(Get.find<CategoryRepository>()),
@@ -64,7 +64,7 @@ class CategoryListPage extends StatelessWidget {
                       begin: const Color(0xffFCE183),
                       end: const Color(0xffF68D7F),
                       categoryName:
-                          controller.tempList[index].categoryName ?? "",
+                          controller.tempList[index].name ?? "",
                       assetPath: 'assets/jeans_5.png',
                       onViewMore: () => Get.to(SubCategoryListPage(
                           category: controller.tempList[index])),
