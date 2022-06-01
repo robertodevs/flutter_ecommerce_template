@@ -1,11 +1,18 @@
 import 'package:ecommerce_int2/data/models/address.model.dart';
+import 'package:ecommerce_int2/data/models/order.model.dart';
 import 'package:ecommerce_int2/data/repository/address.repository.dart';
+import 'package:ecommerce_int2/data/repository/order.repository.dart';
+import 'package:ecommerce_int2/screens/tracking_page.dart';
+import 'package:ecommerce_int2/utils/message_dialog.dart';
 import 'package:get/get.dart';
 
 class AddressController extends GetxController {
   final AddressRepository repository;
+  final OrderRepository orderRepository;
 
-  AddressController(this.repository);
+  AddressController(this.repository, this.orderRepository);
+
+  String? cartId;
 
   List<Address> addresses = <Address>[Address()];
 
@@ -15,8 +22,16 @@ class AddressController extends GetxController {
 
   @override
   void onInit() {
+    getArgument();
     getAllAddress();
     super.onInit();
+  }
+
+  void getArgument() {
+    final arg = Get.arguments;
+    if (arg != null && arg is String) {
+      cartId = arg;
+    }
   }
 
   void getAllAddress() async {
@@ -43,6 +58,18 @@ class AddressController extends GetxController {
       repository.addAddress(selectedAddress).then((value) => null, onError: (e) => null);
     } else {
       repository.updateAddress(selectedAddress).then((value) => null, onError: (e) => null);
+    }
+  }
+
+    void checkOut() async {
+    try {
+      MessageDialog.showLoading();
+      final Order order = await orderRepository.checkOut(cartId!);
+      MessageDialog.hideLoading();
+      Get.to(TrackingPage());
+    } on Exception catch (e) {
+      MessageDialog.hideLoading();
+      print(e);
     }
   }
 }

@@ -34,7 +34,8 @@ class CategoryController extends GetxController {
     try {
       final value = await repository.getAllCategories();
       categoryList = value;
-      tempList = categoryList.data!;
+      final temp = CategoryList.fromJson(value.toJson());
+      tempList = temp.data!;
       update();
     } on Exception catch (e) {
       print(e);
@@ -45,6 +46,7 @@ class CategoryController extends GetxController {
 
   void onChanged(String value) {
     if (value.isNotEmpty) {
+      tempList.clear();
       list.forEach((category) {
         if (category.name!.toLowerCase().contains(value)) {
           tempList.add(category);

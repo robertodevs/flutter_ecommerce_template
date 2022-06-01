@@ -1,3 +1,4 @@
+import 'package:ecommerce_int2/data/repository/order.repository.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/data/repository/address.repository.dart';
 import 'package:ecommerce_int2/screens/address/address_form.dart';
@@ -43,7 +44,8 @@ class AddAddressPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AddressController>(
-      init: AddressController(Get.find<AddressRepository>()),
+      init: AddressController(
+          Get.find<AddressRepository>(), Get.find<OrderRepository>()),
       builder: (controller) => Scaffold(
         backgroundColor: Colors.grey[100],
         appBar: AppBar(
@@ -128,7 +130,6 @@ class AddAddressPage extends StatelessWidget {
                         addr: address,
                         city: city),
                     const SizedBox(height: 16),
-
                     Center(child: buildFinishButton(controller))
                   ],
                 ),

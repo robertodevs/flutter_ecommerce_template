@@ -14,9 +14,8 @@ import 'components/shop_item_list.dart';
 class CheckOutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Widget checkOutButton = InkWell(
-      onTap: () => Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => AddAddressPage())),
+    Widget checkOutButton(CartController controller) => InkWell(
+      onTap: () => controller.checkOut(),
       child: Container(
         height: 80,
         width: MediaQuery.of(context).size.width / 1.5,
@@ -150,7 +149,7 @@ class CheckOutPage extends StatelessWidget {
                         bottom: MediaQuery.of(context).padding.bottom == 0
                             ? 20
                             : MediaQuery.of(context).padding.bottom),
-                    child: checkOutButton,
+                    child: checkOutButton(controller),
                   ))
                 ],
               ),

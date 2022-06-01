@@ -19,7 +19,9 @@ class CartProvider {
       'https://ecommerce-api-dut.herokuapp.com/api/cart/modify';
 
   final String deleteProductFromCartUrl =
-      'https://ecommerce-api-dut.herokuapp.com/api/cart/modify';
+      'https://ecommerce-api-dut.herokuapp.com/api/cart/delete';
+
+
 
   Future<HttpResponse> getCarts() {
     return networkService.get(getAllCartUrl);
@@ -29,12 +31,15 @@ class CartProvider {
     return networkService.post(addProductToCartUrl, data: param.toJson());
   }
 
-  Future<HttpResponse> modifyProduct(String productId, int before, int after) {
-    return networkService.put('$addProductToCartUrl/$productId',
+  Future<HttpResponse> modifyProduct(
+      String cartId, String productId, int before, int after) {
+    return networkService.put('$addProductToCartUrl/$cartId/$productId',
         data: {"previousQuantity": before, "currentQuantity": after});
   }
 
-  Future<HttpResponse> deleteProduct(String productId) {
-    return networkService.delete('$deleteProductFromCartUrl/$productId');
+  Future<HttpResponse> deleteProduct(String cartId, String productId) {
+    return networkService
+        .delete('$deleteProductFromCartUrl/$cartId/$productId');
   }
+
 }
