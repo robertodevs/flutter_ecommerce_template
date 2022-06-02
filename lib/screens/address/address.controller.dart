@@ -49,19 +49,23 @@ class AddressController extends GetxController {
   }
 
   void updateCurrentAddress(String address, String city) {
-    if(address.isNotEmpty) selectedAddress.address = address;
-    if(city.isNotEmpty) selectedAddress.city = city;
+    if (address.isNotEmpty) selectedAddress.address = address;
+    if (city.isNotEmpty) selectedAddress.city = city;
   }
 
   void submitAddress() {
-    if(selectedAddress.id == null) {
-      repository.addAddress(selectedAddress).then((value) => null, onError: (e) => null);
+    if (selectedAddress.id == null) {
+      repository
+          .addAddress(selectedAddress)
+          .then((value) => null, onError: (e) => null);
     } else {
-      repository.updateAddress(selectedAddress).then((value) => null, onError: (e) => null);
+      repository
+          .updateAddress(selectedAddress)
+          .then((value) => null, onError: (e) => null);
     }
   }
 
-    void checkOut() async {
+  void checkOut() async {
     try {
       MessageDialog.showLoading();
       final Order order = await orderRepository.checkOut(cartId!);

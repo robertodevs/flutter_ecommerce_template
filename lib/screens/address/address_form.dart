@@ -20,8 +20,9 @@ class AddAddressForm extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
+          Text("Address"),
           Container(
-            padding: EdgeInsets.only(left: 16.0, top: 4.0, bottom: 4.0),
+            padding: EdgeInsets.only(left: 16.0, top: 8.0, bottom: 4.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(5)),
               color: Colors.white,
@@ -33,8 +34,9 @@ class AddAddressForm extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16,),
+          Text("City"),
           Container(
-            padding: EdgeInsets.only(left: 16.0, top: 4.0, bottom: 4.0),
+            padding: EdgeInsets.only(left: 16.0, top: 8.0, bottom: 4.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.all(Radius.circular(5)),
               color: Colors.white,

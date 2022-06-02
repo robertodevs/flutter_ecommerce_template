@@ -119,6 +119,8 @@ class ProductFilter {
   int? max;
   int? min;
   String? subcategory;
+  String? name;
+  String? merchant;
   int? order;
   int? pageNumber;
 
@@ -128,6 +130,8 @@ class ProductFilter {
       this.max,
       this.min,
       this.subcategory,
+      this.name,
+      this.merchant,
       this.order,
       this.pageNumber});
 
@@ -152,6 +156,8 @@ class ProductFilter {
     data['max'] = this.max;
     data['min'] = this.min;
     data['subcategory'] = this.subcategory;
+    data['name'] = this.name ?? '';
+    data['merchant'] = this.merchant;
     data['order'] = this.order;
     data['pageNumber'] = this.pageNumber;
     return data;
@@ -159,17 +165,17 @@ class ProductFilter {
 }
 
 class SortOrder {
-  int? iId;
+  int? price;
 
-  SortOrder({this.iId});
+  SortOrder({this.price});
 
   SortOrder.fromJson(Map<String, dynamic> json) {
-    iId = json['_id'];
+    price = json['_id'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.iId;
+    data['price'] = this.price;
     return data;
   }
 }

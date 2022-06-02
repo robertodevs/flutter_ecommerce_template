@@ -11,7 +11,7 @@ class AddressRepository {
     if (response.statusCode != 200) {
       throw Exception("Get address failed");
     }
-    final result = (response.body['addresses'] as List).map((i) =>
+    final result = (response.body['data'] as List).map((i) =>
         Address.fromJson(i)).toList();
     return result;
   }
