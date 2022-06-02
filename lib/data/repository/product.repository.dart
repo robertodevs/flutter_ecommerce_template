@@ -11,7 +11,7 @@ class ProductRepository {
     if (response.statusCode != 200) {
       throw Exception("Get products failed");
     }
-    final result = ProductList.fromJson(response.body);
+    final result = ProductList.fromJson(response.body['data']);
     return result;
   }
 
