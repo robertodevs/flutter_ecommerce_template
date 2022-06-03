@@ -21,9 +21,9 @@ class OrderProvider {
         data: {"cart": cartId, "merchant": "626e237ef4224ee4107039b9"});
   }
 
-  Future<HttpResponse> completeOrder(
+  Future<HttpResponse> completeOrder( String orderId,
       CompleteOrderParam param) {
-    return networkService.put(completeOrderUrl, data: param.toJson());
+    return networkService.put('$completeOrderUrl/$orderId/', data: param.toJson());
   }
 
   Future<HttpResponse> makePayment(

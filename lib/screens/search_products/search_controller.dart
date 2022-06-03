@@ -20,13 +20,15 @@ class SearchProductController extends GetxController {
   int total = 0;
 
   ProductFilter filter = ProductFilter(
-      sortOrder: SortOrder(iId: -1),
+      sortOrder: SortOrder(price: 1),
       pageNumber: 1,
       rating: 0,
       min: 1,
       max: 500000,
-      subcategory: '',
-      order: 0);
+      // subcategory: '',
+      // name: '',
+      // merchant: '',
+      order: 2);
 
   final Debounce debounce = Debounce(milliseconds: 2000);
 
@@ -39,10 +41,14 @@ class SearchProductController extends GetxController {
   }
 
   Future<void> getProduct() async {
-    final res = await repository.getProducts(filter);
-    total = res.totalProducts ?? 0;
-    list.addAll(res.products!);
-    update();
+    try {
+      final res = await repository.getProducts(filter);
+      total = res.totalProducts ?? 0;
+      list.addAll(res.products!);
+      update();
+    } on Exception catch (e) {
+      print(e);
+    }
   }
 
   void onRefresh() async {
@@ -64,6 +70,7 @@ class SearchProductController extends GetxController {
   void onChanged(String value) {
     debounce.run(() {
       if (value.isNotEmpty) {
+        filter.name = value;
         getProduct();
         update();
       }

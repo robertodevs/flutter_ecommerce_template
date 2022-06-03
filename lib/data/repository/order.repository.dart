@@ -6,8 +6,8 @@ class OrderRepository {
 
   OrderRepository(this.provider);
 
-  Future<String> completeOrder(CompleteOrderParam param) async {
-    final response = await provider.completeOrder(param);
+  Future<String> completeOrder(String orderId, CompleteOrderParam param) async {
+    final response = await provider.completeOrder(orderId, param);
     if (response.statusCode != 200) {
       throw Exception("Complete order failed");
     }

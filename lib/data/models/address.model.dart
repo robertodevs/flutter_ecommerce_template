@@ -7,7 +7,12 @@ class Address {
   bool? isDefault;
 
   Address(
-      {this.id, this.address, this.city, this.country, this.zipCode, this.isDefault = false});
+      {this.id,
+      this.address,
+      this.city,
+      this.country = "Viet Name",
+      this.zipCode = "+84",
+      this.isDefault = false});
 
   Address.fromJson(Map<String, dynamic> json) {
     id = json['_id'];

@@ -10,8 +10,6 @@ class SubCategoryController extends GetxController {
 
   SubCategoryController(this.repository, this.category);
 
-  CategoryList categoryList = CategoryList();
-
   TextEditingController searchController = TextEditingController();
 
   List<SubCategory> get list => category.subcategories ?? [];
@@ -20,11 +18,20 @@ class SubCategoryController extends GetxController {
 
   @override
   void onInit() {
-    tempList = list;
+    
     super.onInit();
   }
 
+  @override
+  void onReady() {
+    final temp = Category.fromJson(category.toJson());
+    tempList = temp.subcategories!;
+    update();
+    super.onReady();
+  }
+
   void onChanged(String value) {
+    tempList.clear();
     if (value.isNotEmpty) {
       list.forEach((subCategory) {
         if (subCategory.name!.toLowerCase().contains(value)) {
@@ -32,7 +39,6 @@ class SubCategoryController extends GetxController {
         }
       });
     } else {
-      tempList.clear();
       tempList.addAll(list);
     }
     update();

@@ -119,6 +119,8 @@ class ProductFilter {
   int? max;
   int? min;
   String? subcategory;
+  String? name;
+  String? merchant;
   int? order;
   int? pageNumber;
 
@@ -128,6 +130,8 @@ class ProductFilter {
       this.max,
       this.min,
       this.subcategory,
+      this.name,
+      this.merchant,
       this.order,
       this.pageNumber});
 
@@ -152,6 +156,8 @@ class ProductFilter {
     data['max'] = this.max;
     data['min'] = this.min;
     data['subcategory'] = this.subcategory;
+    data['name'] = this.name ?? '';
+    data['merchant'] = this.merchant;
     data['order'] = this.order;
     data['pageNumber'] = this.pageNumber;
     return data;
@@ -159,17 +165,17 @@ class ProductFilter {
 }
 
 class SortOrder {
-  int? iId;
+  int? price;
 
-  SortOrder({this.iId});
+  SortOrder({this.price});
 
   SortOrder.fromJson(Map<String, dynamic> json) {
-    iId = json['_id'];
+    price = json['_id'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['_id'] = this.iId;
+    data['price'] = this.price;
     return data;
   }
 }
@@ -221,93 +227,3 @@ class ProductParam {
     return data;
   }
 }
-
-class Cart {
-  int? total;
-  String? sId;
-  List<ProductResponse>? products;
-  String? user;
-  String? merchant;
-  String? created;
-  int? iV;
-  bool? isOrdered;
-
-  Cart(
-      {this.total,
-      this.sId,
-      this.products,
-      this.user,
-      this.merchant,
-      this.created,
-      this.iV,
-      this.isOrdered});
-
-  Cart.fromJson(Map<String, dynamic> json) {
-    total = json['total'];
-    sId = json['_id'];
-    if (json['products'] != null) {
-      products = <ProductResponse>[];
-      json['products'].forEach((v) {
-        products!.add(new ProductResponse.fromJson(v));
-      });
-    }
-    user = json['user'];
-    merchant = json['merchant'];
-    created = json['created'];
-    iV = json['__v'];
-    isOrdered = json['isOrdered'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['total'] = this.total;
-    data['_id'] = this.sId;
-    if (this.products != null) {
-      data['products'] = this.products!.map((v) => v.toJson()).toList();
-    }
-    data['user'] = this.user;
-    data['merchant'] = this.merchant;
-    data['created'] = this.created;
-    data['__v'] = this.iV;
-    data['isOrdered'] = this.isOrdered;
-    return data;
-  }
-}
-
-class ProductResponse {
-  String? product;
-  int? quantity;
-  int? purchasePrice;
-  int? totalPrice;
-  String? merchant;
-  String? sId;
-
-  ProductResponse(
-      {this.product,
-      this.quantity,
-      this.purchasePrice,
-      this.totalPrice,
-      this.merchant,
-      this.sId});
-
-  ProductResponse.fromJson(Map<String, dynamic> json) {
-    product = json['product'];
-    quantity = json['quantity'];
-    purchasePrice = json['purchasePrice'];
-    totalPrice = json['totalPrice'];
-    merchant = json['merchant'];
-    sId = json['_id'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['product'] = this.product;
-    data['quantity'] = this.quantity;
-    data['purchasePrice'] = this.purchasePrice;
-    data['totalPrice'] = this.totalPrice;
-    data['merchant'] = this.merchant;
-    data['_id'] = this.sId;
-    return data;
-  }
-}
-
