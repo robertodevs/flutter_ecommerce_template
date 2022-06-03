@@ -1,5 +1,4 @@
 import 'package:ecommerce_int2/utils/app_properties.dart';
-import 'package:ecommerce_int2/data/models/login.result.dart';
 import 'package:ecommerce_int2/data/models/user.model.dart';
 import 'package:ecommerce_int2/services/network.service.dart';
 import 'package:get_storage/get_storage.dart';

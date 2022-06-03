@@ -1,36 +1,25 @@
 import 'package:ecommerce_int2/data/models/product.model.dart';
+import 'package:ecommerce_int2/screens/shop/cart.controller.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
-import 'package:ecommerce_int2/screens/search_products/search_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 
 import 'components/product_display.dart';
-import 'view_product_page.dart';
 
-class ProductPage extends StatefulWidget {
+class ProductPage extends StatelessWidget {
   final Product product;
 
   ProductPage({required this.product});
 
-  @override
-  _ProductPageState createState() => _ProductPageState(product);
-}
-
-class _ProductPageState extends State<ProductPage> {
-  final Product product;
-
-  _ProductPageState(this.product);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<CartController>();
     double width = MediaQuery.of(context).size.width;
     double bottomPadding = MediaQuery.of(context).padding.bottom;
 
     Widget viewProductButton = InkWell(
-      onTap: () => Navigator.of(context).push(MaterialPageRoute(
-          builder: (_) => ViewProductPage(
-                product: product,
-              ))),
+      onTap: () => controller.addProduct(product),
       child: Container(
         height: 80,
         width: width / 1.5,
@@ -62,7 +51,7 @@ class _ProductPageState extends State<ProductPage> {
         elevation: 0.0,
         iconTheme: IconThemeData(color: darkGrey),
         title: Text(
-          widget.product.name ?? 'Product',
+          product.name ?? 'Product',
           style: const TextStyle(
               color: darkGrey, fontWeight: FontWeight.w500, fontSize: 18.0),
         ),

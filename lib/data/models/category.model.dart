@@ -1,36 +1,38 @@
 class CategoryList {
-  List<Category>? categories;
+  List<Category>? data;
 
-  CategoryList({this.categories});
+  CategoryList({this.data});
 
   CategoryList.fromJson(Map<String, dynamic> json) {
-    if (json['categories'] != null) {
-      categories = <Category>[];
-      json['categories'].forEach((v) {
-        categories!.add(new Category.fromJson(v));
+    if (json['data'] != null) {
+      data = <Category>[];
+      json['data'].forEach((v) {
+        data!.add(new Category.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.categories != null) {
-      data['categories'] = this.categories!.map((v) => v.toJson()).toList();
+    if (this.data != null) {
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
     }
     return data;
   }
 }
 
 class Category {
-  String? categoryId;
-  String? categoryName;
+  String? id;
+  String? name;
+  String? description;
   List<SubCategory>? subcategories;
 
-  Category({this.categoryId, this.categoryName, this.subcategories});
+  Category({this.id, this.name, this.description, this.subcategories});
 
   Category.fromJson(Map<String, dynamic> json) {
-    categoryId = json['category_id'];
-    categoryName = json['category_name'];
+    id = json['_id'];
+    name = json['name'];
+    description = json['description'];
     if (json['subcategories'] != null) {
       subcategories = <SubCategory>[];
       json['subcategories'].forEach((v) {
@@ -41,8 +43,9 @@ class Category {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['category_id'] = this.categoryId;
-    data['category_name'] = this.categoryName;
+    data['_id'] = this.id;
+    data['name'] = this.name;
+    data['description'] = this.description;
     if (this.subcategories != null) {
       data['subcategories'] =
           this.subcategories!.map((v) => v.toJson()).toList();

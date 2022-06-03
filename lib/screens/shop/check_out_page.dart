@@ -1,44 +1,21 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:ecommerce_int2/data/models/product.model.dart';
+import 'package:ecommerce_int2/data/repository/cart.repository.dart';
+import 'package:ecommerce_int2/screens/shop/cart.controller.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/screens/address/add_address_page.dart';
 import 'package:ecommerce_int2/screens/payment/unpaid_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'components/credit_card.dart';
 import 'components/shop_item_list.dart';
 
-class CheckOutPage extends StatefulWidget {
-  @override
-  _CheckOutPageState createState() => _CheckOutPageState();
-}
-
-class _CheckOutPageState extends State<CheckOutPage> {
-  SwiperController swiperController = SwiperController();
-
-  List<Product> products = [
-    Product(
-        imageUrl: 'assets/headphones.png',
-        name: 'Boat roackerz 400 On-Ear Bluetooth Headphones',
-        description: 'description',
-        price: 45000),
-    Product(
-        imageUrl: 'assets/headphones_2.png',
-        name: 'Boat roackerz 100 On-Ear Bluetooth Headphones',
-        description: 'description',
-        price: 22000),
-    Product(
-        imageUrl: 'assets/headphones_3.png',
-        name: 'Boat roackerz 300 On-Ear Bluetooth Headphones',
-        description: 'description',
-        price: 58000)
-  ];
-
+class CheckOutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Widget checkOutButton = InkWell(
-      onTap: () => Navigator.of(context)
-          .push(MaterialPageRoute(builder: (_) => AddAddressPage())),
+    Widget checkOutButton(CartController controller) => InkWell(
+      onTap: () => controller.checkOut(),
       child: Container(
         height: 80,
         width: MediaQuery.of(context).size.width / 1.5,
@@ -69,13 +46,6 @@ class _CheckOutPageState extends State<CheckOutPage> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         iconTheme: IconThemeData(color: darkGrey),
-        actions: <Widget>[
-          IconButton(
-            icon: Image.asset('assets/icons/denied_wallet.png'),
-            onPressed: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => UnpaidPage())),
-          )
-        ],
         title: Text(
           'Checkout',
           style: TextStyle(
@@ -87,83 +57,102 @@ class _CheckOutPageState extends State<CheckOutPage> {
           physics: ClampingScrollPhysics(),
           child: ConstrainedBox(
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 32.0),
-                  height: 48.0,
-                  color: yellow,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        'Subtotal',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                      ),
-                      Text(
-                        products.length.toString() + ' items',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16),
-                      )
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 300,
-                  child: Scrollbar(
-                    child: ListView.builder(
-                      itemBuilder: (_, index) => ShopItemList(
-                        products[index],
-                        onRemove: () {
-                          setState(() {
-                            products.remove(products[index]);
-                          });
-                        },
-                      ),
-                      itemCount: products.length,
+            child: GetBuilder<CartController>(
+              init: CartController(Get.find<CartRepository>()),
+              builder: (controller) => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 32.0),
+                    height: 48.0,
+                    color: yellow,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'Subtotal',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                        Text(
+                          controller.products.length.toString() + ' items',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        )
+                      ],
                     ),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    'Payment',
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: darkGrey,
-                        fontWeight: FontWeight.bold),
+                  ...controller.products.map(
+                    (product) => ShopItemList(
+                      product,
+                      onRemove: () => controller.remove(product),
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 250,
-                  child: Swiper(
-                    itemCount: 2,
-                    itemBuilder: (_, index) {
-                      return CreditCard();
-                    },
-                    scale: 0.8,
-                    controller: swiperController,
-                    viewportFraction: 0.6,
-                    loop: false,
-                    fade: 0.7,
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 32.0),
+                    height: 48.0,
+                    color: yellow,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        Text(
+                          'Total',
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        ),
+                        Text(
+                          controller.total,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(height: 24),
-                Center(
-                    child: Padding(
-                  padding: EdgeInsets.only(
-                      bottom: MediaQuery.of(context).padding.bottom == 0
-                          ? 20
-                          : MediaQuery.of(context).padding.bottom),
-                  child: checkOutButton,
-                ))
-              ],
+                  Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Text(
+                      'Payment',
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: darkGrey,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 50,
+                    child: Swiper(
+                      itemCount: 2,
+                      itemBuilder: (_, index) {
+                        return CreditCard(
+                          text: index == 0 ? 'CASH \$\$\$' : 'PAYPAL',
+                        );
+                      },
+                      scale: 0.8,
+                      controller: controller.swiperController,
+                      viewportFraction: 0.6,
+                      loop: false,
+                      fade: 0.7,
+                    ),
+                  ),
+                  SizedBox(height: 24),
+                  Center(
+                      child: Padding(
+                    padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).padding.bottom == 0
+                            ? 20
+                            : MediaQuery.of(context).padding.bottom),
+                    child: checkOutButton(controller),
+                  ))
+                ],
+              ),
             ),
           ),
         ),

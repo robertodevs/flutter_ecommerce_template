@@ -1,8 +1,9 @@
+import 'package:ecommerce_int2/data/repository/order.repository.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/data/repository/address.repository.dart';
 import 'package:ecommerce_int2/screens/address/address_form.dart';
 import 'package:ecommerce_int2/screens/select_card_page.dart';
-import 'package:ecommerce_int2/services/address.controller.dart';
+import 'package:ecommerce_int2/screens/address/address.controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -43,7 +44,8 @@ class AddAddressPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AddressController>(
-      init: AddressController(Get.find<AddressRepository>()),
+      init: AddressController(
+          Get.find<AddressRepository>(), Get.find<OrderRepository>()),
       builder: (controller) => Scaffold(
         backgroundColor: Colors.grey[100],
         appBar: AppBar(
@@ -72,7 +74,6 @@ class AddAddressPage extends StatelessWidget {
                         ? 20
                         : MediaQuery.of(context).padding.bottom),
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Container(
@@ -123,10 +124,12 @@ class AddAddressPage extends StatelessWidget {
                             );
                           }),
                     ),
+                    const SizedBox(height: 16),
                     AddAddressForm(
                         address: controller.selectedAddress,
                         addr: address,
                         city: city),
+                    const SizedBox(height: 16),
                     Center(child: buildFinishButton(controller))
                   ],
                 ),

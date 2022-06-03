@@ -1,5 +1,6 @@
 import 'package:ecommerce_int2/data/models/category.model.dart';
 import 'package:ecommerce_int2/data/repository/category.repository.dart';
+import 'package:ecommerce_int2/utils/message_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,28 +13,42 @@ class CategoryController extends GetxController {
 
   TextEditingController searchController = TextEditingController();
 
-  List<Category> get list => categoryList.categories ?? [];
+  List<Category> get list => categoryList.data ?? [];
 
   List<Category> tempList = [];
 
   @override
   void onInit() {
-    getCategoryList();
+    // getCategoryList();
     super.onInit();
   }
 
-  void getCategoryList() {
-    repository.getAllCategories().then((value) {
+  @override
+  void onReady() {
+    getCategoryList();
+    super.onReady();
+  }
+
+  void getCategoryList() async {
+    MessageDialog.showLoading();
+    try {
+      final value = await repository.getAllCategories();
       categoryList = value;
-      tempList = categoryList.categories!;
+      final temp = CategoryList.fromJson(value.toJson());
+      tempList = temp.data!;
       update();
-    }, onError: (exeption) => print(exeption));
+    } on Exception catch (e) {
+      print(e);
+    } finally {
+      MessageDialog.hideLoading();
+    }
   }
 
   void onChanged(String value) {
     if (value.isNotEmpty) {
+      tempList.clear();
       list.forEach((category) {
-        if (category.categoryName!.toLowerCase().contains(value)) {
+        if (category.name!.toLowerCase().contains(value)) {
           tempList.add(category);
         }
       });
