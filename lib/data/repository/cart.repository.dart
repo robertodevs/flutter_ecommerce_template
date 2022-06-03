@@ -1,4 +1,5 @@
 import 'package:ecommerce_int2/data/models/cart.model.dart';
+import 'package:ecommerce_int2/data/models/order.model.dart';
 import 'package:ecommerce_int2/data/models/product.model.dart';
 import 'package:ecommerce_int2/data/provider/cart.provider.dart';
 
@@ -40,9 +41,13 @@ class CartRepository {
     }
   }
 
-  Future<void> checkOutCart(List<CartModel> carts) async {
+  Future<List<String>> checkOutCart(List<CartModel> carts) async {
+    List<String> orderIds = [];
     for(CartModel cart in carts) {
-      await provider.checkoutCart(cart.sId!, cart.merchant!);
+      final response = await provider.checkoutCart(cart.sId!, cart.merchant!);
+      OrderResponse order = OrderResponse.fromJson(response.body);
+      orderIds.add(order.order!.sId!);
     }
+    return orderIds;
   }
 }

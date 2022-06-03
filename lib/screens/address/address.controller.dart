@@ -3,16 +3,18 @@ import 'package:ecommerce_int2/data/models/order.model.dart';
 import 'package:ecommerce_int2/data/repository/address.repository.dart';
 import 'package:ecommerce_int2/data/repository/order.repository.dart';
 import 'package:ecommerce_int2/screens/tracking_page.dart';
+import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:ecommerce_int2/utils/message_dialog.dart';
 import 'package:get/get.dart';
 
 class AddressController extends GetxController {
   final AddressRepository repository;
   final OrderRepository orderRepository;
+  final AuthService authService;
 
-  AddressController(this.repository, this.orderRepository);
+  AddressController(this.repository, this.orderRepository, this.authService);
 
-  String? cartId;
+  List<String>? orderIds;
 
   List<Address> addresses = <Address>[Address()];
 
@@ -29,8 +31,8 @@ class AddressController extends GetxController {
 
   void getArgument() {
     final arg = Get.arguments;
-    if (arg != null && arg is String) {
-      cartId = arg;
+    if (arg != null && arg is List<String>) {
+      orderIds = arg;
     }
   }
 
@@ -66,9 +68,18 @@ class AddressController extends GetxController {
   }
 
   void checkOut() async {
+    if (orderIds == null) {
+      Get.back();
+      return;
+    }
     try {
       MessageDialog.showLoading();
-      final Order order = await orderRepository.checkOut(cartId!);
+      for (String order in orderIds!) {
+        await orderRepository.completeOrder(order, CompleteOrderParam(
+            address: selectedAddress.id,
+            phoneNumber: authService.userModel!.email,
+            payment: 'CASH'));
+      }
       MessageDialog.hideLoading();
       Get.to(TrackingPage());
     } on Exception catch (e) {

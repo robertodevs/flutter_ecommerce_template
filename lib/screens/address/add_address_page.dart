@@ -1,4 +1,5 @@
 import 'package:ecommerce_int2/data/repository/order.repository.dart';
+import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/data/repository/address.repository.dart';
 import 'package:ecommerce_int2/screens/address/address_form.dart';
@@ -45,7 +46,7 @@ class AddAddressPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<AddressController>(
       init: AddressController(
-          Get.find<AddressRepository>(), Get.find<OrderRepository>()),
+          Get.find<AddressRepository>(), Get.find<OrderRepository>(), Get.find<AuthService>()),
       builder: (controller) => Scaffold(
         backgroundColor: Colors.grey[100],
         appBar: AppBar(

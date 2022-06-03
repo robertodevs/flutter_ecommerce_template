@@ -65,7 +65,7 @@ class CartController extends GetxController {
   }
 
   void checkOut() async {
-    repository.checkOutCart(carts!);
-    Get.to(AddAddressPage());
+    final List<String> orderIds = await repository.checkOutCart(carts!);
+    Get.to(AddAddressPage(), arguments: orderIds);
   }
 }
