@@ -1,4 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
+import 'package:ecommerce_int2/data/models/cart.model.dart';
 import 'package:ecommerce_int2/data/models/product.model.dart';
 import 'package:ecommerce_int2/data/repository/cart.repository.dart';
 import 'package:ecommerce_int2/screens/address/add_address_page.dart';
@@ -12,9 +13,9 @@ class CartController extends GetxController {
 
   CartController(this.repository);
 
-  String? id;
-
   List<Product> products = [];
+
+  List<CartModel>? carts;
 
   String get total {
     int result = 0;
@@ -24,13 +25,19 @@ class CartController extends GetxController {
     return '$result VND';
   }
 
+  void getCart() {
+    repository.getCarts().then((value) => carts = value);
+  }
+
   void remove(Product product) {
-    if (id == null) {
+    CartModel? cart = carts!
+        .firstWhereOrNull((element) => element.products!.contains(product));
+    if (cart == null) {
       MessageDialog.showToast("There is something wrong!!");
       return;
     }
-    repository.deleteProduct(id!, product.sId!);
-    products.remove(product);
+    repository.deleteProduct(cart.sId!, product.sId!);
+    cart.products!.remove(product);
     update();
   }
 
@@ -43,10 +50,14 @@ class CartController extends GetxController {
             merchant: product.merchant,
             quantity: quantity)
       ]);
-      // final String cartId = await repository.addProduct(param);
+      final String cartId = await repository.addProduct(param);
       MessageDialog.showToast("Added product to cart");
-      // id = cartId;
-      products.add(product);
+      int index = carts!.indexWhere((element) => element.sId == cartId);
+      if (index != -1) {
+        carts![index].products!.add(product);
+      } else {
+        carts!.add(CartModel(sId: cartId, products: [product]));
+      }
       update();
     } on Exception catch (e) {
       print(e);
@@ -54,6 +65,7 @@ class CartController extends GetxController {
   }
 
   void checkOut() async {
-    Get.to(AddAddressPage(), arguments: id);
+    repository.checkOutCart(carts!);
+    Get.to(AddAddressPage());
   }
 }

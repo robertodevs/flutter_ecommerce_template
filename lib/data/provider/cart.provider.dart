@@ -21,7 +21,8 @@ class CartProvider {
   final String deleteProductFromCartUrl =
       'https://ecommerce-api-dut.herokuapp.com/api/cart/delete';
 
-
+  final String checkOutCartUrl =
+      'https://ecommerce-api-dut.herokuapp.com/api/order/add';
 
   Future<HttpResponse> getCarts() {
     return networkService.get(getAllCartUrl);
@@ -42,4 +43,8 @@ class CartProvider {
         .delete('$deleteProductFromCartUrl/$cartId/$productId');
   }
 
+  Future<HttpResponse> checkoutCart(String cartId, String merchant) {
+    return networkService
+        .post(checkOutCartUrl, data: {"cart": cartId, "merchant": merchant});
+  }
 }

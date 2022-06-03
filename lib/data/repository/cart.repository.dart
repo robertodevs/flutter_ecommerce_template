@@ -1,4 +1,4 @@
-import 'package:ecommerce_int2/data/models/address.model.dart';
+import 'package:ecommerce_int2/data/models/cart.model.dart';
 import 'package:ecommerce_int2/data/models/product.model.dart';
 import 'package:ecommerce_int2/data/provider/cart.provider.dart';
 
@@ -7,15 +7,13 @@ class CartRepository {
 
   CartRepository(this.provider);
 
-  Future<List<Address>> getCarts() async {
+  Future<List<CartModel>> getCarts() async {
     final response = await provider.getCarts();
     if (response.statusCode != 200) {
       throw Exception("Get cart failed");
     }
-    final result = (response.body['addresses'] as List)
-        .map((i) => Address.fromJson(i))
-        .toList();
-    return result;
+    final result = CartResponse.fromJson(response.body);
+    return result.data ?? [];
   }
 
   Future<String> addProduct(AddProductParam param) async {
@@ -42,5 +40,9 @@ class CartRepository {
     }
   }
 
-
+  Future<void> checkOutCart(List<CartModel> carts) async {
+    for(CartModel cart in carts) {
+      await provider.checkoutCart(cart.sId!, cart.merchant!);
+    }
+  }
 }
