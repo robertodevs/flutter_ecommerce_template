@@ -6,6 +6,15 @@ class OrderRepository {
 
   OrderRepository(this.provider);
 
+  Future<List<Order>> getAllOrders() async {
+    final response = await provider.getAllOrders();
+    if (response.statusCode != 200) {
+      throw Exception("Complete order failed");
+    }
+    final result = AllOrderResponse.fromJson(response.body);
+    return result.orders ?? [];
+  }
+
   Future<String> completeOrder(String orderId, CompleteOrderParam param) async {
     final response = await provider.completeOrder(orderId, param);
     if (response.statusCode != 200) {
@@ -24,15 +33,20 @@ class OrderRepository {
     return 'href';
   }
 
-    Future<Order> checkOut(
-      String cartId) async {
-    final response =
-        await provider.checkOut(cartId);
+  Future<void> cancleOrder(String orderId) async {
+    final response = await provider.cancleOrder(orderId);
     if (response.statusCode != 200) {
-      throw Exception("Check out cart failed");
+      throw Exception("Cancel order failed");
     }
+    return;
+  }
 
-    final result = OrderResponse.fromJson(response.body);
-    return result.order!;
+  Future<OrderDocDetail> getOrderDetail(String orderId) async {
+    final response = await provider.getOrderDetail(orderId);
+    if (response.statusCode != 200) {
+      throw Exception("Cancel order failed");
+    }
+    final res = DetailOrderResponse.fromJson(response.body);
+    return res.orderDoc!;
   }
 }
