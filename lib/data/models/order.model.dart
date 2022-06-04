@@ -8,7 +8,7 @@ class OrderResponse {
   OrderResponse.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
-    order = json['data'] != null ? new Order.fromJson(json['data']) : null;
+    order = json['order'] != null ? new Order.fromJson(json['order']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -16,7 +16,7 @@ class OrderResponse {
     data['success'] = this.success;
     data['message'] = this.message;
     if (this.order != null) {
-      data['data'] = this.order!.toJson();
+      data['order'] = this.order!.toJson();
     }
     return data;
   }
@@ -115,8 +115,8 @@ class CompleteOrderResponse {
   CompleteOrderResponse.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
-    orderDoc = json['orderDoc'] != null
-        ? new OrderDoc.fromJson(json['orderDoc'])
+    orderDoc = json['data'] != null
+        ? new OrderDoc.fromJson(json['data'])
         : null;
   }
 
@@ -125,7 +125,7 @@ class CompleteOrderResponse {
     data['success'] = this.success;
     data['message'] = this.message;
     if (this.orderDoc != null) {
-      data['orderDoc'] = this.orderDoc!.toJson();
+      data['data'] = this.orderDoc!.toJson();
     }
     return data;
   }

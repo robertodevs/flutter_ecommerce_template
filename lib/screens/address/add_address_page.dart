@@ -16,7 +16,6 @@ class AddAddressPage extends StatelessWidget {
         onTap: () {
           controller.updateCurrentAddress(address.text, city.text);
           controller.submitAddress();
-          Get.to(() => SelectCardPage());
         },
         child: Container(
           height: 80,

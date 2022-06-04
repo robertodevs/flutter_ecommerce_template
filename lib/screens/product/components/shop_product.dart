@@ -73,7 +73,7 @@ class ShopProductDisplay extends StatelessWidget {
               height: 80,
               width: 80,
               child: Image.network(
-                product.imageUrl!,
+                product.imageUrl ?? '',
                 fit: BoxFit.contain,
               )),
         ),

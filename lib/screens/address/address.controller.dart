@@ -65,6 +65,7 @@ class AddressController extends GetxController {
           .updateAddress(selectedAddress)
           .then((value) => null, onError: (e) => null);
     }
+     checkOut();
   }
 
   void checkOut() async {
