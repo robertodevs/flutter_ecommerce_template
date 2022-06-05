@@ -1,5 +1,8 @@
+import 'package:ecommerce_int2/data/repository/order.repository.dart';
+import 'package:ecommerce_int2/screens/tracking/order.controller.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class TrackingPage extends StatefulWidget {
@@ -31,119 +34,72 @@ class _TrackingPageState extends State<TrackingPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          color: Colors.grey[100],
-          image: DecorationImage(
-              image: AssetImage('assets/Group 444.png'), fit: BoxFit.contain)),
-      child: Container(
-        color: Colors.white54,
-        child: Scaffold(
-            appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0.0,
-              brightness: Brightness.light,
-              iconTheme: IconThemeData(color: Colors.grey),
-              title: Text(
-                'Shipped',
-                style: TextStyle(
-                  color: darkGrey,
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
+    return GetBuilder<OrderController>(
+      init: OrderController(Get.find<OrderRepository>()),
+      builder: (controller) => Container(
+        decoration: BoxDecoration(
+            color: Colors.grey[100],
+            image: DecorationImage(
+                image: AssetImage('assets/Group 444.png'),
+                fit: BoxFit.contain)),
+        child: Container(
+          color: Colors.white54,
+          child: Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.transparent,
+                elevation: 0.0,
+                brightness: Brightness.light,
+                iconTheme: IconThemeData(color: Colors.grey),
+                title: Text(
+                  'Your orders',
+                  style: TextStyle(
+                    color: darkGrey,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+                leading: SizedBox(),
+                actions: <Widget>[CloseButton()],
               ),
-              leading: SizedBox(),
-              actions: <Widget>[CloseButton()],
-            ),
-            body: SafeArea(
-              child: LayoutBuilder(
-                builder: (_, constraints) => Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Container(
-                      margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
-                      child: DropdownButtonHideUnderline(
-                        child: DropdownButton(
-                          items: <String>[
-                            'Boat Headphones Bass boost 100v',
-                            'Boat Headphones Bass boost 200v',
-                            'Boat Headphones Bass boost 300v',
-                            'Boat Headphones Bass boost 400v',
-                            'Boat Headphones Bass boost 500v',
-                            'Boat Headphones Bass double boosting 600v'
-                          ].map((val) {
-                            return DropdownMenuItem<String>(
-                              value: val,
-                              child: Container(
-                                  color: Colors.white,
-                                  child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        val,
-                                        maxLines: 2,
-                                        semanticsLabel: '...',
-                                        overflow: TextOverflow.ellipsis,
-                                      ))),
-                            );
-                          }).toList(),
-                          onChanged: (newValue) {
-                            setState(() {
-                              selectedProduct = newValue as String;
-                            });
-                          },
-                          value: selectedProduct,
-                          isExpanded: true,
-                          icon: Icon(Icons.keyboard_arrow_down),
-                          elevation: 0,
-                        ),
+              body: SafeArea(
+                child: LayoutBuilder(
+                  builder: (_, constraints) => SingleChildScrollView(
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxHeight: constraints.maxHeight - 48,
                       ),
-                    ),
-                    SingleChildScrollView(
-                      child: ConstrainedBox(
-                        constraints: BoxConstraints(
-                          maxHeight: constraints.maxHeight - 48,
-                        ),
-                        child: Theme(
-                          data: ThemeData(
-                              primaryColor: yellow, fontFamily: 'Montserrat'),
-                          child: Stepper(
-//                          physics: NeverScrollableScrollPhysics(),
-                            steps: [
-                              ...locations
-                                  .map(
-                                    (location) => Step(
-                                      isActive:
-                                          location.isHere || location.passed,
-                                      title: Text(location.city),
-                                      subtitle: Text(location.getDate()),
-                                      content: Align(
-                                        child: Image.asset(
-                                            'assets/icons/truck.png'),
-                                        alignment: Alignment.centerLeft,
+                      child: Column(
+                        //                          physics: NeverScrollableScrollPhysics(),
+                        children: [
+                          ...controller.orders
+                              .map((order) => GestureDetector(
+                                onTap: (() => controller.getOrderDetail(order)),
+                                child: Container(
+                                  width: Get.width,
+                                  child: Card(
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(children: [
+                                            Text('Order Id: ${order.sId ?? 'Order'}'),
+                                            Text('Deliver status: ${order.status ?? ''}'),
+                                            Text('Payment status: ${order.paymentStatus ?? ''}'),
+                                            Text('Merchant: ${order.merchant ?? ''}'),
+                                            Text('Date: ${order.created ?? ''}')
+                                          ],
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          ),
+                                        ),
                                       ),
-                                      state: location.passed
-                                          ? StepState.complete
-                                          : location.isHere
-                                              ? StepState.editing
-                                              : StepState.indexed,
-                                    ),
-                                  )
-                                  .toList()
-                            ],
-                            currentStep: locations.indexOf(
-                                locations.firstWhere((loc) => loc.isHere)),
-                          ),
-                        ),
+                                ),
+                              ))
+                              .toList()
+                        ],
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            )),
+              )),
+        ),
       ),
     );
   }

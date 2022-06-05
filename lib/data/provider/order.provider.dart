@@ -42,6 +42,6 @@ class OrderProvider {
   }
 
   Future<HttpResponse> getOrderDetail(String orderId) {
-    return networkService.delete('$orderUrl/$orderId');
+    return networkService.get('$orderUrl/$orderId');
   }
 }

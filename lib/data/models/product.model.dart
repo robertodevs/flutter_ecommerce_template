@@ -75,9 +75,9 @@ class Product {
       this.averageRating});
 
   Product.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    name = json['name'];
-    imageUrl = json['imageUrl'];
+    sId = json['_id'] ?? json['product']['_id'];
+    name = json['name'] ?? json['product']['name'];
+    imageUrl = json['imageUrl'] ?? json['product']['imageUrl'];
     imageKey = json['imageKey'];
     description = json['description'];
     quantity = json['quantity'];

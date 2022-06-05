@@ -1,4 +1,3 @@
-import 'package:card_swiper/card_swiper.dart';
 import 'package:ecommerce_int2/data/models/order.model.dart';
 import 'package:ecommerce_int2/data/repository/order.repository.dart';
 import 'package:ecommerce_int2/screens/tracking/order.controller.dart';
@@ -12,27 +11,43 @@ class OrderDetailController extends GetxController {
 
   final String orderDetail;
 
-  OrderDetailController(this.repository, this.orderDetail, this.orderController);
+  OrderDetailController(
+      this.repository, this.orderDetail, this.orderController);
 
   OrderDocDetail? detail;
 
-
-  void getOrder() {
-    repository.getOrderDetail(orderDetail).then((value) => detail = value);
+  @override
+  void onReady() {
+    getOrder();
+    super.onReady();
   }
 
-  void remove(Order order) {
-    repository.cancleOrder(order.sId!);
-    orderController.remove(order);
+  void getOrder() {
+    MessageDialog.showLoading();
+    repository.getOrderDetail(orderDetail).then((value) {
+      detail = value;
+      MessageDialog.hideLoading();
+      update();
+    });
+  }
+
+  void remove(String orderId) {
+    repository.cancleOrder(orderId);
+    orderController.remove(orderId);
     Get.back();
   }
 
-  void makePayment(Order order) async {
+  void makePayment(String orderId) async {
     MessageDialog.showLoading();
-    await repository.makePayment(order.sId!);
-    await repository.getOrderDetail(orderDetail).then((value) => detail = value);
-    orderController.getAllOrders();
+    try {
+      await repository.makePayment(orderId);
+      await repository
+          .getOrderDetail(orderDetail)
+          .then((value) => detail = value);
+      orderController.getAllOrders();
+    } on Exception catch (e) {
+      MessageDialog.showToast(e.toString());
+    }
     MessageDialog.hideLoading();
   }
-
 }
