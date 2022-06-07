@@ -112,7 +112,7 @@ class ProductCard extends StatelessWidget {
       child: Stack(
         children: <Widget>[
           Container(
-            margin: const EdgeInsets.only(left: 30),
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             height: height,
             width: width,
             decoration: BoxDecoration(
@@ -152,7 +152,7 @@ class ProductCard extends StatelessWidget {
                           color: Color.fromRGBO(224, 69, 10, 1),
                         ),
                         child: Text(
-                          '\$${product.price}',
+                          '\$${product.price ?? product.purchasePrice ?? 0}',
                           style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -168,7 +168,7 @@ class ProductCard extends StatelessWidget {
           Positioned(
             child: Hero(
               tag: product.imageUrl!,
-              child: Image.asset(
+              child: Image.network(
                 product.imageUrl!,
                 height: height / 1.7,
                 width: width / 1.4,

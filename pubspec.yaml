@@ -39,6 +39,7 @@ dependencies:
   get_storage: ^2.0.3
   path_provider: ^2.0.10
   pull_to_refresh: ^2.0.0
+  webview_flutter: ^3.0.4
 
 
 dev_dependencies:

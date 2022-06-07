@@ -1,10 +1,20 @@
 import 'package:ecommerce_int2/data/models/order.model.dart';
+import 'package:ecommerce_int2/data/models/payment.model.dart';
 import 'package:ecommerce_int2/data/provider/order.provider.dart';
 
 class OrderRepository {
   final OrderProvider provider;
 
   OrderRepository(this.provider);
+
+  Future<List<Order>> getAllOrders() async {
+    final response = await provider.getAllOrders();
+    if (response.statusCode != 200) {
+      throw Exception("Complete order failed");
+    }
+    final result = AllOrderResponse.fromJson(response.body);
+    return result.orders ?? [];
+  }
 
   Future<String> completeOrder(String orderId, CompleteOrderParam param) async {
     final response = await provider.completeOrder(orderId, param);
@@ -20,19 +30,24 @@ class OrderRepository {
     if (response.statusCode != 200) {
       throw Exception("Make payment failed");
     }
-    // final result = CompleteOrderResponse.fromJson(response.body);
-    return 'href';
+    final result = PaymentResponse.fromJson(response.body);
+    return result.data!.links?.firstWhere((element) => element.rel == 'approval_url').href ?? '';
   }
 
-    Future<Order> checkOut(
-      String cartId) async {
-    final response =
-        await provider.checkOut(cartId);
+  Future<void> cancleOrder(String orderId) async {
+    final response = await provider.cancleOrder(orderId);
     if (response.statusCode != 200) {
-      throw Exception("Check out cart failed");
+      throw Exception("Cancel order failed");
     }
+    return;
+  }
 
-    final result = OrderResponse.fromJson(response.body);
-    return result.order!;
+  Future<OrderDocDetail> getOrderDetail(String orderId) async {
+    final response = await provider.getOrderDetail(orderId);
+    if (response.statusCode != 200) {
+      throw Exception("Cancel order failed");
+    }
+    final res = DetailOrderResponse.fromJson(response.body);
+    return res.orderDoc!;
   }
 }

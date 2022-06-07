@@ -2,7 +2,7 @@ import 'package:ecommerce_int2/data/models/address.model.dart';
 import 'package:ecommerce_int2/data/models/order.model.dart';
 import 'package:ecommerce_int2/data/repository/address.repository.dart';
 import 'package:ecommerce_int2/data/repository/order.repository.dart';
-import 'package:ecommerce_int2/screens/tracking_page.dart';
+import 'package:ecommerce_int2/screens/tracking/tracking_page.dart';
 import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:ecommerce_int2/utils/message_dialog.dart';
 import 'package:get/get.dart';
@@ -65,6 +65,7 @@ class AddressController extends GetxController {
           .updateAddress(selectedAddress)
           .then((value) => null, onError: (e) => null);
     }
+     checkOut();
   }
 
   void checkOut() async {

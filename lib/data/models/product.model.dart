@@ -40,6 +40,8 @@ class Product {
   String? description;
   int? quantity;
   int? price;
+  int? purchasePrice;
+  int? totalPrice;
   bool? isActive;
   String? merchant;
   String? category;
@@ -59,6 +61,8 @@ class Product {
       this.description,
       this.quantity,
       this.price,
+      this.purchasePrice,
+      this.totalPrice,
       this.isActive,
       this.merchant,
       this.category,
@@ -71,13 +75,15 @@ class Product {
       this.averageRating});
 
   Product.fromJson(Map<String, dynamic> json) {
-    sId = json['_id'];
-    name = json['name'];
-    imageUrl = json['imageUrl'];
+    sId = json['_id'] ?? json['product']['_id'];
+    name = json['name'] ?? json['product']['name'];
+    imageUrl = json['imageUrl'] ?? json['product']['imageUrl'];
     imageKey = json['imageKey'];
     description = json['description'];
     quantity = json['quantity'];
     price = json['price'];
+    purchasePrice = json['purchasePrice'];
+    totalPrice = json['totalPrice'];
     isActive = json['isActive'];
     merchant = json['merchant'];
     category = json['category'];
@@ -99,6 +105,8 @@ class Product {
     data['description'] = this.description;
     data['quantity'] = this.quantity;
     data['price'] = this.price;
+    data['purchasePrice'] = this.purchasePrice;
+    data['totalPrice'] = this.totalPrice;
     data['isActive'] = this.isActive;
     data['merchant'] = this.merchant;
     data['category'] = this.category;

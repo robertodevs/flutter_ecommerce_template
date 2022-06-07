@@ -13,20 +13,33 @@ class CartController extends GetxController {
 
   CartController(this.repository);
 
-  List<Product> products = [];
+  List<Product> get products {
+    if(carts == null) return [];
+    List<Product> products = [];
+    for(CartModel cart in carts!) {
+      products.addAll(cart.products!);
+    }
+    return products;
+  }
 
   List<CartModel>? carts;
+
+  @override
+  onInit() {
+    super.onInit();
+  }
 
   String get total {
     int result = 0;
     products.forEach((element) {
-      result += element.price!;
+      result += element.totalPrice ?? 0;
     });
     return '$result VND';
   }
 
-  void getCart() {
+  Future<void> getCart() async  {
     repository.getCarts().then((value) => carts = value);
+    update();
   }
 
   void remove(Product product) {

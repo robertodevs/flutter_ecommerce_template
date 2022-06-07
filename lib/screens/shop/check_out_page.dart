@@ -59,6 +59,9 @@ class CheckOutPage extends StatelessWidget {
             constraints: BoxConstraints(minHeight: constraints.maxHeight),
             child: GetBuilder<CartController>(
               init: CartController(Get.find<CartRepository>()),
+              initState: (state) {
+                  Get.find<CartController>().getCart();
+              },
               builder: (controller) => Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
