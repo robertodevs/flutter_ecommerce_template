@@ -5,6 +5,7 @@ import 'package:ecommerce_int2/screens/product/product_page.dart';
 import 'package:ecommerce_int2/screens/search_products/search_controller.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/screens/product/view_product_page.dart';
+import 'package:ecommerce_int2/utils/cart_button.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -79,8 +80,9 @@ class _SearchPageState extends State<SearchPage>
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
+                BackButton(),
                 Text(
                   'Search',
                   style: TextStyle(
@@ -89,7 +91,8 @@ class _SearchPageState extends State<SearchPage>
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                CloseButton()
+                Spacer(),
+                CartButton(),
               ],
             ),
           ),

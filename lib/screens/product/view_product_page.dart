@@ -1,5 +1,6 @@
 import 'package:ecommerce_int2/screens/product/components/rating_bottomSheet.dart';
 import 'package:ecommerce_int2/screens/search_products/search_page.dart';
+import 'package:ecommerce_int2/utils/cart_button.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -81,7 +82,8 @@ class _ViewProductPageState extends State<ViewProductPage> {
               ),
               onPressed: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (_) => SearchPage())),
-            )
+            ),
+            CartButton()
           ],
           title: Text(
             widget.product.name ?? 'Product',
