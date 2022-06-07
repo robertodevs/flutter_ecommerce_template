@@ -1,4 +1,5 @@
 import 'package:ecommerce_int2/data/models/order.model.dart';
+import 'package:ecommerce_int2/data/models/payment.model.dart';
 import 'package:ecommerce_int2/data/provider/order.provider.dart';
 
 class OrderRepository {
@@ -29,8 +30,8 @@ class OrderRepository {
     if (response.statusCode != 200) {
       throw Exception("Make payment failed");
     }
-    // final result = CompleteOrderResponse.fromJson(response.body);
-    return 'href';
+    final result = PaymentResponse.fromJson(response.body);
+    return result.data!.links?.firstWhere((element) => element.rel == 'approval_url').href ?? '';
   }
 
   Future<void> cancleOrder(String orderId) async {

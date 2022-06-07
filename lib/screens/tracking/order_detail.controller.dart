@@ -2,6 +2,7 @@ import 'package:ecommerce_int2/data/models/order.model.dart';
 import 'package:ecommerce_int2/data/repository/order.repository.dart';
 import 'package:ecommerce_int2/screens/tracking/order.controller.dart';
 import 'package:ecommerce_int2/utils/message_dialog.dart';
+import 'package:ecommerce_int2/utils/webview.dart';
 import 'package:get/get.dart';
 
 class OrderDetailController extends GetxController {
@@ -40,7 +41,8 @@ class OrderDetailController extends GetxController {
   void makePayment(String orderId) async {
     MessageDialog.showLoading();
     try {
-      await repository.makePayment(orderId);
+      final String href = await repository.makePayment(orderId);
+      await Get.to(() => WebViewExample(url: href));
       await repository
           .getOrderDetail(orderDetail)
           .then((value) => detail = value);

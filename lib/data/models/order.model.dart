@@ -254,6 +254,8 @@ class OrderDocDetail {
 
   bool get isPayWithCash => payment == 'CASH';
 
+  bool get canCancel => status == 'NOT_PROCESS';
+
   OrderDocDetail(
       {this.sId,
       this.cart,
