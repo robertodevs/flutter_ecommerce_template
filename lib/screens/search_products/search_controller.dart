@@ -1,4 +1,3 @@
-import 'package:ecommerce_int2/data/models/category.model.dart';
 import 'package:ecommerce_int2/data/models/product.model.dart';
 import 'package:ecommerce_int2/data/repository/product.repository.dart';
 import 'package:ecommerce_int2/utils/debounce.dart';
@@ -40,6 +39,13 @@ class SearchProductController extends GetxController {
     super.onInit();
   }
 
+  void getArgument() {
+    final dynamic subCategory = Get.arguments;
+    if (subCategory != null && subCategory is String) {
+      filter.subcategory = subCategory;
+    }
+  }
+
   Future<void> getProduct() async {
     try {
       final res = await repository.getProducts(filter);
@@ -60,7 +66,7 @@ class SearchProductController extends GetxController {
   }
 
   void onLoadMore() async {
-    if(list.length == total) return;
+    if (list.length == total) return;
     ++currentPage;
     filter.pageNumber = currentPage;
     await getProduct();
@@ -69,11 +75,9 @@ class SearchProductController extends GetxController {
 
   void onChanged(String value) {
     debounce.run(() {
-      if (value.isNotEmpty) {
-        filter.name = value;
-        getProduct();
-        update();
-      }
+      filter.name = value;
+      getProduct();
+      update();
     });
   }
 }
