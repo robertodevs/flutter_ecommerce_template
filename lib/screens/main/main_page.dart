@@ -1,5 +1,7 @@
 import 'package:ecommerce_int2/data/models/product.model.dart';
 import 'package:ecommerce_int2/screens/main/components/product_list.dart';
+import 'package:ecommerce_int2/screens/main/components/recommended_list.dart';
+import 'package:ecommerce_int2/screens/main/home.controller.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/utils/custom_background.dart';
 import 'package:ecommerce_int2/screens/category/category_list_page.dart';
@@ -9,6 +11,7 @@ import 'package:ecommerce_int2/screens/search_products/search_page.dart';
 import 'package:ecommerce_int2/screens/shop/check_out_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'components/custom_bottom_bar.dart';
 import 'components/tab_view.dart';
 
@@ -124,40 +127,40 @@ class _MainPageState extends State<MainPage>
 
     return Scaffold(
       bottomNavigationBar: CustomBottomBar(controller: bottomTabController),
-      body: CustomPaint(
-        painter: MainBackground(),
-        child: TabBarView(
-          controller: bottomTabController,
-          physics: NeverScrollableScrollPhysics(),
-          children: <Widget>[
-            SafeArea(
-              child: NestedScrollView(
-                headerSliverBuilder:
-                    (BuildContext context, bool innerBoxIsScrolled) {
-                  // These are the slivers that show up in the "outer" scroll view.
-                  return <Widget>[
-                    SliverToBoxAdapter(
-                      child: topHeader,
-                    ),
-                    SliverToBoxAdapter(
-                      child: ProductListView(
-                        products: products,
-                      ),
-                    ),
-                    SliverToBoxAdapter(
-                      child: tabBar,
-                    )
-                  ];
-                },
-                body: TabView(
-                  tabController: tabController,
-                ),
+      body: GetBuilder<HomeController>(
+        init: HomeController(Get.find()),
+        builder: (controller) => CustomPaint(
+          painter: MainBackground(),
+          child: TabBarView(
+            controller: bottomTabController,
+            physics: NeverScrollableScrollPhysics(),
+            children: <Widget>[
+              SafeArea(
+                child: NestedScrollView(
+                    headerSliverBuilder:
+                        (BuildContext context, bool innerBoxIsScrolled) {
+                      // These are the slivers that show up in the "outer" scroll view.
+                      return <Widget>[
+                        SliverToBoxAdapter(
+                          child: appBar,
+                        ),
+                        SliverToBoxAdapter(
+                          child: topHeader,
+                        ),
+                        SliverToBoxAdapter(
+                          child: ProductListView(
+                            products: controller.list.getRange(0, 3).toList(),
+                          ),
+                        ),
+                      ];
+                    },
+                    body: RecommendedList(products: controller.list)),
               ),
-            ),
-            CategoryListPage(),
-            CheckOutPage(),
-            ProfilePage()
-          ],
+              CategoryListPage(),
+              CheckOutPage(),
+              ProfilePage()
+            ],
+          ),
         ),
       ),
     );

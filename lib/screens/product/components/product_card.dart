@@ -15,22 +15,18 @@ class ProductCard extends StatelessWidget {
         child: InkWell(
             onTap: () => onTap(),
             child: Container(
-                height: 200,
                 width: MediaQuery.of(context).size.width / 2 - 29,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     color: Color(0xfffbd085).withOpacity(0.46)),
                 child: Row(
                   children: <Widget>[
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Container(
-                        padding: EdgeInsets.all(16.0),
-                        width: 180,
-                        height: 180,
-                        child: Image.network(
-                          product.imageUrl!,
-                        ),
+                    Container(
+                      padding: EdgeInsets.all(16.0),
+                      child: Image.network(
+                        product.imageUrl!,
+                        width: 200,
+                        height: 200,
                       ),
                     ),
                     Flexible(
@@ -42,13 +38,37 @@ class ProductCard extends StatelessWidget {
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(10),
                                   bottomLeft: Radius.circular(10))),
-                          child: Text(
-                            product.name ?? "Product",
-                            textAlign: TextAlign.right,
-                            style: TextStyle(
-                              fontSize: 12.0,
-                              color: Colors.white,
-                            ),
+                          child: Column(
+                            children: [
+                              Text(
+                                product.name ?? "Product",
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                product.merchant ?? "Merchant",
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              Text(
+                                'VND' +
+                                    (product.purchasePrice ??
+                                            product.price ??
+                                            0)
+                                        .toString(),
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  color: Colors.white,
+                                ),
+                              )
+                            ],
                           )),
                     )
                   ],

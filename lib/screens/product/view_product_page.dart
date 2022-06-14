@@ -1,11 +1,9 @@
-import 'package:ecommerce_int2/screens/product/components/rating_bottomSheet.dart';
 import 'package:ecommerce_int2/screens/search_products/search_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../data/models/product.model.dart';
 import '../../utils/app_properties.dart';
-import 'components/color_list.dart';
 import 'components/more_products.dart';
 
 class ViewProductPage extends StatefulWidget {
