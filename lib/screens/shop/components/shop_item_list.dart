@@ -45,36 +45,38 @@ class _ShopItemListState extends State<ShopItemList> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
-                            Text(
-                              widget.product.name ?? 'Product',
-                              textAlign: TextAlign.right,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
-                                color: darkGrey,
-                              ),
-                            ),
                             Align(
                               alignment: Alignment.centerRight,
                               child: Container(
                                 width: 160,
                                 padding: const EdgeInsets.only(
                                     left: 32.0, top: 8.0, bottom: 8.0),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    ColorOption(Colors.red),
-                                    Text(
-                                      '\$${widget.product.price ?? widget.product.purchasePrice ?? 0}',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          color: darkGrey,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18.0),
-                                    )
-                                  ],
-                                ),
+                                child: Column(children: [
+                                  Text(
+                                    widget.product.name ?? 'Product',
+                                    textAlign: TextAlign.right,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      color: darkGrey,
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      ColorOption(Colors.red),
+                                      Text(
+                                        '\$${widget.product.price ?? widget.product.purchasePrice ?? 0}',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            color: darkGrey,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18.0),
+                                      )
+                                    ],
+                                  ),
+                                ]),
                               ),
                             )
                           ],

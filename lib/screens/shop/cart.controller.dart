@@ -14,9 +14,9 @@ class CartController extends GetxController {
   CartController(this.repository);
 
   List<Product> get products {
-    if(carts == null) return [];
+    if (carts == null) return [];
     List<Product> products = [];
-    for(CartModel cart in carts!) {
+    for (CartModel cart in carts!) {
       products.addAll(cart.products!);
     }
     return products;
@@ -37,9 +37,11 @@ class CartController extends GetxController {
     return '$result VND';
   }
 
-  Future<void> getCart() async  {
-    repository.getCarts().then((value) => carts = value);
-    update();
+  Future<void> getCart() async {
+    repository.getCarts().then((value) {
+      carts = value;
+      update();
+    });
   }
 
   void remove(Product product) {
@@ -79,6 +81,6 @@ class CartController extends GetxController {
 
   void checkOut() async {
     final List<String> orderIds = await repository.checkOutCart(carts!);
-    Get.to(AddAddressPage(), arguments: orderIds);
+    Get.to(() => AddAddressPage(), arguments: orderIds);
   }
 }

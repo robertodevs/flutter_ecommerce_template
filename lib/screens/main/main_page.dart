@@ -131,36 +131,41 @@ class _MainPageState extends State<MainPage>
         init: HomeController(Get.find()),
         builder: (controller) => CustomPaint(
           painter: MainBackground(),
-          child: TabBarView(
-            controller: bottomTabController,
-            physics: NeverScrollableScrollPhysics(),
-            children: <Widget>[
-              SafeArea(
-                child: NestedScrollView(
-                    headerSliverBuilder:
-                        (BuildContext context, bool innerBoxIsScrolled) {
-                      // These are the slivers that show up in the "outer" scroll view.
-                      return <Widget>[
-                        SliverToBoxAdapter(
-                          child: appBar,
-                        ),
-                        SliverToBoxAdapter(
-                          child: topHeader,
-                        ),
-                        SliverToBoxAdapter(
-                          child: ProductListView(
-                            products: controller.list.getRange(0, 3).toList(),
-                          ),
-                        ),
-                      ];
-                    },
-                    body: RecommendedList(products: controller.list)),
-              ),
-              CategoryListPage(),
-              CheckOutPage(),
-              ProfilePage()
-            ],
-          ),
+          child: controller.list.isEmpty
+              ? Center(
+                  child: CircularProgressIndicator.adaptive(),
+                )
+              : TabBarView(
+                  controller: bottomTabController,
+                  physics: NeverScrollableScrollPhysics(),
+                  children: <Widget>[
+                    SafeArea(
+                      child: NestedScrollView(
+                          headerSliverBuilder:
+                              (BuildContext context, bool innerBoxIsScrolled) {
+                            // These are the slivers that show up in the "outer" scroll view.
+                            return <Widget>[
+                              SliverToBoxAdapter(
+                                child: appBar,
+                              ),
+                              SliverToBoxAdapter(
+                                child: topHeader,
+                              ),
+                              SliverToBoxAdapter(
+                                child: ProductListView(
+                                  products:
+                                      controller.list.getRange(0, 3).toList(),
+                                ),
+                              ),
+                            ];
+                          },
+                          body: RecommendedList(products: controller.list)),
+                    ),
+                    CategoryListPage(),
+                    CheckOutPage(),
+                    ProfilePage()
+                  ],
+                ),
         ),
       ),
     );

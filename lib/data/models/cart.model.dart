@@ -58,7 +58,9 @@ class CartModel {
       });
     }
     user = json['user'];
-    merchant = json['merchant'];
+    merchant = json['merchant'] ?? (json['merchant'] == null
+        ? null
+        : json['merchant']['_id'] );
     total = json['total'];
     isOrdered = json['isOrdered'];
     created = json['created'];
@@ -80,4 +82,3 @@ class CartModel {
     return data;
   }
 }
-

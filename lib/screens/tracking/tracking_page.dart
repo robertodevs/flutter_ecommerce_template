@@ -64,37 +64,31 @@ class _TrackingPageState extends State<TrackingPage> {
               body: SafeArea(
                 child: LayoutBuilder(
                   builder: (_, constraints) => SingleChildScrollView(
-                    child: ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxHeight: constraints.maxHeight - 48,
-                      ),
-                      child: Column(
-                        //                          physics: NeverScrollableScrollPhysics(),
-                        children: [
-                          ...controller.orders
-                              .map((order) => GestureDetector(
-                                onTap: (() => controller.getOrderDetail(order)),
-                                child: Container(
-                                  width: Get.width,
-                                  child: Card(
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Column(children: [
-                                            Text('Order Id: ${order.sId ?? 'Order'}'),
-                                            Text('Deliver status: ${order.status ?? ''}'),
-                                            Text('Payment status: ${order.paymentStatus ?? ''}'),
-                                            Text('Merchant: ${order.merchant ?? ''}'),
-                                            Text('Date: ${order.created ?? ''}')
-                                          ],
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          ),
+                    child: Column(
+                      children: [
+                        ...controller.orders.reversed
+                            .map((order) => GestureDetector(
+                              onTap: (() => controller.getOrderDetail(order)),
+                              child: Container(
+                                width: Get.width,
+                                child: Card(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(children: [
+                                          Text('Order Id: ${order.sId ?? 'Order'}'),
+                                          Text('Deliver status: ${order.status ?? ''}'),
+                                          Text('Payment status: ${order.paymentStatus ?? ''}'),
+                                          Text('Merchant: ${order.merchant ?? ''}'),
+                                          Text('Date: ${order.created ?? ''}')
+                                        ],
+                                        crossAxisAlignment: CrossAxisAlignment.start,
                                         ),
                                       ),
-                                ),
-                              ))
-                              .toList()
-                        ],
-                      ),
+                                    ),
+                              ),
+                            ))
+                            .toList()
+                      ],
                     ),
                   ),
                 ),

@@ -22,7 +22,7 @@ class CartRepository {
     if (response.statusCode != 200) {
       throw Exception("Add product failed");
     }
-    return response.body['_id'];
+    return response.body['_id'] ?? '';
   }
 
   Future<void> deleteProduct(String cartId, String productID) async {

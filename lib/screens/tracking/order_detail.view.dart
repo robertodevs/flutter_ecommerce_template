@@ -73,39 +73,7 @@ class OrderDetail extends StatelessWidget {
                                             height: 130,
                                             width: Get.width))
                                         .toList(),
-                                        if (controller.detail!.canCancel)
-                                      GestureDetector(
-                                        onTap: (() => controller.remove(orderId)),
-                                        child: Center(
-                                          child: Container(
-                                            height: 40,
-                                            width:
-                                                MediaQuery.of(context).size.width /
-                                                    1.5,
-                                            decoration: BoxDecoration(
-                                                gradient: mainButton,
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    color: Color.fromRGBO(
-                                                        0, 0, 0, 0.16),
-                                                    offset: Offset(0, 5),
-                                                    blurRadius: 10.0,
-                                                  )
-                                                ],
-                                                borderRadius:
-                                                    BorderRadius.circular(9.0)),
-                                            child: Center(
-                                              child: Text("Cancle Order",
-                                                  style: const TextStyle(
-                                                      color:
-                                                          const Color(0xfffefefe),
-                                                      fontWeight: FontWeight.w600,
-                                                      fontStyle: FontStyle.normal,
-                                                      fontSize: 20.0)),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
+                                      const SizedBox(height: 16),
                                     if (controller.detail!.isPayWithCash)
                                       GestureDetector(
                                         onTap: (() => controller.makePayment(orderId)),
@@ -138,10 +106,45 @@ class OrderDetail extends StatelessWidget {
                                             ),
                                           ),
                                         ),
-                                      )
+                                      ),
+                                      const SizedBox(height: 16),
+                                      if (controller.detail!.canCancel)
+                                      GestureDetector(
+                                        onTap: (() => controller.remove(orderId)),
+                                        child: Center(
+                                          child: Container(
+                                            height: 40,
+                                            width:
+                                                MediaQuery.of(context).size.width /
+                                                    1.5,
+                                            decoration: BoxDecoration(
+                                                gradient: mainButton,
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Color.fromRGBO(
+                                                        0, 0, 0, 0.16),
+                                                    offset: Offset(0, 5),
+                                                    blurRadius: 10.0,
+                                                  )
+                                                ],
+                                                borderRadius:
+                                                    BorderRadius.circular(9.0)),
+                                            child: Center(
+                                              child: Text("Cancle Order",
+                                                  style: const TextStyle(
+                                                      color:
+                                                          const Color(0xfffefefe),
+                                                      fontWeight: FontWeight.w600,
+                                                      fontStyle: FontStyle.normal,
+                                                      fontSize: 20.0)),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
                                   ],
                                 )
                               : SizedBox.shrink(),
+                              
                         ),
                       ),
                     ),

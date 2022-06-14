@@ -1,6 +1,9 @@
 import 'package:ecommerce_int2/data/models/product.model.dart';
+import 'package:ecommerce_int2/screens/main/components/product_list.dart';
+import 'package:ecommerce_int2/screens/search_products/search_controller.dart';
 import 'package:ecommerce_int2/screens/shop/cart.controller.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
+import 'package:ecommerce_int2/utils/cart_button.widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,7 +13,6 @@ class ProductPage extends StatelessWidget {
   final Product product;
 
   ProductPage({required this.product});
-
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +57,7 @@ class ProductPage extends StatelessWidget {
           style: const TextStyle(
               color: darkGrey, fontWeight: FontWeight.w500, fontSize: 18.0),
         ),
+        actions: [CartButton()],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -78,33 +81,6 @@ class ProductPage extends StatelessWidget {
             ),
             SizedBox(
               height: 24.0,
-            ),
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0),
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    width: 90,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(253, 192, 84, 1),
-                      borderRadius: BorderRadius.circular(4.0),
-                      border: Border.all(color: Color(0xFFFFFFFF), width: 0.5),
-                    ),
-                    child: Center(
-                      child: new Text("Details",
-                          style: const TextStyle(
-                              color: const Color(0xeefefefe),
-                              fontWeight: FontWeight.w300,
-                              fontStyle: FontStyle.normal,
-                              fontSize: 12.0)),
-                    ),
-                  )
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 16.0,
             ),
             Padding(
                 padding: EdgeInsets.only(left: 20.0, right: 40.0, bottom: 20),
@@ -134,6 +110,12 @@ class ProductPage extends StatelessWidget {
                 child: Center(child: viewProductButton),
               ),
             ),
+            Text('Merchant ${ product.merchant}'),
+            ProductListView(
+                products: Get.find<SearchProductController>()
+                    .list
+                    .where((element) => element.merchant == product.merchant)
+                    .toList())
           ],
         ),
       ),

@@ -21,8 +21,10 @@ import 'package:webview_flutter/webview_flutter.dart';
 
    @override
    Widget build(BuildContext context) {
-     return WebView(
-       initialUrl: widget.url,
+     return SafeArea(
+       child: WebView(
+         initialUrl: widget.url,
+       ),
      );
    }
  }

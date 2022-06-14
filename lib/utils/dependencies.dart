@@ -10,6 +10,7 @@ import 'package:ecommerce_int2/data/repository/cart.repository.dart';
 import 'package:ecommerce_int2/data/repository/category.repository.dart';
 import 'package:ecommerce_int2/data/repository/order.repository.dart';
 import 'package:ecommerce_int2/data/repository/product.repository.dart';
+import 'package:ecommerce_int2/screens/search_products/search_controller.dart';
 import 'package:ecommerce_int2/screens/shop/cart.controller.dart';
 import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:ecommerce_int2/services/network.service.dart';
@@ -33,6 +34,7 @@ class Dependency {
       ..put(CartController(Get.find<CartRepository>()), permanent: true)
       ..put(OrderProvider(Get.find<NetWorkService>()))
       ..put(OrderRepository(Get.find<OrderProvider>()))
+      ..put(SearchProductController(Get.find<ProductRepository>()))
       ;
   }
 }
