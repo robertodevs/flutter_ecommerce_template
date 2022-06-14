@@ -25,6 +25,8 @@ class ProductCard extends StatelessWidget {
                       padding: EdgeInsets.all(16.0),
                       child: Image.network(
                         product.imageUrl!,
+                        width: 200,
+                        height: 200,
                       ),
                     ),
                     Flexible(

@@ -18,7 +18,6 @@ class SubCategoryController extends GetxController {
 
   @override
   void onInit() {
-    
     super.onInit();
   }
 
