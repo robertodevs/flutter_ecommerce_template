@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use
+
 import 'package:ecommerce_int2/data/models/product.model.dart';
 import 'package:ecommerce_int2/data/repository/product.repository.dart';
 import 'package:ecommerce_int2/screens/product/components/product_card.dart';
@@ -6,6 +8,7 @@ import 'package:ecommerce_int2/screens/search_products/search_controller.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/screens/product/view_product_page.dart';
 import 'package:ecommerce_int2/utils/cart_button.widget.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -48,7 +51,6 @@ class _SearchPageState extends State<SearchPage>
 
   List<Product> searchResults = [];
 
-  TextEditingController searchController = TextEditingController();
 
   late RubberAnimationController _controller;
 
@@ -66,10 +68,6 @@ class _SearchPageState extends State<SearchPage>
   @override
   void dispose() {
     super.dispose();
-  }
-
-  void _expand() {
-    _controller.expand();
   }
 
   Widget _getLowerLayer(SearchProductController controller) {
@@ -102,7 +100,7 @@ class _SearchPageState extends State<SearchPage>
                 border:
                     Border(bottom: BorderSide(color: Colors.orange, width: 1))),
             child: TextField(
-              controller: searchController,
+              controller: controller.searchController,
               onChanged: (value) => controller.onChanged(value),
               cursorColor: darkGrey,
               decoration: InputDecoration(
@@ -114,7 +112,7 @@ class _SearchPageState extends State<SearchPage>
                 ),
                 suffix: FlatButton(
                   onPressed: () {
-                    searchController.clear();
+                    controller.searchController.clear();
                     searchResults.clear();
                   },
                   child: Text(

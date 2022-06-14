@@ -1,5 +1,4 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:ecommerce_int2/data/models/product.model.dart';
 import 'package:ecommerce_int2/data/repository/cart.repository.dart';
 import 'package:ecommerce_int2/screens/shop/cart.controller.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
