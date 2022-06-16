@@ -1,4 +1,5 @@
 import 'package:ecommerce_int2/data/models/cart.model.dart';
+import 'package:intl/intl.dart';
 
 class OrderResponse {
   bool? success;
@@ -36,6 +37,14 @@ class Order {
   String? sId;
   String? created;
   int? iV;
+
+  String get createdDate {
+    if (created == null) return '';
+    final date = DateTime.tryParse(created!);
+    if (date == null) return '';
+    final res = DateFormat("yyyy-MM-dd HH:mm:ss aa").format(date);
+    return res;
+  }
 
   Order(
       {this.cart,
@@ -117,9 +126,8 @@ class CompleteOrderResponse {
   CompleteOrderResponse.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
-    orderDoc = json['data'] != null
-        ? new OrderDoc.fromJson(json['data'])
-        : null;
+    orderDoc =
+        json['data'] != null ? new OrderDoc.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -224,9 +232,8 @@ class DetailOrderResponse {
 
   DetailOrderResponse.fromJson(Map<String, dynamic> json) {
     success = json['success'];
-    orderDoc = json['data'] != null
-        ? new OrderDocDetail.fromJson(json['data'])
-        : null;
+    orderDoc =
+        json['data'] != null ? new OrderDocDetail.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -251,6 +258,14 @@ class OrderDocDetail {
   String? created;
   int? iV;
   String? address;
+
+  String get createdDate {
+    if (created == null) return '';
+    final date = DateTime.tryParse(created!);
+    if (date == null) return '';
+    final res = DateFormat("yyyy-MM-dd HH:mm:ss aa").format(date);
+    return res;
+  }
 
   bool get isPayWithCash => payment == 'CASH';
 

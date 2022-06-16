@@ -1,5 +1,6 @@
 import 'package:ecommerce_int2/data/repository/order.repository.dart';
 import 'package:ecommerce_int2/screens/tracking/order.controller.dart';
+import 'package:ecommerce_int2/screens/tracking/row_text.widget.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -68,25 +69,43 @@ class _TrackingPageState extends State<TrackingPage> {
                       children: [
                         ...controller.orders.reversed
                             .map((order) => GestureDetector(
-                              onTap: (() => controller.getOrderDetail(order)),
-                              child: Container(
-                                width: Get.width,
-                                child: Card(
+                                  onTap: (() =>
+                                      controller.getOrderDetail(order)),
+                                  child: Container(
+                                    width: Get.width,
+                                    child: Card(
                                       child: Padding(
                                         padding: const EdgeInsets.all(8.0),
-                                        child: Column(children: [
-                                          Text('Order Id: ${order.sId ?? 'Order'}'),
-                                          Text('Deliver status: ${order.status ?? ''}'),
-                                          Text('Payment status: ${order.paymentStatus ?? ''}'),
-                                          Text('Merchant: ${order.merchant ?? ''}'),
-                                          Text('Date: ${order.created ?? ''}')
-                                        ],
-                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        child: Column(
+                                          children: [
+                                            RowTextWidget(
+                                                text1: 'Order Id',
+                                                text2:
+                                                    '${order.sId ?? 'Order'}'),
+                                            RowTextWidget(
+                                                text1: 'Deliver status',
+                                                text2:
+                                                    ' ${order.status ?? ''}'),
+                                            RowTextWidget(
+                                                text1: 'Payment status',
+                                                text2:
+                                                    '${order.paymentStatus ?? ''}'),
+                                            RowTextWidget(
+                                                text1: 'Merchant',
+                                                text2:
+                                                    '${order.merchant ?? ''}'),
+                                            RowTextWidget(
+                                                text1: 'Date',
+                                                text2:
+                                                    '${order.createdDate}'),
+                                          ],
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
                                         ),
                                       ),
                                     ),
-                              ),
-                            ))
+                                  ),
+                                ))
                             .toList()
                       ],
                     ),

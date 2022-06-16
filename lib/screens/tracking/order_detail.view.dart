@@ -2,6 +2,7 @@ import 'package:ecommerce_int2/data/repository/order.repository.dart';
 import 'package:ecommerce_int2/screens/main/components/product_list.dart';
 import 'package:ecommerce_int2/screens/tracking/order.controller.dart';
 import 'package:ecommerce_int2/screens/tracking/order_detail.controller.dart';
+import 'package:ecommerce_int2/screens/tracking/row_text.widget.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -57,15 +58,22 @@ class OrderDetail extends StatelessWidget {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     const SizedBox(height: 24),
-                                    Text(
-                                        'Deliver status: ${controller.detail?.status ?? ''}'),
-                                    Text(
-                                        'Payment status: ${controller.detail?.paymentStatus ?? ''}'),
-                                    Text(
-                                        'Merchant: ${controller.detail?.merchant ?? ''}'),
-                                    Text(
-                                        'Date: ${controller.detail?.created ?? ''}'),
-                                    Text('Products'),
+                                    RowTextWidget(
+                                        text1: 'Deliver status',
+                                        text2:
+                                            ' ${controller.detail?.status ?? ''}'),
+                                    RowTextWidget(
+                                        text1: 'Payment status',
+                                        text2:
+                                            '${controller.detail?.paymentStatus ?? ''}'),
+                                    RowTextWidget(
+                                        text1: 'Merchant',
+                                        text2:
+                                            '${controller.detail?.merchant ?? ''}'),
+                                    RowTextWidget(
+                                        text1: 'Date',
+                                        text2:
+                                            '${controller.detail?.createdDate ?? ''}'),
                                     const SizedBox(height: 16),
                                     ...controller.detail!.cart!.products!
                                         .map((product) => ProductCard(
@@ -73,16 +81,18 @@ class OrderDetail extends StatelessWidget {
                                             height: 130,
                                             width: Get.width))
                                         .toList(),
-                                      const SizedBox(height: 16),
+                                    const SizedBox(height: 16),
                                     if (controller.detail!.isPayWithCash)
                                       GestureDetector(
-                                        onTap: (() => controller.makePayment(orderId)),
+                                        onTap: (() =>
+                                            controller.makePayment(orderId)),
                                         child: Center(
                                           child: Container(
                                             height: 40,
-                                            width:
-                                                MediaQuery.of(context).size.width /
-                                                    1.5,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                1.5,
                                             decoration: BoxDecoration(
                                                 gradient: mainButton,
                                                 boxShadow: [
@@ -98,25 +108,29 @@ class OrderDetail extends StatelessWidget {
                                             child: Center(
                                               child: Text("Pay with PayPal",
                                                   style: const TextStyle(
-                                                      color:
-                                                          const Color(0xfffefefe),
-                                                      fontWeight: FontWeight.w600,
-                                                      fontStyle: FontStyle.normal,
+                                                      color: const Color(
+                                                          0xfffefefe),
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontStyle:
+                                                          FontStyle.normal,
                                                       fontSize: 20.0)),
                                             ),
                                           ),
                                         ),
                                       ),
-                                      const SizedBox(height: 16),
-                                      if (controller.detail!.canCancel)
+                                    const SizedBox(height: 16),
+                                    if (controller.detail!.canCancel)
                                       GestureDetector(
-                                        onTap: (() => controller.remove(orderId)),
+                                        onTap: (() =>
+                                            controller.remove(orderId)),
                                         child: Center(
                                           child: Container(
                                             height: 40,
-                                            width:
-                                                MediaQuery.of(context).size.width /
-                                                    1.5,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                1.5,
                                             decoration: BoxDecoration(
                                                 gradient: mainButton,
                                                 boxShadow: [
@@ -132,10 +146,12 @@ class OrderDetail extends StatelessWidget {
                                             child: Center(
                                               child: Text("Cancle Order",
                                                   style: const TextStyle(
-                                                      color:
-                                                          const Color(0xfffefefe),
-                                                      fontWeight: FontWeight.w600,
-                                                      fontStyle: FontStyle.normal,
+                                                      color: const Color(
+                                                          0xfffefefe),
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontStyle:
+                                                          FontStyle.normal,
                                                       fontSize: 20.0)),
                                             ),
                                           ),
@@ -144,7 +160,6 @@ class OrderDetail extends StatelessWidget {
                                   ],
                                 )
                               : SizedBox.shrink(),
-                              
                         ),
                       ),
                     ),
