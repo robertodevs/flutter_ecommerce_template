@@ -32,7 +32,7 @@ class CartController extends GetxController {
   String get total {
     int result = 0;
     products.forEach((element) {
-      result += element.totalPrice ?? 0;
+      result += element.price ?? element.purchasePrice ?? 0;
     });
     return '$result VND';
   }
@@ -80,7 +80,9 @@ class CartController extends GetxController {
   }
 
   void checkOut() async {
+    MessageDialog.showLoading();
     final List<String> orderIds = await repository.checkOutCart(carts!);
+    MessageDialog.hideLoading();
     Get.to(() => AddAddressPage(), arguments: orderIds);
   }
 }

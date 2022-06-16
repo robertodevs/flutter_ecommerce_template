@@ -58,9 +58,8 @@ class CartModel {
       });
     }
     user = json['user'];
-    merchant = json['merchant'] ?? (json['merchant'] == null
-        ? null
-        : json['merchant']['_id'] );
+    merchant = json['merchant'] != null ? 
+        (json['merchant'] is String? ? json['merchant'] : json['merchant']['_id']) : '';
     total = json['total'];
     isOrdered = json['isOrdered'];
     created = json['created'];
