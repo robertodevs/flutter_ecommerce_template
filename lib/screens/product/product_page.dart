@@ -1,5 +1,6 @@
 import 'package:ecommerce_int2/data/models/product.model.dart';
 import 'package:ecommerce_int2/screens/main/components/product_list.dart';
+import 'package:ecommerce_int2/screens/merchant/merchant.view.dart';
 import 'package:ecommerce_int2/screens/search_products/search_controller.dart';
 import 'package:ecommerce_int2/screens/shop/cart.controller.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
@@ -110,7 +111,16 @@ class ProductPage extends StatelessWidget {
                 child: Center(child: viewProductButton),
               ),
             ),
-            Text('Merchant ${ product.merchant}'),
+            GestureDetector(
+              onTap: () => Get.to(() => MerchantPage(), arguments: product.merchant),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Text(
+                  '${product.merchant ?? 'Merchant'}',
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+            ),
             ProductListView(
                 products: Get.find<SearchProductController>()
                     .list
