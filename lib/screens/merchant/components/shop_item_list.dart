@@ -84,7 +84,6 @@ class _ShopItemListState extends State<ShopItemList> {
                       ),
                       Theme(
                           data: ThemeData(
-                              accentColor: Colors.black,
                               textTheme: TextTheme(
                                 headline6: TextStyle(
                                     fontFamily: 'Montserrat',

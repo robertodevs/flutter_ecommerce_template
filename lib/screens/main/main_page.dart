@@ -13,7 +13,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'components/custom_bottom_bar.dart';
-import 'components/tab_view.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -106,24 +105,6 @@ class _MainPageState extends State<MainPage>
             ),
           ),
         ));
-
-    Widget tabBar = TabBar(
-      tabs: [
-        Tab(text: 'Trending'),
-        Tab(text: 'Sports'),
-        Tab(text: 'Headsets'),
-        Tab(text: 'Wireless'),
-        Tab(text: 'Bluetooth'),
-      ],
-      labelStyle: TextStyle(fontSize: 16.0),
-      unselectedLabelStyle: TextStyle(
-        fontSize: 14.0,
-      ),
-      labelColor: darkGrey,
-      unselectedLabelColor: Color.fromRGBO(0, 0, 0, 0.5),
-      isScrollable: true,
-      controller: tabController,
-    );
 
     return Scaffold(
       bottomNavigationBar: CustomBottomBar(controller: bottomTabController),

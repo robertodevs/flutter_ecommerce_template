@@ -13,6 +13,8 @@ class CartController extends GetxController {
 
   CartController(this.repository);
 
+  bool isLoadingCart = false;
+
   List<Product> get products {
     if (carts == null) return [];
     List<Product> products = [];
@@ -38,8 +40,11 @@ class CartController extends GetxController {
   }
 
   Future<void> getCart() async {
+    isLoadingCart = true;
+    update();
     repository.getCarts().then((value) {
       carts = value;
+      isLoadingCart = false;
       update();
     });
   }

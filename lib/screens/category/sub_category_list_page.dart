@@ -75,7 +75,7 @@ class SubCategoryListPage extends StatelessWidget {
                         end: const Color(0xffF68D7F),
                         categoryName: controller.tempList[index].name ?? "",
                         assetPath: 'assets/jeans_5.png',
-                        onViewMore: () => Get.to(SearchPage(),
+                        onViewMore: () => Get.to(() => SearchPage(),
                             arguments: controller.tempList[index].slug),
                       ),
                     ),

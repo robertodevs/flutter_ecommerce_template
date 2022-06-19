@@ -46,7 +46,7 @@ class CartRepository {
     for(CartModel cart in carts) {
       final response = await provider.checkoutCart(cart.sId!, cart.merchant!);
       OrderResponse order = OrderResponse.fromJson(response.body);
-      orderIds.add(order.order!.sId!);
+      orderIds.add(order. order!.sId!);
     }
     return orderIds;
   }

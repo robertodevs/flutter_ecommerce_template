@@ -35,14 +35,6 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   Widget build(BuildContext context) {
     final controller = Get.find<AuthService>();
-    Widget background = Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage('assets/background.jpg'), fit: BoxFit.cover),
-      ),
-      foregroundDecoration: BoxDecoration(color: transparentYellow),
-    );
-
     Widget title = Text(
       'Forgot your Password?',
       style: TextStyle(

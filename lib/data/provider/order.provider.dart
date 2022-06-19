@@ -19,6 +19,9 @@ class OrderProvider {
   final String cancleOrderUrl =
       'https://ecommerce-api-dut.herokuapp.com/api/order';
 
+  final String confirmReceivedUrl =
+      'https://ecommerce-api-dut.herokuapp.com/api/order';
+
   Future<HttpResponse> getAllOrders() {
     return networkService.get(orderUrl);
   }
@@ -43,5 +46,10 @@ class OrderProvider {
 
   Future<HttpResponse> getOrderDetail(String orderId) {
     return networkService.get('$orderUrl/$orderId');
+  }
+
+  Future<HttpResponse> confirmReceived(String orderId) {
+    return networkService.put('$confirmReceivedUrl/$orderId/status',
+        data: {"status": "RECEIVED"});
   }
 }

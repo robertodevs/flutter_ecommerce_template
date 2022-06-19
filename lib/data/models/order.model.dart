@@ -11,7 +11,7 @@ class OrderResponse {
   OrderResponse.fromJson(Map<String, dynamic> json) {
     success = json['success'];
     message = json['message'];
-    order = json['order'] != null ? new Order.fromJson(json['order']) : null;
+    order = json['data'] != null ? new Order.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -19,7 +19,7 @@ class OrderResponse {
     data['success'] = this.success;
     data['message'] = this.message;
     if (this.order != null) {
-      data['order'] = this.order!.toJson();
+      data['data'] = this.order!.toJson();
     }
     return data;
   }
@@ -60,7 +60,7 @@ class Order {
       this.iV});
 
   Order.fromJson(Map<String, dynamic> json) {
-    cart = json['cart'];
+    cart = json['cart']['_id'];
     user = json['user'];
     merchant = json['merchant'];
     payment = json['payment'];

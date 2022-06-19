@@ -45,7 +45,6 @@ class _RequestPageState extends State<RequestPage> {
         iconTheme: IconThemeData(
           color: Colors.black,
         ),
-        brightness: Brightness.light,
         backgroundColor: Colors.transparent,
         title: Text(
           'Request Amount',

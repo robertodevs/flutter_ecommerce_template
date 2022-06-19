@@ -68,7 +68,7 @@ class CategoryListPage extends StatelessWidget {
                         categoryName:
                             controller.tempList[index].name ?? "",
                         assetPath: 'assets/jeans_5.png',
-                        onViewMore: () => Get.to(SubCategoryListPage(
+                        onViewMore: () => Get.to(() => SubCategoryListPage(
                             category: controller.tempList[index])),
                       ),
                     ),

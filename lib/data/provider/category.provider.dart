@@ -9,7 +9,7 @@ class CategoryProvider {
   CategoryProvider(this.networkService);
 
   final String getAllCaegories =
-      'https://ecommerce-api-dut.herokuapp.com/api/category/list';
+      'https://ecommerce-api-dut.herokuapp.com/api/category';
 
   Future<HttpResponse> getCategories() {
     return networkService.get(getAllCaegories);

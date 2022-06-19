@@ -28,7 +28,7 @@ class _ShopItemListState extends State<ShopItemList> {
           Align(
             alignment: Alignment(0, 0.8),
             child: Container(
-                height: 100,
+                height: 120,
                 margin: EdgeInsets.symmetric(horizontal: 16.0),
                 decoration: BoxDecoration(
                     color: Colors.white,

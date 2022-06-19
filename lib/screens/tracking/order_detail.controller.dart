@@ -52,4 +52,17 @@ class OrderDetailController extends GetxController {
     }
     MessageDialog.hideLoading();
   }
+
+  void confirmOrder(String orderId) async {
+    MessageDialog.showLoading();
+    try {
+      await repository.confirmReceived(orderId);
+      orderController.getAllOrders();
+      MessageDialog.hideLoading();
+      Get.back();
+    } on Exception catch (e) {
+      MessageDialog.hideLoading();
+      MessageDialog.showToast(e.toString());
+    }
+  }
 }

@@ -69,7 +69,7 @@ class NetWorkService {
   Future<HttpResponse> get(String url,
       {Map<String, dynamic>? queryParameters, Options? options}) async {
     final Dio dio = getDio();
-    debugPrint("--[GET]--: ${url}");
+    debugPrint("--[GET]--: $url");
     final Response response = await dio.get(
       url,
       queryParameters: queryParameters,
@@ -93,7 +93,7 @@ class NetWorkService {
       Map<String, dynamic>? queryParameters,
       Options? options}) async {
     final Dio dio = getDio();
-    debugPrint("--[DOWNLOAD]--: ${url}");
+    debugPrint("--[DOWNLOAD]--: $url");
     final tempDir = await getTemporaryDirectory();
     String filename = '';
     return await dio.download(
@@ -125,7 +125,7 @@ class NetWorkService {
       Options? options,
       Map<String, dynamic>? formData}) async {
     final Dio dio = getDio();
-    debugPrint("--[POST]--: ${url}");
+    debugPrint("--[POST]--: $url");
     if (formData != null) {
       data = mapToFormData(formData);
     }
@@ -155,7 +155,7 @@ class NetWorkService {
       data = mapToFormData(formData);
     }
 
-    debugPrint("--[PUT]--: ${url}");
+    debugPrint("--[PUT]--: $url");
     final Response response = await dio.put(
       url,
       data: data,
@@ -179,7 +179,7 @@ class NetWorkService {
     Options? options,
   }) async {
     final Dio dio = getDio();
-    debugPrint("--[DELETE]--: ${url}");
+    debugPrint("--[DELETE]--: $url");
     final Response response = await dio.delete(
       url,
       data: data,

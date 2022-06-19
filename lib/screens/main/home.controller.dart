@@ -1,4 +1,3 @@
-import 'package:ecommerce_int2/data/models/category.model.dart';
 import 'package:ecommerce_int2/data/models/product.model.dart';
 import 'package:ecommerce_int2/data/repository/product.repository.dart';
 import 'package:ecommerce_int2/utils/debounce.dart';

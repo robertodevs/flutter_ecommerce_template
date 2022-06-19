@@ -25,8 +25,14 @@ class AddressController extends GetxController {
   @override
   void onInit() {
     getArgument();
-    getAllAddress();
     super.onInit();
+  }
+
+  @override
+  void onReady() {
+    getAllAddress();
+
+    super.onReady();
   }
 
   void getArgument() {
@@ -37,11 +43,14 @@ class AddressController extends GetxController {
   }
 
   void getAllAddress() async {
+    MessageDialog.showLoading();
     final List<Address> res = await repository.getAllAddress();
     addresses.assignAll(res);
     addresses.insert(0, Address());
     int index = addresses.indexWhere((element) => element.isDefault!);
     if (index != -1) selectIndex = index;
+    MessageDialog.hideLoading();
+
     update();
   }
 
@@ -65,7 +74,7 @@ class AddressController extends GetxController {
           .updateAddress(selectedAddress)
           .then((value) => null, onError: (e) => null);
     }
-     checkOut();
+    checkOut();
   }
 
   void checkOut() async {
@@ -76,13 +85,15 @@ class AddressController extends GetxController {
     try {
       MessageDialog.showLoading();
       for (String order in orderIds!) {
-        await orderRepository.completeOrder(order, CompleteOrderParam(
-            address: selectedAddress.id,
-            phoneNumber: authService.userModel!.email,
-            payment: 'CASH'));
+        await orderRepository.completeOrder(
+            order,
+            CompleteOrderParam(
+                address: selectedAddress.id,
+                phoneNumber: authService.userModel!.email,
+                payment: 'CASH'));
       }
       MessageDialog.hideLoading();
-      Get.to(TrackingPage());
+      Get.offAll(() => TrackingPage());
     } on Exception catch (e) {
       MessageDialog.hideLoading();
       print(e);

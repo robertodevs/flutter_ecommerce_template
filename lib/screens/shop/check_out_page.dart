@@ -86,6 +86,9 @@ class CheckOutPage extends StatelessWidget {
                       ],
                     ),
                   ),
+                  if(controller.isLoadingCart) 
+                  Container(height: 100, child: Center(child: CircularProgressIndicator.adaptive()),),
+                  if(!controller.isLoadingCart)
                   ...controller.products.map(
                     (product) => ShopItemList(
                       product,

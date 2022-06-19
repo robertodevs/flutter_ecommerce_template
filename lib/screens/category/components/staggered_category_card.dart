@@ -160,7 +160,6 @@ class _StaggeredCardCardState extends State<StaggeredCardCard>
 
   @override
   Widget build(BuildContext context) {
-    var timeDilation = 10.0; // 1.0 is normal animation speed.
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
