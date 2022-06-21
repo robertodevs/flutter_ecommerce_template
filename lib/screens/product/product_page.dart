@@ -116,7 +116,7 @@ class ProductPage extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Text(
-                  '${product.merchant ?? 'Merchant'}',
+                  'More product',
                   style: TextStyle(fontSize: 18),
                 ),
               ),

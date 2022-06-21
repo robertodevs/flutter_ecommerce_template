@@ -1,16 +1,25 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:ecommerce_int2/data/models/address.model.dart';
 import 'package:ecommerce_int2/data/models/order.model.dart';
 import 'package:ecommerce_int2/data/repository/address.repository.dart';
 import 'package:ecommerce_int2/data/repository/order.repository.dart';
+import 'package:ecommerce_int2/screens/payment/payment_page.dart';
 import 'package:ecommerce_int2/screens/tracking/tracking_page.dart';
 import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:ecommerce_int2/utils/message_dialog.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddressController extends GetxController {
   final AddressRepository repository;
   final OrderRepository orderRepository;
   final AuthService authService;
+
+  final TextEditingController address = TextEditingController();
+  final TextEditingController city = TextEditingController();
+  final TextEditingController phone = TextEditingController();
+
+  final SwiperController swiperController = SwiperController();
 
   AddressController(this.repository, this.orderRepository, this.authService);
 
@@ -31,7 +40,9 @@ class AddressController extends GetxController {
   @override
   void onReady() {
     getAllAddress();
-
+    address.text = selectedAddress.address ?? "";
+    city.text = selectedAddress.city ?? "";
+    phone.text = authService.userModel!.email ?? "";
     super.onReady();
   }
 
@@ -59,9 +70,9 @@ class AddressController extends GetxController {
     update();
   }
 
-  void updateCurrentAddress(String address, String city) {
-    if (address.isNotEmpty) selectedAddress.address = address;
-    if (city.isNotEmpty) selectedAddress.city = city;
+  void updateCurrentAddress() {
+    if (address.text.isNotEmpty) selectedAddress.address = address.text;
+    if (city.text.isNotEmpty) selectedAddress.city = city.text;
   }
 
   void submitAddress() {
@@ -88,12 +99,15 @@ class AddressController extends GetxController {
         await orderRepository.completeOrder(
             order,
             CompleteOrderParam(
-                address: selectedAddress.id,
+                address: '${selectedAddress.address}, ${selectedAddress.city}',
                 phoneNumber: authService.userModel!.email,
-                payment: 'CASH'));
+                payment: swiperController.index == 0 ? 'CASH' : 'PAYPAL'));
       }
       MessageDialog.hideLoading();
-      Get.offAll(() => TrackingPage());
+      if (swiperController.index == 0)
+        Get.offAll(() => TrackingPage(), arguments: true);
+      else
+        Get.to(() => PaymentPage());
     } on Exception catch (e) {
       MessageDialog.hideLoading();
       print(e);

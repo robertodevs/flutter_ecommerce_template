@@ -60,7 +60,7 @@ class Order {
       this.iV});
 
   Order.fromJson(Map<String, dynamic> json) {
-    cart = json['cart']['_id'];
+    cart = json['cart'] is String ? json['cart']: json['cart']['_id'];
     user = json['user'];
     merchant = json['merchant'];
     payment = json['payment'];
@@ -267,9 +267,9 @@ class OrderDocDetail {
     return res;
   }
 
-  bool get isPayWithCash => payment == 'CASH';
+  bool get isPayWithCash => payment == 'CASH' && canCancel;
 
-  bool get canCancel => status == 'NOT_PROCESS';
+  bool get canCancel => !(status == 'CANCLED' || status == 'RECEIVED') ;
 
   OrderDocDetail(
       {this.sId,

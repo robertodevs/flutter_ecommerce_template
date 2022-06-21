@@ -16,8 +16,6 @@ class ShopItemList extends StatefulWidget {
 }
 
 class _ShopItemListState extends State<ShopItemList> {
-  int quantity = 1;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -84,7 +82,6 @@ class _ShopItemListState extends State<ShopItemList> {
                       ),
                       Theme(
                           data: ThemeData(
-                              accentColor: Colors.black,
                               textTheme: TextTheme(
                                 headline6: TextStyle(
                                     fontFamily: 'Montserrat',
@@ -98,12 +95,12 @@ class _ShopItemListState extends State<ShopItemList> {
                                 ),
                               )),
                           child: NumberPicker(
-                            value: quantity,
+                            value: widget.product.quantity ?? 1,
                             minValue: 1,
                             maxValue: 10,
                             onChanged: (value) {
                               setState(() {
-                                quantity = value;
+                                widget.product.quantity = value;
                               });
                             },
                           ))

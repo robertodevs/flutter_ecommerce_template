@@ -1,6 +1,5 @@
 import 'package:ecommerce_int2/data/repository/order.repository.dart';
 import 'package:ecommerce_int2/screens/main/components/product_list.dart';
-import 'package:ecommerce_int2/screens/profile_page.dart';
 import 'package:ecommerce_int2/screens/tracking/order.controller.dart';
 import 'package:ecommerce_int2/screens/tracking/order_detail.controller.dart';
 import 'package:ecommerce_int2/screens/tracking/row_text.widget.dart';
@@ -31,7 +30,6 @@ class OrderDetail extends StatelessWidget {
               appBar: AppBar(
                 backgroundColor: Colors.transparent,
                 elevation: 0.0,
-                brightness: Brightness.light,
                 iconTheme: IconThemeData(color: Colors.grey),
                 title: Text(
                   orderId,
@@ -87,10 +85,12 @@ class OrderDetail extends StatelessWidget {
                                           title: 'Pay with Paypal',
                                           onTap: () =>
                                               controller.makePayment(orderId)),
-                                    Button(
-                                      title: 'Cancle Order',
-                                      onTap: () => controller.remove(orderId),
-                                    ),
+                                    if (controller.detail!.canCancel)
+                                      Button(
+                                        title: 'Cancle Order',
+                                        onTap: () => controller.remove(orderId),
+                                      ),
+                                    if (!controller.detail!.canCancel)
                                     Button(
                                       title: 'Confirm Received',
                                       onTap: () =>

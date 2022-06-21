@@ -5,7 +5,6 @@ import 'package:ecommerce_int2/screens/main/home.controller.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/utils/custom_background.dart';
 import 'package:ecommerce_int2/screens/category/category_list_page.dart';
-import 'package:ecommerce_int2/screens/notifications_page.dart';
 import 'package:ecommerce_int2/screens/profile_page.dart';
 import 'package:ecommerce_int2/screens/search_products/search_page.dart';
 import 'package:ecommerce_int2/screens/shop/check_out_page.dart';
@@ -57,12 +56,8 @@ class _MainPageState extends State<MainPage>
     Widget appBar = Container(
       height: kToolbarHeight + MediaQuery.of(context).padding.top,
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
-          IconButton(
-              onPressed: () => Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => NotificationsPage())),
-              icon: Icon(Icons.notifications)),
           IconButton(
               onPressed: () => Navigator.of(context)
                   .push(MaterialPageRoute(builder: (_) => SearchPage())),

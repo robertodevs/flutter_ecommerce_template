@@ -1,6 +1,7 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:ecommerce_int2/data/models/order.model.dart';
 import 'package:ecommerce_int2/data/repository/order.repository.dart';
+import 'package:ecommerce_int2/screens/main/main_page.dart';
 import 'package:ecommerce_int2/screens/tracking/order_detail.view.dart';
 import 'package:ecommerce_int2/utils/message_dialog.dart';
 import 'package:get/get.dart';
@@ -18,6 +19,14 @@ class OrderController extends GetxController {
   void onReady() {
     getAllOrders();
     super.onReady();
+  }
+
+  void onBack() {
+    if(Get.arguments != null && Get.arguments == true) {
+      Get.offAll(() => MainPage());
+    } else {
+      Get.back();
+    }
   }
 
   void getAllOrders() {

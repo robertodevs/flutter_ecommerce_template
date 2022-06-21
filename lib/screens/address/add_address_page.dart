@@ -1,4 +1,6 @@
+import 'package:card_swiper/card_swiper.dart';
 import 'package:ecommerce_int2/data/repository/order.repository.dart';
+import 'package:ecommerce_int2/screens/shop/components/credit_card.dart';
 import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/data/repository/address.repository.dart';
@@ -8,12 +10,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AddAddressPage extends StatelessWidget {
-  final TextEditingController address = TextEditingController();
-  final TextEditingController city = TextEditingController();
+
 
   Widget buildFinishButton(AddressController controller) => InkWell(
         onTap: () {
-          controller.updateCurrentAddress(address.text, city.text);
+          controller.updateCurrentAddress();
           controller.submitAddress();
         },
         child: Container(
@@ -126,9 +127,30 @@ class AddAddressPage extends StatelessWidget {
                     const SizedBox(height: 16),
                     AddAddressForm(
                         address: controller.selectedAddress,
-                        addr: address,
-                        city: city),
+                        addr: controller.address,
+                        phone:  controller.phone,
+                        city:  controller.city),
                     const SizedBox(height: 16),
+                    if(controller.orderIds != null)
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: SizedBox(
+                        height: 50,
+                        child: Swiper(
+                          itemCount: 2,
+                          itemBuilder: (_, index) {
+                            return CreditCard(
+                              text: index == 0 ? 'CASH \$\$\$' : 'PAYPAL',
+                            );
+                          },
+                          scale: 0.8,
+                          controller: controller.swiperController,
+                          viewportFraction: 0.6,
+                          loop: false,
+                          fade: 0.7,
+                        ),
+                      ),
+                    ),
                     Center(child: buildFinishButton(controller))
                   ],
                 ),

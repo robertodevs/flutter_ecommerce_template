@@ -1,5 +1,4 @@
 import 'package:ecommerce_int2/data/repository/order.repository.dart';
-import 'package:ecommerce_int2/screens/profile_page.dart';
 import 'package:ecommerce_int2/screens/tracking/order.controller.dart';
 import 'package:ecommerce_int2/screens/tracking/row_text.widget.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
@@ -23,7 +22,6 @@ class TrackingPage extends StatelessWidget {
               appBar: AppBar(
                 backgroundColor: Colors.transparent,
                 elevation: 0.0,
-                brightness: Brightness.light,
                 iconTheme: IconThemeData(color: Colors.grey),
                 title: Text(
                   'Your orders',
@@ -33,9 +31,7 @@ class TrackingPage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                leading: BackButton(
-                  onPressed: () => Get.offAll(() => ProfilePage()),
-                ),
+                leading: BackButton(onPressed: () => controller.onBack()),
               ),
               body: SafeArea(
                 child: LayoutBuilder(

@@ -63,7 +63,7 @@ class RecommendedList extends StatelessWidget {
                             focalRadius: 0.1),
                       ),
                       child: Hero(
-                          tag: products[index].sId!,
+                          tag: UniqueKey(),
                           child: Image.network(products[index].imageUrl!))),
                 ),
               ),

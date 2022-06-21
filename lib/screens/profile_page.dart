@@ -72,8 +72,7 @@ class ProfilePage extends StatelessWidget {
                           children: <Widget>[
                             IconButton(
                               icon: Image.asset('assets/icons/truck.png'),
-                              onPressed: () => Navigator.of(context).push(
-                                MaterialPageRoute(builder: (_) => TrackingPage())),
+                              onPressed: () => Get.to(() => TrackingPage()),
                             ),
                             Text(
                               'Orders',
