@@ -67,6 +67,8 @@ class AddressController extends GetxController {
 
   void updateIndex(int index) {
     selectIndex = index;
+    address.text = selectedAddress.address ?? "";
+    city.text = selectedAddress.city ?? "";
     update();
   }
 
