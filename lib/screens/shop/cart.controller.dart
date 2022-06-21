@@ -8,7 +8,6 @@ import 'package:get/get.dart';
 class CartController extends GetxController {
   final CartRepository repository;
 
-
   CartController(this.repository);
 
   bool isLoadingCart = false;
@@ -88,5 +87,22 @@ class CartController extends GetxController {
     final List<String> orderIds = await repository.checkOutCart(carts!);
     MessageDialog.hideLoading();
     Get.to(() => AddAddressPage(), arguments: orderIds);
+  }
+
+  void onChangeQuantity(String id, int quantity) {
+    try {
+      final product = products.firstWhere((element) => element.sId == id);
+      repository.modifyProduct(
+          carts!
+              .firstWhere((element) => element.products!.contains(product))
+              .sId!,
+          product.sId!,
+          product.quantity!,
+          quantity);
+      product.quantity = quantity;
+      update();
+    } on Exception catch (e) {
+      print(e.toString());
+    }
   }
 }

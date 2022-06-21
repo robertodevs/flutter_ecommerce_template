@@ -40,9 +40,7 @@ class AddressController extends GetxController {
   @override
   void onReady() {
     getAllAddress();
-    address.text = selectedAddress.address ?? "";
-    city.text = selectedAddress.city ?? "";
-    phone.text = authService.userModel!.email ?? "";
+
     super.onReady();
   }
 
@@ -60,8 +58,10 @@ class AddressController extends GetxController {
     addresses.insert(0, Address());
     int index = addresses.indexWhere((element) => element.isDefault!);
     if (index != -1) selectIndex = index;
+    address.text = selectedAddress.address ?? "";
+    city.text = selectedAddress.city ?? "";
+    phone.text = authService.userModel!.email ?? "";
     MessageDialog.hideLoading();
-
     update();
   }
 

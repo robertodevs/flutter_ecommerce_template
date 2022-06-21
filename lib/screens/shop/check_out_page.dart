@@ -94,6 +94,7 @@ class CheckOutPage extends StatelessWidget {
                     ...controller.products.map(
                       (product) => ShopItemList(
                         product,
+                        onChange: (a, b) => controller.onChangeQuantity(a, b),
                         onRemove: () => controller.remove(product),
                       ),
                     ),

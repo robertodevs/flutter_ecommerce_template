@@ -8,8 +8,9 @@ import 'package:numberpicker/numberpicker.dart';
 class ShopItemList extends StatefulWidget {
   final Product product;
   final VoidCallback onRemove;
+  final Function(String, int) onChange;
 
-  ShopItemList(this.product, {required this.onRemove});
+  ShopItemList(this.product, {required this.onRemove,required this.onChange});
 
   @override
   _ShopItemListState createState() => _ShopItemListState();
@@ -99,9 +100,7 @@ class _ShopItemListState extends State<ShopItemList> {
                             minValue: 1,
                             maxValue: 10,
                             onChanged: (value) {
-                              setState(() {
-                                widget.product.quantity = value;
-                              });
+                              widget.onChange( widget.product.sId!, value);
                             },
                           ))
                     ])),
