@@ -41,12 +41,12 @@ class CartRepository {
     }
   }
 
-  Future<List<String>> checkOutCart(List<CartModel> carts) async {
-    List<String> orderIds = [];
+  Future<List<OrderProceed>> checkOutCart(List<CartModel> carts) async {
+    List<OrderProceed> orderIds = [];
     for(CartModel cart in carts) {
       final response = await provider.checkoutCart(cart.sId!, cart.merchant!);
-      OrderResponse order = OrderResponse.fromJson(response.body);
-      orderIds.add(order. order!.sId!);
+      OrderProceed order = OrderProceed.fromJson(response.body);
+      orderIds.add(order);
     }
     return orderIds;
   }

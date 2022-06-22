@@ -23,7 +23,7 @@ class AddressController extends GetxController {
 
   AddressController(this.repository, this.orderRepository, this.authService);
 
-  List<String>? orderIds;
+  List<OrderProceed>? orderIds;
 
   List<Address> addresses = <Address>[Address()];
 
@@ -46,7 +46,7 @@ class AddressController extends GetxController {
 
   void getArgument() {
     final arg = Get.arguments;
-    if (arg != null && arg is List<String>) {
+    if (arg != null && arg is List<OrderProceed>) {
       orderIds = arg;
     }
   }
@@ -95,11 +95,15 @@ class AddressController extends GetxController {
       Get.back();
       return;
     }
+    if( swiperController.index == 1) {
+      final done = await Get.to(() => PaymentPage());
+      if(!done) return;
+    }
     try {
       MessageDialog.showLoading();
-      for (String order in orderIds!) {
+      for (OrderProceed order in orderIds!) {
         await orderRepository.completeOrder(
-            order,
+            order.data!.order!.sId! ,
             CompleteOrderParam(
                 address: '${selectedAddress.address}, ${selectedAddress.city}',
                 phoneNumber: authService.userModel!.email,

@@ -140,7 +140,7 @@ class AddAddressPage extends StatelessWidget {
                           itemCount: 2,
                           itemBuilder: (_, index) {
                             return CreditCard(
-                              text: index == 0 ? 'CASH \$\$\$' : 'PAYPAL',
+                              text: index == 0 ? 'CASH' : 'PAYPAL',
                             );
                           },
                           scale: 0.8,

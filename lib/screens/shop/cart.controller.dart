@@ -1,4 +1,5 @@
 import 'package:ecommerce_int2/data/models/cart.model.dart';
+import 'package:ecommerce_int2/data/models/order.model.dart';
 import 'package:ecommerce_int2/data/models/product.model.dart';
 import 'package:ecommerce_int2/data/repository/cart.repository.dart';
 import 'package:ecommerce_int2/screens/address/add_address_page.dart';
@@ -84,7 +85,7 @@ class CartController extends GetxController {
 
   void checkOut() async {
     MessageDialog.showLoading();
-    final List<String> orderIds = await repository.checkOutCart(carts!);
+    final List<OrderProceed> orderIds = await repository.checkOutCart(carts!);
     MessageDialog.hideLoading();
     Get.to(() => AddAddressPage(), arguments: orderIds);
   }

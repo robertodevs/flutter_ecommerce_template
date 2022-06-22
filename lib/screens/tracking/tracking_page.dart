@@ -50,9 +50,8 @@ class TrackingPage extends StatelessWidget {
                                         child: Column(
                                           children: [
                                             RowTextWidget(
-                                                text1: 'Order Id',
-                                                text2:
-                                                    '${order.sId ?? 'Order'}'),
+                                                text1: 'Date',
+                                                text2: '${order.createdDate}'),
                                             RowTextWidget(
                                                 text1: 'Deliver status',
                                                 text2:
@@ -65,9 +64,7 @@ class TrackingPage extends StatelessWidget {
                                                 text1: 'Merchant',
                                                 text2:
                                                     '${order.merchant ?? ''}'),
-                                            RowTextWidget(
-                                                text1: 'Date',
-                                                text2: '${order.createdDate}'),
+
                                           ],
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
