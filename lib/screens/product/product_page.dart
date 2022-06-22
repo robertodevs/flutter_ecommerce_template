@@ -1,6 +1,7 @@
 import 'package:ecommerce_int2/data/models/product.model.dart';
 import 'package:ecommerce_int2/screens/main/components/product_list.dart';
 import 'package:ecommerce_int2/screens/merchant/merchant.view.dart';
+import 'package:ecommerce_int2/screens/rating/rating_page.dart';
 import 'package:ecommerce_int2/screens/search_products/search_controller.dart';
 import 'package:ecommerce_int2/screens/shop/cart.controller.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
@@ -111,6 +112,7 @@ class ProductPage extends StatelessWidget {
                 child: Center(child: viewProductButton),
               ),
             ),
+            Ratings(product: product),
             GestureDetector(
               onTap: () => Get.to(() => MerchantPage(), arguments: product.merchant),
               child: Padding(
@@ -124,7 +126,7 @@ class ProductPage extends StatelessWidget {
             ProductListView(
                 products: Get.find<SearchProductController>()
                     .list
-                    .where((element) => element.merchant == product.merchant)
+                    .where((element) => element.subcategory == product.subcategory)
                     .toList())
           ],
         ),

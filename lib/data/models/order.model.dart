@@ -316,3 +316,201 @@ class OrderDocDetail {
     return data;
   }
 }
+
+class OrderProceed {
+  bool? success;
+  Data? data;
+
+  OrderProceed({this.success, this.data});
+
+  OrderProceed.fromJson(Map<String, dynamic> json) {
+    success = json['success'];
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['success'] = this.success;
+    if (this.data != null) {
+      data['data'] = this.data!.toJson();
+    }
+    return data;
+  }
+}
+
+class Data {
+  Order? order;
+  Payment? payment;
+
+  Data({this.order, this.payment});
+
+  Data.fromJson(Map<String, dynamic> json) {
+    order = json['order'] != null ? new Order.fromJson(json['order']) : null;
+    payment =
+    json['payment'] != null ? new Payment.fromJson(json['payment']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.order != null) {
+      data['order'] = this.order!.toJson();
+    }
+    if (this.payment != null) {
+      data['payment'] = this.payment!.toJson();
+    }
+    return data;
+  }
+}
+
+
+class Payment {
+  String? id;
+  String? intent;
+  String? state;
+  Payer? payer;
+  List<Transactions>? transactions;
+  String? createTime;
+  List<Links>? links;
+  int? httpStatusCode;
+
+  Payment(
+      {this.id,
+        this.intent,
+        this.state,
+        this.payer,
+        this.transactions,
+        this.createTime,
+        this.links,
+        this.httpStatusCode});
+
+  Payment.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    intent = json['intent'];
+    state = json['state'];
+    payer = json['payer'] != null ? new Payer.fromJson(json['payer']) : null;
+    if (json['transactions'] != null) {
+      transactions = <Transactions>[];
+      json['transactions'].forEach((v) {
+        transactions!.add(new Transactions.fromJson(v));
+      });
+    }
+    createTime = json['create_time'];
+    if (json['links'] != null) {
+      links = <Links>[];
+      json['links'].forEach((v) {
+        links!.add(new Links.fromJson(v));
+      });
+    }
+    httpStatusCode = json['httpStatusCode'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['intent'] = this.intent;
+    data['state'] = this.state;
+    if (this.payer != null) {
+      data['payer'] = this.payer!.toJson();
+    }
+    if (this.transactions != null) {
+      data['transactions'] = this.transactions!.map((v) => v.toJson()).toList();
+    }
+    data['create_time'] = this.createTime;
+    if (this.links != null) {
+      data['links'] = this.links!.map((v) => v.toJson()).toList();
+    }
+    data['httpStatusCode'] = this.httpStatusCode;
+    return data;
+  }
+}
+
+class Payer {
+  String? paymentMethod;
+
+  Payer({this.paymentMethod});
+
+  Payer.fromJson(Map<String, dynamic> json) {
+    paymentMethod = json['payment_method'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['payment_method'] = this.paymentMethod;
+    return data;
+  }
+}
+
+class Transactions {
+  Amount? amount;
+  String? description;
+  List<dynamic>? relatedResources;
+
+  Transactions({this.amount, this.description, this.relatedResources});
+
+  Transactions.fromJson(Map<String, dynamic> json) {
+    amount =
+    json['amount'] != null ? new Amount.fromJson(json['amount']) : null;
+    description = json['description'];
+    if (json['related_resources'] != null) {
+      relatedResources = <Null>[];
+      json['related_resources'].forEach((v) {
+        relatedResources!.add(v);
+      });
+    }
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.amount != null) {
+      data['amount'] = this.amount!.toJson();
+    }
+    data['description'] = this.description;
+    if (this.relatedResources != null) {
+      data['related_resources'] =
+          this.relatedResources!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class Amount {
+  String? total;
+  String? currency;
+
+  Amount({this.total, this.currency});
+
+  Amount.fromJson(Map<String, dynamic> json) {
+    total = json['total'];
+    currency = json['currency'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['total'] = this.total;
+    data['currency'] = this.currency;
+    return data;
+  }
+}
+
+class Links {
+  String? href;
+  String? rel;
+  String? method;
+
+  Links({this.href, this.rel, this.method});
+
+  Links.fromJson(Map<String, dynamic> json) {
+    href = json['href'];
+    rel = json['rel'];
+    method = json['method'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['href'] = this.href;
+    data['rel'] = this.rel;
+    data['method'] = this.method;
+    return data;
+  }
+}
+

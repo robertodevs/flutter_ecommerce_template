@@ -10,6 +10,7 @@ class MessageDialog {
 
   static void showToast(String text) {
     Get.showSnackbar(GetSnackBar(
+      backgroundColor: Colors.white,
       messageText: Text(text),
     ));
   }

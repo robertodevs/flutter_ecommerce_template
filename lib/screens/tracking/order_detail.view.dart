@@ -77,6 +77,7 @@ class OrderDetail extends StatelessWidget {
                                         .map((product) => ProductCard(
                                             product: product,
                                             height: 130,
+                                            hasReceived: controller.detail?.status == 'RECEIVED',
                                             width: Get.width))
                                         .toList(),
                                     const SizedBox(height: 16),
@@ -96,10 +97,6 @@ class OrderDetail extends StatelessWidget {
                                       onTap: () =>
                                           controller.confirmOrder(orderId),
                                     ),
-                                    if (controller.detail?.status == 'RECEIVED')
-                                      Button(
-                                          title: 'Add review',
-                                          onTap: () => print('add review'))
                                   ],
                                 )
                               : SizedBox.shrink(),

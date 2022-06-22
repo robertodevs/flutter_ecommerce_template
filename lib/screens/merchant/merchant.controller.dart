@@ -1,31 +1,29 @@
 import 'package:card_swiper/card_swiper.dart';
-import 'package:ecommerce_int2/data/models/cart.model.dart';
+import 'package:ecommerce_int2/data/models/merchant.model.dart';
 import 'package:ecommerce_int2/data/models/product.model.dart';
-import 'package:ecommerce_int2/data/repository/cart.repository.dart';
-import 'package:ecommerce_int2/screens/address/add_address_page.dart';
-import 'package:ecommerce_int2/screens/search_products/search_controller.dart';
+import 'package:ecommerce_int2/data/repository/merchant.repository.dart';
 import 'package:ecommerce_int2/utils/message_dialog.dart';
 import 'package:get/get.dart';
 
 class MerchantController extends GetxController {
-  final CartRepository repository;
+  final MerchantRepository merchantRepository;
 
   final SwiperController swiperController = SwiperController();
 
-  MerchantController(this.repository);
+  MerchantController(this.merchantRepository);
 
   List<Product> get products {
-    return Get.find<SearchProductController>()
-        .list
-        .where((element) => element.merchant == merchant)
-        .toList();
+    return data?.products ?? [];
   }
 
-  List<CartModel>? carts;
   String? merchantId;
+  MerchantData? data;
 
-  String get merchant => merchantId ?? 'Merchant';
-  String get des => 'A shop sellling high quality assets';
+  String get merchant => data?.merchant?.name ?? 'Merchant';
+  String get des =>
+      data?.merchant?.business ?? 'A shop sellling high quality assets';
+  String get email => data?.merchant?.email ?? '';
+  String get phone => data?.merchant?.phoneNumber ?? '';
 
   @override
   onInit() {
@@ -40,60 +38,16 @@ class MerchantController extends GetxController {
     }
   }
 
-  String get total {
-    int result = 0;
-    products.forEach((element) {
-      result += element.price ?? element.purchasePrice ?? 0;
-    });
-    return '$result VND';
-  }
-
-  Future<void> getCart() async {
-    repository.getCarts().then((value) {
-      carts = value;
-      update();
-    });
-  }
-
-  void remove(Product product) {
-    CartModel? cart = carts!
-        .firstWhereOrNull((element) => element.products!.contains(product));
-    if (cart == null) {
-      MessageDialog.showToast("There is something wrong!!");
+  void getInfo() async {
+    if (merchantId == null) {
+      MessageDialog.showConfirmDialog(
+        content: "Error loading",
+      );
       return;
     }
-    repository.deleteProduct(cart.sId!, product.sId!);
-    cart.products!.remove(product);
+
+    final res = await merchantRepository.getMerchantInfo(merchantId!);
+    data = res;
     update();
-  }
-
-  void addProduct(Product product, {int? quantity}) async {
-    try {
-      AddProductParam param = AddProductParam(products: [
-        ProductParam(
-            product: product.sId,
-            price: product.price,
-            merchant: product.merchant,
-            quantity: quantity)
-      ]);
-      final String cartId = await repository.addProduct(param);
-      MessageDialog.showToast("Added product to cart");
-      int index = carts!.indexWhere((element) => element.sId == cartId);
-      if (index != -1) {
-        carts![index].products!.add(product);
-      } else {
-        carts!.add(CartModel(sId: cartId, products: [product]));
-      }
-      update();
-    } on Exception catch (e) {
-      print(e);
-    }
-  }
-
-  void checkOut() async {
-    MessageDialog.showLoading();
-    final List<String> orderIds = await repository.checkOutCart(carts!);
-    MessageDialog.hideLoading();
-    Get.to(() => AddAddressPage(), arguments: orderIds);
   }
 }

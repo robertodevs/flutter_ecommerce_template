@@ -15,7 +15,8 @@ class OrderProvider {
       'https://ecommerce-api-dut.herokuapp.com/api/order/';
 
   final String checkOutCartUrl =
-      'https://ecommerce-api-dut.herokuapp.com/api/order/add';
+      'https://ecommerce-api-dut.herokuapp.com/api/order/proceed';
+
   final String cancleOrderUrl =
       'https://ecommerce-api-dut.herokuapp.com/api/order';
 
@@ -24,11 +25,6 @@ class OrderProvider {
 
   Future<HttpResponse> getAllOrders() {
     return networkService.get(orderUrl);
-  }
-
-  Future<HttpResponse> checkOut(String cartId) {
-    return networkService.post(checkOutCartUrl,
-        data: {"cart": cartId, "merchant": "626e237ef4224ee4107039b9"});
   }
 
   Future<HttpResponse> completeOrder(String orderId, CompleteOrderParam param) {

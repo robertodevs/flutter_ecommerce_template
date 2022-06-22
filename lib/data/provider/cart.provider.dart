@@ -22,7 +22,7 @@ class CartProvider {
       'https://ecommerce-api-dut.herokuapp.com/api/cart/delete';
 
   final String checkOutCartUrl =
-      'https://ecommerce-api-dut.herokuapp.com/api/order/add';
+      'https://ecommerce-api-dut.herokuapp.com/api/order/proceed';
 
   Future<HttpResponse> getCarts() {
     return networkService.get(getAllCartUrl);

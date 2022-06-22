@@ -1,4 +1,4 @@
-import 'package:ecommerce_int2/data/repository/cart.repository.dart';
+import 'package:ecommerce_int2/data/repository/merchant.repository.dart';
 import 'package:ecommerce_int2/screens/merchant/merchant.controller.dart';
 import 'package:ecommerce_int2/screens/product/product_page.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
@@ -22,7 +22,7 @@ class MerchantPage extends StatelessWidget {
         ),
       ),
       body: GetBuilder<MerchantController>(
-        init: MerchantController(Get.find<CartRepository>()),
+        init: MerchantController(Get.find<MerchantRepository>()),
         builder: (controller) => Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
@@ -34,21 +34,46 @@ class MerchantPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-                  Text(
-                    controller.merchant,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      controller.merchant,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    ),
                   ),
-                  const SizedBox(height: 40),
-                  Text(
-                    controller.des,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16),
-                  )
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      controller.des,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      controller.email,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      controller.phone,
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -57,13 +82,12 @@ class MerchantPage extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 crossAxisCount: 4,
                 itemCount: controller.products.length,
-                itemBuilder: (BuildContext context, int index) =>
-                    new ClipRRect(
+                itemBuilder: (BuildContext context, int index) => new ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(5.0)),
                   child: InkWell(
                     onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                        builder: (_) => ProductPage(
-                            product: controller.products[index]))),
+                        builder: (_) =>
+                            ProductPage(product: controller.products[index]))),
                     child: Container(
                         decoration: BoxDecoration(
                           gradient: RadialGradient(
@@ -99,7 +123,6 @@ class MerchantPage extends StatelessWidget {
 class Scroll extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-
     LinearGradient grT = LinearGradient(
         colors: [Colors.transparent, Colors.black26],
         begin: Alignment.topCenter,
