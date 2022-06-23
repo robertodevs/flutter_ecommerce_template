@@ -37,7 +37,7 @@ class OrderProvider {
   }
 
   Future<HttpResponse> cancleOrder(String orderId) {
-    return networkService.delete('$cancleOrder/$orderId/cancel');
+    return networkService.delete('$cancleOrderUrl/$orderId/cancel');
   }
 
   Future<HttpResponse> getOrderDetail(String orderId) {
@@ -47,5 +47,10 @@ class OrderProvider {
   Future<HttpResponse> confirmReceived(String orderId) {
     return networkService.put('$confirmReceivedUrl/$orderId/status',
         data: {"status": "RECEIVED"});
+  }
+
+  Future<HttpResponse> payOrder(String orderId) {
+    return networkService.put('$confirmReceivedUrl/$orderId/status',
+        data: {"paymentStatus": "PAID"});
   }
 }

@@ -28,10 +28,14 @@ class SubCategoryListPage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const SizedBox(height: 16,),
+                const SizedBox(
+                  height: 16,
+                ),
                 Row(
                   children: [
-                    BackButton(onPressed: () => Get.back(),),
+                    BackButton(
+                      onPressed: () => Get.back(),
+                    ),
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 16.0),
                       child: Text(
@@ -75,8 +79,10 @@ class SubCategoryListPage extends StatelessWidget {
                         end: const Color(0xffF68D7F),
                         categoryName: controller.tempList[index].name ?? "",
                         assetPath: 'assets/jeans_5.png',
-                        onViewMore: () => Get.to(() => SearchPage(),
-                            arguments: controller.tempList[index].slug),
+                        onViewMore: () => Get.to(
+                          () => SearchPage(
+                              subCategory: controller.tempList[index].slug),
+                        ),
                       ),
                     ),
                   ),

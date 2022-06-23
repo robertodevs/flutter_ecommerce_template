@@ -42,7 +42,7 @@ class Order {
     if (created == null) return '';
     final date = DateTime.tryParse(created!);
     if (date == null) return '';
-    final res = DateFormat("yyyy-MM-dd HH:mm:ss aa").format(date);
+    final res = DateFormat("yyyy-MM-dd HH:mm:ss aa").format(date.toLocal());
     return res;
   }
 
@@ -268,8 +268,9 @@ class OrderDocDetail {
   }
 
   bool get isPayWithCash => payment == 'CASH' && canCancel;
+  bool get canConfirmReceive => status == 'DELIVERING';
 
-  bool get canCancel => !(status == 'CANCLED' || status == 'RECEIVED') ;
+  bool get canCancel => !(status == 'CANCELLED' || status == 'RECEIVED') ;
 
   OrderDocDetail(
       {this.sId,

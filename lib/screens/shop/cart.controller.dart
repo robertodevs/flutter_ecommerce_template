@@ -69,14 +69,8 @@ class CartController extends GetxController {
             merchant: product.merchant,
             quantity: quantity)
       ]);
-      final String cartId = await repository.addProduct(param);
+      await repository.addProduct(param);
       MessageDialog.showToast("Added product to cart");
-      int index = carts!.indexWhere((element) => element.sId == cartId);
-      if (index != -1) {
-        carts![index].products!.add(product);
-      } else {
-        carts!.add(CartModel(sId: cartId, products: [product]));
-      }
       update();
     } on Exception catch (e) {
       print(e);

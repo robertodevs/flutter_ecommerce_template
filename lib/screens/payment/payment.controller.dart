@@ -14,8 +14,9 @@ class PaymentController extends GetxController {
   OrderDocDetail? detail;
 
   @override
-  void onReady() {
-    super.onReady();
+  void onInit() {
+    getArg();
+    super.onInit();
   }
 
   void getArg() {
@@ -25,10 +26,10 @@ class PaymentController extends GetxController {
     }
   }
 
-
   void makePayment(OrderProceed order) async {
     MessageDialog.showLoading();
     try {
+      repository.payOrder(order.data!.order!.sId!);
       await Get.to(() => WebViewExample(
           url: order.data!.payment!.links!
               .firstWhere(
@@ -36,14 +37,14 @@ class PaymentController extends GetxController {
               .href!));
       final res = await repository.getOrderDetail(order.data!.order!.sId!);
       if (res.paymentStatus == "PAID") orders!.remove(order);
-      if (orders!.isEmpty) {
-        onBack();
-      }
       update();
     } on Exception catch (e) {
       MessageDialog.showToast(e.toString());
     }
     MessageDialog.hideLoading();
+    if (orders!.isEmpty) {
+      onBack();
+    }
   }
 
   void onBack() {

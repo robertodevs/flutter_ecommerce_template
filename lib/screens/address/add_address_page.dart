@@ -145,6 +145,9 @@ class AddAddressPage extends StatelessWidget {
                           },
                           scale: 0.8,
                           controller: controller.swiperController,
+                          onIndexChanged: (value) {
+                            controller.swiperIndex = value;
+                          },
                           viewportFraction: 0.6,
                           loop: false,
                           fade: 0.7,

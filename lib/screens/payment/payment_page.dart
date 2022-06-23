@@ -53,9 +53,9 @@ class PaymentPage extends StatelessWidget {
                                                 text2:
                                                     '${order.data!.order!.sId}'),
                                             RowTextWidget(
-                                                text1: 'Deliver status',
+                                                text1: 'Total',
                                                 text2:
-                                                    ' ${order.data!.payment!.transactions!.fold(0, (previousValue, element) => (previousValue as int) + (element.amount?.total as int? ?? 0))}'),
+                                                    ' ${order.data!.payment!.transactions!.fold(0, (previousValue, element) => (previousValue as int) + (int.tryParse(element.amount!.total!) ?? 0))}'),
                                             RowTextWidget(
                                                 text1: 'Merchant',
                                                 text2:

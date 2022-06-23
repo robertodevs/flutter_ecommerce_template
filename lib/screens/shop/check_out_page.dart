@@ -122,16 +122,6 @@ class CheckOutPage extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Text(
-                      'Payment',
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: darkGrey,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
                   SizedBox(height: 24),
                   Center(
                       child: Padding(

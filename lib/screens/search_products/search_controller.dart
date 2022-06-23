@@ -35,6 +35,7 @@ class SearchProductController extends GetxController {
 
   @override
   void onInit() {
+    getArgument();
     getProduct();
     super.onInit();
   }

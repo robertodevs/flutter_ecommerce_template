@@ -23,7 +23,7 @@ class ProductPage extends StatelessWidget {
     double bottomPadding = MediaQuery.of(context).padding.bottom;
 
     Widget viewProductButton = InkWell(
-      onTap: () => controller.addProduct(product),
+      onTap: () => controller.addProduct(product, quantity: 1),
       child: Container(
         height: 80,
         width: width / 1.5,

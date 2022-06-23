@@ -29,6 +29,8 @@ class AddressController extends GetxController {
 
   int selectIndex = 0;
 
+  int swiperIndex = 0;
+
   Address get selectedAddress => addresses[selectIndex];
 
   @override
@@ -95,25 +97,22 @@ class AddressController extends GetxController {
       Get.back();
       return;
     }
-    if( swiperController.index == 1) {
-      final done = await Get.to(() => PaymentPage());
-      if(!done) return;
+    if (swiperIndex == 1) {
+      final done = await Get.to(() => PaymentPage(), arguments: orderIds);
+      if (!done) return;
     }
     try {
       MessageDialog.showLoading();
       for (OrderProceed order in orderIds!) {
         await orderRepository.completeOrder(
-            order.data!.order!.sId! ,
+            order.data!.order!.sId!,
             CompleteOrderParam(
                 address: '${selectedAddress.address}, ${selectedAddress.city}',
                 phoneNumber: authService.userModel!.email,
-                payment: swiperController.index == 0 ? 'CASH' : 'PAYPAL'));
+                payment: swiperIndex == 0 ? 'CASH' : 'PAYPAL'));
       }
       MessageDialog.hideLoading();
-      if (swiperController.index == 0)
-        Get.offAll(() => TrackingPage(), arguments: true);
-      else
-        Get.to(() => PaymentPage());
+      Get.offAll(() => TrackingPage(), arguments: true);
     } on Exception catch (e) {
       MessageDialog.hideLoading();
       print(e);

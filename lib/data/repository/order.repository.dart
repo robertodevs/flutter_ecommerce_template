@@ -50,8 +50,16 @@ class OrderRepository {
     final res = DetailOrderResponse.fromJson(response.body);
     return res.orderDoc!;
   }
+
   Future<void> confirmReceived(String orderId) async {
     final response = await provider.confirmReceived(orderId);
+    if (response.statusCode != 200) {
+      throw Exception("Confirm order failed");
+    }
+  }
+
+  Future<void> payOrder(String orderId) async {
+    final response = await provider.payOrder(orderId);
     if (response.statusCode != 200) {
       throw Exception("Confirm order failed");
     }

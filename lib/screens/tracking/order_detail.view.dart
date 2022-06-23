@@ -81,18 +81,13 @@ class OrderDetail extends StatelessWidget {
                                             width: Get.width))
                                         .toList(),
                                     const SizedBox(height: 16),
-                                    if (!controller.detail!.isPayWithCash)
-                                      Button(
-                                          title: 'Pay with Paypal',
-                                          onTap: () =>
-                                              controller.makePayment(orderId)),
                                     if (controller.detail!.canCancel)
                                       Button(
-                                        title: 'Cancle Order',
+                                        title: 'Cancel Order',
                                         onTap: () => controller.remove(orderId),
                                       ),
-                                    if (!controller.detail!.canCancel)
-                                    Button(
+                                    if (controller.detail!.canConfirmReceive)
+                                      Button(
                                       title: 'Confirm Received',
                                       onTap: () =>
                                           controller.confirmOrder(orderId),

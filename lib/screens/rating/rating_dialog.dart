@@ -1,6 +1,7 @@
 import 'package:ecommerce_int2/data/models/product.model.dart';
 import 'package:ecommerce_int2/data/repository/review.repository.dart';
 import 'package:ecommerce_int2/screens/rating/review.controller.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
@@ -11,7 +12,6 @@ class RatingDialog extends StatelessWidget {
   const RatingDialog({Key? key, required this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-
     return GetBuilder<ReviewController>(
       init: ReviewController(Get.find<ReviewRepository>(), product.sId!),
       tag: product.sId!,
@@ -80,6 +80,33 @@ class RatingDialog extends StatelessWidget {
                     style: TextStyle(fontSize: 12, color: Colors.grey[600]),
                     maxLength: 200,
                   )),
+              InkWell(
+                onTap: () async {
+                  controller.addReview();
+                },
+                child: Container(
+                  height: 60,
+                  width: Get.width / 1.5,
+                  decoration: BoxDecoration(
+                      gradient: mainButton,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color.fromRGBO(0, 0, 0, 0.16),
+                          offset: Offset(0, 5),
+                          blurRadius: 10.0,
+                        )
+                      ],
+                      borderRadius: BorderRadius.circular(9.0)),
+                  child: Center(
+                    child: Text("Add review",
+                        style: const TextStyle(
+                            color: const Color(0xfffefefe),
+                            fontWeight: FontWeight.w600,
+                            fontStyle: FontStyle.normal,
+                            fontSize: 20.0)),
+                  ),
+                ),
+              )
             ])),
       ),
     );

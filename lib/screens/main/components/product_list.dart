@@ -1,7 +1,6 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:ecommerce_int2/data/models/product.model.dart';
 import 'package:ecommerce_int2/screens/rating/rating_dialog.dart';
-import 'package:ecommerce_int2/screens/tracking/order_detail.view.dart';
 import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/screens/product/product_page.dart';
 import 'package:flutter/material.dart';
@@ -134,56 +133,57 @@ class ProductCard extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Column(
-                  children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        product.name ?? "",
-                        style: TextStyle(color: Colors.white, fontSize: 16.0),
-                      ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    product.name ?? "",
+                    style: TextStyle(color: Colors.white, fontSize: 16.0),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.fromLTRB(8.0, 4.0, 12.0, 4.0),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(10),
+                          bottomLeft: Radius.circular(10)),
+                      color: Color.fromRGBO(224, 69, 10, 1),
                     ),
-                    Container(
-                      margin: const EdgeInsets.only(bottom: 12.0),
-                      padding: const EdgeInsets.fromLTRB(8.0, 4.0, 12.0, 4.0),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(10),
-                            bottomLeft: Radius.circular(10)),
-                        color: Color.fromRGBO(224, 69, 10, 1),
-                      ),
-                      child: Text(
-                        '\$${product.price ?? product.purchasePrice ?? 0}',
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold),
-                      ),
+                    child: Text(
+                      '\$${product.price ?? product.purchasePrice ?? 0}',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold),
                     ),
-                    if (hasReceived)
-                      Button(
-                          title: 'Add review',
-                          onTap: () {
-                            showDialog(
-                              context: context,
-                              builder: (BuildContext context) {
-                                return Dialog(
-                                  shape: BeveledRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                          Radius.circular(10))),
-                                  child: RatingDialog(product: product),
-                                );
-                              },
-                            );
-                          })
-                  ],
-                )
-              ],
+                  ),
+                  if (hasReceived)
+                    Align(
+                      alignment: Alignment.centerRight,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: GestureDetector(
+                            child: Text('Add review', style: TextStyle(color: Colors.white),),
+                            onTap: () {
+                              showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return Dialog(
+                                    shape: BeveledRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(10))),
+                                    child: RatingDialog(product: product),
+                                  );
+                                },
+                              );
+                            }),
+                      ),
+                    )
+                ],
+              ),
             ),
           ),
         ]),
