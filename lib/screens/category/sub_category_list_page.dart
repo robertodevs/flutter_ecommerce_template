@@ -20,7 +20,6 @@ class SubCategoryListPage extends StatelessWidget {
     return Material(
       color: Color(0xffF9F9F9),
       child: Container(
-        margin: const EdgeInsets.only(top: 16),
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: GetBuilder<SubCategoryController>(
           init: SubCategoryController(Get.find<CategoryRepository>(), category),
@@ -28,9 +27,6 @@ class SubCategoryListPage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const SizedBox(
-                  height: 16,
-                ),
                 Row(
                   children: [
                     BackButton(

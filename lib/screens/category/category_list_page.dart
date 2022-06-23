@@ -14,7 +14,6 @@ class CategoryListPage extends StatelessWidget {
     return Material(
       color: Color(0xffF9F9F9),
       child: Container(
-        margin: const EdgeInsets.only(top: 16),
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: GetBuilder<CategoryController>(
           init: CategoryController(Get.find<CategoryRepository>()),
@@ -22,7 +21,6 @@ class CategoryListPage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const SizedBox(height: 16,),
                 Align(
                   alignment: Alignment(-1, 0),
                   child: Padding(
