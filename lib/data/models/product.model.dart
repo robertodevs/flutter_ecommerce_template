@@ -93,7 +93,6 @@ class Product {
     iV = json['__v'];
     totalRatings = json['totalRatings'];
     totalReviews = json['totalReviews'];
-    averageRating = json['averageRating'];
   }
 
   Map<String, dynamic> toJson() {

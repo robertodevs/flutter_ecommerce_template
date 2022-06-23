@@ -59,7 +59,7 @@ class SearchPage extends GetView<SearchProductController> {
                 ),
                 suffix: FlatButton(
                   onPressed: () {
-                    controller.searchController.clear();
+                    controller.onClear();
                   },
                   child: Text(
                     'Clear',
@@ -69,7 +69,7 @@ class SearchPage extends GetView<SearchProductController> {
               ),
             ),
           ),
-          Flexible(
+          Expanded(
             child: Container(
               color: Colors.orange[50],
               child: SmartRefresher(
@@ -80,6 +80,7 @@ class SearchPage extends GetView<SearchProductController> {
                 onRefresh: controller.onRefresh,
                 header: WaterDropHeader(),
                 child: ListView.builder(
+                  controller: controller.scrollController,
                     itemCount: controller.list.length,
                     itemBuilder: (_, index) => Padding(
                           padding: EdgeInsets.symmetric(horizontal: 16.0),

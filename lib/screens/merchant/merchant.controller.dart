@@ -31,6 +31,12 @@ class MerchantController extends GetxController {
     super.onInit();
   }
 
+  @override
+  void onReady() {
+    getInfo();
+    super.onReady();
+  }
+
   void getArg() {
     final arg = Get.arguments;
     if (arg != null && arg is String) {
@@ -46,8 +52,17 @@ class MerchantController extends GetxController {
       return;
     }
 
-    final res = await merchantRepository.getMerchantInfo(merchantId!);
-    data = res;
-    update();
+    try {
+      MessageDialog.showLoading();
+      final res = await merchantRepository.getMerchantInfo(merchantId!);
+      data = res;
+      update();
+      MessageDialog.hideLoading();
+    } on Exception catch (e) {
+      MessageDialog.hideLoading();
+      MessageDialog.showConfirmDialog(
+        content: "Error loading",
+      );
+    }
   }
 }

@@ -11,6 +11,7 @@ class MessageDialog {
   static void showToast(String text) {
     Get.showSnackbar(GetSnackBar(
       backgroundColor: Colors.white,
+      duration: Duration(seconds: 1),
       messageText: Text(text),
     ));
   }
@@ -37,8 +38,6 @@ class MessageDialog {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  //todo: Change the loading indicator
-                  const CircularProgressIndicator(),
                   const SizedBox(width: 16),
                   Text(
                     content,
@@ -77,7 +76,7 @@ class MessageDialog {
                   const CircularProgressIndicator(),
                   const SizedBox(width: 16),
                   Text(
-                    'Processing...',
+                    'Loading...',
                   ),
                 ],
               ),

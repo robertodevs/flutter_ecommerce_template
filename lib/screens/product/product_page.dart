@@ -25,7 +25,7 @@ class ProductPage extends StatelessWidget {
     Widget viewProductButton = InkWell(
       onTap: () => controller.addProduct(product, quantity: 1),
       child: Container(
-        height: 80,
+        height: 60,
         width: width / 1.5,
         decoration: BoxDecoration(
             gradient: mainButton,
@@ -81,8 +81,8 @@ class ProductPage extends StatelessWidget {
                     fontSize: 20.0),
               ),
             ),
-            SizedBox(
-              height: 24.0,
+            const SizedBox(
+              height: 24.0
             ),
             Padding(
                 padding: EdgeInsets.only(left: 20.0, right: 40.0, bottom: 20),
@@ -123,6 +123,7 @@ class ProductPage extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 8),
             ProductListView(
                 products: Get.find<SearchProductController>()
                     .list

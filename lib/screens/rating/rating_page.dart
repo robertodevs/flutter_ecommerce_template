@@ -21,7 +21,15 @@ class Ratings extends StatelessWidget {
             : Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        "Reviews:",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
                     ...controller.reviewList
                         .map((val) => Container(
                             margin: const EdgeInsets.symmetric(vertical: 4.0),
@@ -57,7 +65,7 @@ class Ratings extends StatelessWidget {
                                                 fontWeight: FontWeight.bold),
                                           ),
                                           Text(
-                                            '10 am, Via iOS',
+                                            val.createdDate,
                                             style: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 10.0),

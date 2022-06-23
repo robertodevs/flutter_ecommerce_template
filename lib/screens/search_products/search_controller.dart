@@ -33,11 +33,32 @@ class SearchProductController extends GetxController {
 
   List<Product> list = [];
 
+  ScrollController scrollController = ScrollController();
+
   @override
   void onInit() {
     getArgument();
     getProduct();
     super.onInit();
+  }
+
+  void onClear() {
+    searchController.clear();
+    onRefresh();
+    update();
+  }
+
+  @override
+  void onReady() {
+    scrollController.addListener(() {
+      if (scrollController.position.pixels <
+          scrollController.position.maxScrollExtent - 100) {
+        // debounce.run(() {
+        //   onLoadMore();
+        // });
+      }
+    });
+    super.onReady();
   }
 
   void getArgument() {
@@ -77,7 +98,7 @@ class SearchProductController extends GetxController {
   void onChanged(String value) {
     debounce.run(() {
       filter.name = value;
-      getProduct();
+      onRefresh();
       update();
     });
   }

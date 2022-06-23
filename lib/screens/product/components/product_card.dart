@@ -1,4 +1,5 @@
 import 'package:ecommerce_int2/data/models/product.model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProductCard extends StatelessWidget {
@@ -20,6 +21,7 @@ class ProductCard extends StatelessWidget {
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                     color: Color(0xfffbd085).withOpacity(0.46)),
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Container(
                       padding: EdgeInsets.all(16.0),
@@ -29,9 +31,9 @@ class ProductCard extends StatelessWidget {
                         height: 200,
                       ),
                     ),
-                    Flexible(
+                    Expanded(
                       child: Container(
-                          margin: const EdgeInsets.only(left: 16.0),
+                          margin: const EdgeInsets.only(left: 16.0, top: 16),
                           padding: const EdgeInsets.all(8.0),
                           decoration: BoxDecoration(
                               color: Color(0xffe0450a).withOpacity(0.51),
@@ -39,35 +41,49 @@ class ProductCard extends StatelessWidget {
                                   topLeft: Radius.circular(10),
                                   bottomLeft: Radius.circular(10))),
                           child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 product.name ?? "Product",
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 22.0,
                                   color: Colors.white,
                                 ),
                               ),
+                              const SizedBox(height: 16),
                               Text(
-                                product.merchant ?? "Merchant",
-                                textAlign: TextAlign.right,
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              Text(
-                                'VND' +
+                                '\$ ' +
                                     (product.purchasePrice ??
                                             product.price ??
                                             0)
                                         .toString(),
                                 textAlign: TextAlign.right,
                                 style: TextStyle(
-                                  fontSize: 12.0,
+                                  fontSize: 18.0,
                                   color: Colors.white,
                                 ),
-                              )
+                              ),
+                              Divider(),
+                              const SizedBox(height: 8),
+                              Text(
+                                '${product.totalRatings ?? 0} ratings',
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  fontSize: 13.0,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                '${product.totalReviews ?? 0} reviews',
+                                textAlign: TextAlign.right,
+                                style: TextStyle(
+                                  fontSize: 13.0,
+                                  color: Colors.white,
+                                ),
+                              ),
                             ],
                           )),
                     )

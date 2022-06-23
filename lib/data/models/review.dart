@@ -1,3 +1,5 @@
+import 'package:intl/intl.dart';
+
 class ReviewResponse {
   bool? success;
   List<Review>? data;
@@ -32,6 +34,14 @@ class Review {
   String? review;
   String? created;
   int? iV;
+
+  String get createdDate {
+    if (created == null) return '';
+    final date = DateTime.tryParse(created!);
+    if (date == null) return '';
+    final res = DateFormat("yyyy-MM-dd HH:mm:ss aa").format(date);
+    return res;
+  }
 
   Review(
       {this.sId,

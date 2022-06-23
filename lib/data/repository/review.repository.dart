@@ -22,5 +22,4 @@ class ReviewRepository {
     final result = ReviewResponse.fromJson(response.body);
     return result.data ?? [];
   }
-
 }
