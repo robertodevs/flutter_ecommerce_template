@@ -1,14 +1,15 @@
-import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/screens/faq_page.dart';
-import 'package:ecommerce_int2/screens/payment/payment_page.dart';
 import 'package:ecommerce_int2/screens/settings/settings_page.dart';
-import 'package:ecommerce_int2/screens/tracking_page.dart';
-import 'package:ecommerce_int2/screens/wallet/wallet_page.dart';
+import 'package:ecommerce_int2/screens/tracking/tracking_page.dart';
+import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AuthService>();
     return Scaffold(
       backgroundColor: Color(0xffF9F9F9),
       body: SafeArea(
@@ -26,7 +27,7 @@ class ProfilePage extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    'Rose Helbert',
+                    controller.userModel!.name,
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
@@ -51,50 +52,49 @@ class ProfilePage extends StatelessWidget {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            IconButton(
-                              icon: Image.asset('assets/icons/wallet.png'),
-                              onPressed:()=> Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (_) => WalletPage())),
-                            ),
-                            Text(
-                              'Wallet',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
+                        // Column(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   children: <Widget>[
+                        //     IconButton(
+                        //       icon: Image.asset('assets/icons/wallet.png'),
+                        //       onPressed:()=> Navigator.of(context).push(
+                        //           MaterialPageRoute(
+                        //               builder: (_) => WalletPage())),
+                        //     ),
+                        //     Text(
+                        //       'Wallet',
+                        //       style: TextStyle(fontWeight: FontWeight.bold),
+                        //     )
+                        //   ],
+                        // ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             IconButton(
                               icon: Image.asset('assets/icons/truck.png'),
-                              onPressed: () => Navigator.of(context).push(
-                                MaterialPageRoute(builder: (_) => TrackingPage())),
+                              onPressed: () => Get.to(() => TrackingPage()),
                             ),
                             Text(
-                              'Shipped',
+                              'Orders',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             )
                           ],
                         ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            IconButton(
-                              icon: Image.asset('assets/icons/card.png'),
-                              onPressed:()=> Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                      builder: (_) => PaymentPage())),
-                            ),
-                            Text(
-                              'Payment',
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            )
-                          ],
-                        ),
+                        // Column(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   children: <Widget>[
+                        //     IconButton(
+                        //       icon: Image.asset('assets/icons/card.png'),
+                        //       onPressed:()=> Navigator.of(context).push(
+                        //           MaterialPageRoute(
+                        //               builder: (_) => PaymentPage())),
+                        //     ),
+                        //     Text(
+                        //       'Payment',
+                        //       style: TextStyle(fontWeight: FontWeight.bold),
+                        //     )
+                        //   ],
+                        // ),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[

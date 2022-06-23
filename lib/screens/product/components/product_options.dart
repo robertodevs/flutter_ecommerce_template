@@ -1,5 +1,5 @@
-import 'package:ecommerce_int2/app_properties.dart';
-import 'package:ecommerce_int2/models/product.dart';
+import 'package:ecommerce_int2/data/models/product.model.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/screens/shop/check_out_page.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +22,7 @@ class ProductOption extends StatelessWidget {
           Positioned(
             left: 16.0,
             child: Image.asset(
-              product.image,
+              product.imageUrl!,
               height: 200,
               width: 200,
             ),
@@ -38,7 +38,7 @@ class ProductOption extends StatelessWidget {
                 children: <Widget>[
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                    child: Text(product.name,
+                    child: Text(product.name ?? '',
                         textAlign: TextAlign.right,
                         style: TextStyle(
                             fontWeight: FontWeight.bold,

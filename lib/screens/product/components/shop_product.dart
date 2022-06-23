@@ -1,5 +1,5 @@
-import 'package:ecommerce_int2/app_properties.dart';
-import 'package:ecommerce_int2/models/product.dart';
+import 'package:ecommerce_int2/data/models/product.model.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:flutter/material.dart';
 
 class ShopProduct extends StatelessWidget {
@@ -25,7 +25,7 @@ class ShopProduct extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                product.name,
+                product.name ?? '',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: darkGrey,
@@ -72,8 +72,8 @@ class ShopProductDisplay extends StatelessWidget {
           child: SizedBox(
               height: 80,
               width: 80,
-              child: Image.asset(
-                '${product.image}',
+              child: Image.network(
+                product.imageUrl ?? '',
                 fit: BoxFit.contain,
               )),
         ),

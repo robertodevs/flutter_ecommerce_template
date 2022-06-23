@@ -1,8 +1,7 @@
-
-import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
+import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:flutter/material.dart';
-
-import 'forgot_password_page.dart';
+import 'package:get/get.dart';
 
 class RegisterPage extends StatefulWidget {
   @override
@@ -15,11 +14,13 @@ class _RegisterPageState extends State<RegisterPage> {
 
   TextEditingController password = TextEditingController(text: '12345678');
 
-  TextEditingController cmfPassword = TextEditingController(text: '12345678');
+  TextEditingController firstName = TextEditingController(text: 'First name');
+  TextEditingController lastName = TextEditingController(text: 'Last name');
 
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AuthService>();
     Widget title = Text(
       'Glad To Meet You',
       style: TextStyle(
@@ -50,8 +51,7 @@ class _RegisterPageState extends State<RegisterPage> {
       bottom: 40,
       child: InkWell(
         onTap: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (_) => ForgotPasswordPage()));
+          controller.register(email.text, password.text, "first name", "last Name");
         },
         child: Container(
           width: MediaQuery.of(context).size.width / 2,
@@ -78,7 +78,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
 
     Widget registerForm = Container(
-      height: 300,
+      height: 350,
       child: Stack(
         children: <Widget>[
           Container(
@@ -103,7 +103,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: TextField(
-                    controller: password,
+                    controller: firstName,
                     style: TextStyle(fontSize: 16.0),
                     obscureText: true,
                   ),
@@ -111,7 +111,15 @@ class _RegisterPageState extends State<RegisterPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8.0),
                   child: TextField(
-                    controller: cmfPassword,
+                    controller: lastName,
+                    style: TextStyle(fontSize: 16.0),
+                    obscureText: true,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: TextField(
+                    controller: password,
                     style: TextStyle(fontSize: 16.0),
                     obscureText: true,
                   ),

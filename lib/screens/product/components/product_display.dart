@@ -1,6 +1,5 @@
-import 'package:ecommerce_int2/app_properties.dart';
-import 'package:ecommerce_int2/models/product.dart';
-import 'package:ecommerce_int2/screens/rating/rating_page.dart';
+import 'package:ecommerce_int2/data/models/product.model.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:flutter/material.dart';
 
 class ProductDisplay extends StatelessWidget {
@@ -11,11 +10,39 @@ class ProductDisplay extends StatelessWidget {
   });
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return Column(
       children: <Widget>[
-        Positioned(
-            top: 30.0,
-            right: 0,
+        Align(
+          alignment: Alignment(-1, 0),
+          child: Padding(
+            padding: const EdgeInsets.only(right: 20.0, left: 20.0),
+            child: Container(
+              height: screenAwareSize(220, context),
+              child: Stack(
+                children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      bottom: 18.0,
+                    ),
+                    child: Container(
+                      child: Hero(
+                        tag: product.imageUrl!,
+                        child: Image.network(
+                          product.imageUrl!,
+                          fit: BoxFit.contain,
+                          height: 230,
+                          width: 230,
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ),
+        Align(
+          alignment: Alignment.centerRight,
             child: Container(
                 width: MediaQuery.of(context).size.width / 1.5,
                 height: 85,
@@ -43,7 +70,7 @@ class ProductDisplay extends StatelessWidget {
                             fontFamily: "Montserrat",
                             fontSize: 36.0)),
                     TextSpan(
-                        text: '.58',
+                        text: 'VND',
                         style: const TextStyle(
                             color: const Color(0xFFFFFFFF),
                             fontWeight: FontWeight.w400,
@@ -51,49 +78,6 @@ class ProductDisplay extends StatelessWidget {
                             fontSize: 18.0))
                   ])),
                 ))),
-        Align(
-          alignment: Alignment(-1, 0),
-          child: Padding(
-            padding: const EdgeInsets.only(right: 20.0, left: 20.0),
-            child: Container(
-              height: screenAwareSize(220, context),
-              child: Stack(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      bottom: 18.0,
-                    ),
-                    child: Container(
-                      child: Hero(
-                        tag: product.image,
-                        child: Image.asset(
-                          product.image,
-                          fit: BoxFit.contain,
-                          height: 230,
-                          width: 230,
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-        ),
-        Positioned(
-          left: 20.0,
-          bottom: 0.0,
-          child: RawMaterialButton(
-            onPressed: () => Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => RatingPage())),
-            constraints: const BoxConstraints(minWidth: 45, minHeight: 45),
-            child:
-                Icon(Icons.favorite, color: Color.fromRGBO(255, 137, 147, 1)),
-            elevation: 0.0,
-            shape: CircleBorder(),
-            fillColor: Color.fromRGBO(255, 255, 255, 0.4),
-          ),
-        )
       ],
     );
   }

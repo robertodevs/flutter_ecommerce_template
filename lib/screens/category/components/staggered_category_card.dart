@@ -5,6 +5,7 @@ class CategoryCard extends StatelessWidget {
   final Color end;
   final String categoryName;
   final String assetPath;
+  final Function onViewMore;
 
   CategoryCard({
     required this.controller,
@@ -12,6 +13,7 @@ class CategoryCard extends StatelessWidget {
     required this.end,
     required this.categoryName,
     required this.assetPath,
+    required this.onViewMore,
   })  : height = Tween<double>(begin: 150, end: 250.0).animate(
           CurvedAnimation(
             parent: controller,
@@ -56,12 +58,15 @@ class CategoryCard extends StatelessWidget {
         children: <Widget>[
           Align(
               alignment: Alignment(-1, 0),
-              child: Text(
-                categoryName,
-                style: TextStyle(
-                    fontSize: 22,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold),
+              child: Container(
+                width: 150,
+                child: Text(
+                  categoryName,
+                  style: TextStyle(
+                      fontSize: 22,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold),
+                ),
               )),
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -75,15 +80,18 @@ class CategoryCard extends StatelessWidget {
                   assetPath,
                 ),
               ),
-              Container(
-                decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.all(Radius.circular(24))),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-                child: Text(
-                  'View more',
-                  style: TextStyle(color: end, fontWeight: FontWeight.bold),
+              GestureDetector(
+                onTap: () => onViewMore(),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(24))),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                  child: Text(
+                    'View more',
+                    style: TextStyle(color: end, fontWeight: FontWeight.bold),
+                  ),
                 ),
               )
             ],
@@ -107,12 +115,14 @@ class StaggeredCardCard extends StatefulWidget {
   final Color end;
   final String categoryName;
   final String assetPath;
+  final Function onViewMore;
 
   const StaggeredCardCard({
     required this.begin,
     required this.end,
     required this.categoryName,
     required this.assetPath,
+    required this.onViewMore,
   });
 
   @override
@@ -150,7 +160,6 @@ class _StaggeredCardCardState extends State<StaggeredCardCard>
 
   @override
   Widget build(BuildContext context) {
-    var timeDilation = 10.0; // 1.0 is normal animation speed.
     return GestureDetector(
       behavior: HitTestBehavior.opaque,
       onTap: () {
@@ -168,6 +177,7 @@ class _StaggeredCardCardState extends State<StaggeredCardCard>
         begin: widget.begin,
         end: widget.end,
         assetPath: widget.assetPath,
+        onViewMore: widget.onViewMore,
       ),
     );
   }

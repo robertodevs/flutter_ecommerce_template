@@ -1,11 +1,10 @@
-
-import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
+import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:country_code_picker/country_code_picker.dart';
+import 'package:get/get.dart';
 
 
-import 'confirm_otp_page.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   @override
@@ -13,7 +12,7 @@ class ForgotPasswordPage extends StatefulWidget {
 }
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
-  TextEditingController phoneNumber = TextEditingController(text: '46834683');
+  TextEditingController email = TextEditingController(text: 'Your email');
 
   GlobalKey prefixKey = GlobalKey();
   double prefixWidth = 0;
@@ -35,14 +34,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   @override
   Widget build(BuildContext context) {
-    Widget background = Container(
-      decoration: BoxDecoration(
-        image: DecorationImage(
-            image: AssetImage('assets/background.jpg'), fit: BoxFit.cover),
-      ),
-      foregroundDecoration: BoxDecoration(color: transparentYellow),
-    );
-
+    final controller = Get.find<AuthService>();
     Widget title = Text(
       'Forgot your Password?',
       style: TextStyle(
@@ -61,7 +53,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     Widget subTitle = Padding(
         padding: const EdgeInsets.only(right: 56.0),
         child: Text(
-          'Enter your registered mobile number to get the OTP',
+          'Enter your registered email',
           style: TextStyle(
             color: Colors.white,
             fontSize: 16.0,
@@ -73,13 +65,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       bottom: 40,
       child: InkWell(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder:(_)=>ConfirmOtpPage()));
+          controller.forgetPassword(email.text.trim());
         },
         child: Container(
           width: MediaQuery.of(context).size.width / 2,
           height: 80,
           child: Center(
-              child: new Text("Send OTP",
+              child: new Text("Send Email",
                   style: const TextStyle(
                       color: const Color(0xfffefefe),
                       fontWeight: FontWeight.w600,
@@ -122,12 +114,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: <Widget>[
-                prefix(),
                 Flexible(
                   child: Padding(
                     padding: const EdgeInsets.only(top: 8.0),
                     child: TextField(
-                      controller: phoneNumber,
+                      controller: email,
                       style: TextStyle(fontSize: 16.0),
                       keyboardType: TextInputType.phone,
                     ),

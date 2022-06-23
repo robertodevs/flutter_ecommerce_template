@@ -1,6 +1,7 @@
-import 'package:ecommerce_int2/app_properties.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
+import 'package:ecommerce_int2/services/auth.service.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ChangePasswordPage extends StatefulWidget {
   @override
@@ -8,13 +9,15 @@ class ChangePasswordPage extends StatefulWidget {
 }
 
 class _ChangePasswordPageState extends State<ChangePasswordPage> {
+  TextEditingController password = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final controller = Get.find<AuthService>();
     double width = MediaQuery.of(context).size.width;
     double bottomPadding = MediaQuery.of(context).padding.bottom;
 
     Widget changePasswordButton = InkWell(
-      onTap: () {},
+      onTap: () {controller.resetPassword(password.text.trim());},
       child: Container(
         height: 80,
         width: width / 1.5,
@@ -45,7 +48,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         iconTheme: IconThemeData(
           color: Colors.black,
         ),
-        brightness: Brightness.light,
         backgroundColor: Colors.transparent,
         title: Text(
           'Settings',
@@ -113,6 +115,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(5))),
                               child: TextField(
+                                controller: password,
                                 decoration: InputDecoration(
                                     border: InputBorder.none,
                                     hintText: 'New Password',

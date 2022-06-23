@@ -1,4 +1,4 @@
-import 'package:ecommerce_int2/app_properties.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:ecommerce_int2/screens/auth/welcome_back_page.dart';
 import 'package:flutter/material.dart';
 
@@ -53,19 +53,6 @@ class _SplashScreenState extends State<SplashScreen>
                       opacity: opacity.value,
                       child: new Image.asset('assets/logo.png')),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: RichText(
-                    text: TextSpan(
-                        style: TextStyle(color: Colors.black),
-                        children: [
-                          TextSpan(text: 'Powered by '),
-                          TextSpan(
-                              text: 'int2.io',
-                              style: TextStyle(fontWeight: FontWeight.bold))
-                        ]),
-                  ),
-                )
               ],
             ),
           ),

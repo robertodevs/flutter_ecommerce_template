@@ -1,6 +1,5 @@
-import 'package:ecommerce_int2/app_properties.dart';
-import 'package:ecommerce_int2/screens/rating/rating_page.dart';
-import 'package:ecommerce_int2/screens/tracking_page.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
+import 'package:ecommerce_int2/screens/tracking/tracking_page.dart';
 import 'package:flutter/material.dart';
 
 class NotificationsPage extends StatelessWidget {
@@ -262,27 +261,6 @@ class NotificationsPage extends StatelessWidget {
                               )
                             ]),
                           ),
-                          InkWell(
-                            onTap: () => Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (_) => RatingPage())),
-                            child: Container(
-                                padding: const EdgeInsets.all(14.0),
-                                decoration: BoxDecoration(
-                                    color: yellow,
-                                    borderRadius: BorderRadius.only(
-                                        bottomRight: Radius.circular(5.0),
-                                        bottomLeft: Radius.circular(5.0))),
-                                child: Align(
-                                    alignment: Alignment.centerRight,
-                                    child: Text(
-                                      'Share your feedback',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 10),
-                                    ))),
-                          )
                         ],
                       ),
                     ),

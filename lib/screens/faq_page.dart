@@ -1,5 +1,4 @@
-import 'package:ecommerce_int2/app_properties.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ecommerce_int2/utils/app_properties.dart';
 import 'package:flutter/material.dart';
 
 class FaqPage extends StatefulWidget {
@@ -43,7 +42,6 @@ class _FaqPageState extends State<FaqPage> {
         iconTheme: IconThemeData(
           color: Colors.black,
         ),
-        brightness: Brightness.light,
         backgroundColor: Colors.transparent,
         title: Text(
           'Settings',
