@@ -140,7 +140,7 @@ class _SearchPageState extends State<SearchPage>
                   'assets/icons/search_icon.svg',
                   fit: BoxFit.scaleDown,
                 ),
-                suffix: FlatButton(
+                suffix: TextButton(
                   onPressed: () {
                     searchController.clear();
                     searchResults.clear();
