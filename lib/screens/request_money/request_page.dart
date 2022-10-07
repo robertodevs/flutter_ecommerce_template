@@ -90,7 +90,7 @@ class _RequestPageState extends State<RequestPage> {
                     contentPadding: EdgeInsets.zero,
                     border: InputBorder.none,
                     prefixIcon: SvgPicture.asset('assets/icons/search_icon.svg', fit: BoxFit.scaleDown,),
-                    suffix: FlatButton(
+                    suffix: TextButton(
                         onPressed: () {
                           // searchController.clear();
                           // searchResults.clear();
