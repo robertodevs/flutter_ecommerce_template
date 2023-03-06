@@ -89,8 +89,11 @@ class _RequestPageState extends State<RequestPage> {
                     hintText: 'Search',
                     contentPadding: EdgeInsets.zero,
                     border: InputBorder.none,
-                    prefixIcon: SvgPicture.asset('assets/icons/search_icon.svg', fit: BoxFit.scaleDown,),
-                    suffix: FlatButton(
+                    prefixIcon: SvgPicture.asset(
+                      'assets/icons/search_icon.svg',
+                      fit: BoxFit.scaleDown,
+                    ),
+                    suffix: ElevatedButton(
                         onPressed: () {
                           // searchController.clear();
                           // searchResults.clear();
@@ -119,7 +122,8 @@ class _RequestPageState extends State<RequestPage> {
                             .map((user) => InkWell(
                                   onTap: () => Navigator.of(context).push(
                                       MaterialPageRoute(
-                                          builder: (_) => RequestAmountPage(user))),
+                                          builder: (_) =>
+                                              RequestAmountPage(user))),
                                   child: Container(
                                       width: 100,
                                       height: 200,

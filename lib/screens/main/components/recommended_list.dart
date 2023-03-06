@@ -48,7 +48,7 @@ class RecommendedList extends StatelessWidget {
         Flexible(
           child: Container(
             padding: EdgeInsets.only(top: 16.0, right: 16.0, left: 16.0),
-            child: StaggeredGridView.countBuilder(
+            child: MasonryGridView.count(
               physics: NeverScrollableScrollPhysics(),
               padding: EdgeInsets.zero,
               crossAxisCount: 4,
@@ -75,8 +75,6 @@ class RecommendedList extends StatelessWidget {
                           child: Image.asset(products[index].image))),
                 ),
               ),
-              staggeredTileBuilder: (int index) =>
-                  StaggeredTile.count(2, index.isEven ? 3 : 2),
               mainAxisSpacing: 4.0,
               crossAxisSpacing: 4.0,
             ),

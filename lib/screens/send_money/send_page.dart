@@ -68,8 +68,11 @@ class _SendPageState extends State<SendPage> {
                     hintText: 'Search',
                     contentPadding: EdgeInsets.zero,
                     border: InputBorder.none,
-                    prefixIcon: SvgPicture.asset('assets/icons/search_icon.svg', fit: BoxFit.scaleDown,),
-                    suffix: FlatButton(
+                    prefixIcon: SvgPicture.asset(
+                      'assets/icons/search_icon.svg',
+                      fit: BoxFit.scaleDown,
+                    ),
+                    suffix: ElevatedButton(
                         onPressed: () {
                           // searchController.clear();
                           // searchResults.clear();
@@ -86,11 +89,11 @@ class _SendPageState extends State<SendPage> {
             ),
             Expanded(
                 child: Center(
-                  child: Container(
-              height: 150,
-              padding:
+              child: Container(
+                height: 150,
+                padding:
                     const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-              child: Center(
+                child: Center(
                   child: frequentUsers.length == 0
                       ? CupertinoActivityIndicator()
                       : ListView(
@@ -121,8 +124,9 @@ class _SendPageState extends State<SendPage> {
                                                   user.picture.thumbnail),
                                             ),
                                             Padding(
-                                              padding: const EdgeInsets.fromLTRB(
-                                                  4.0, 16.0, 4.0, 0.0),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      4.0, 16.0, 4.0, 0.0),
                                               child: Text(
                                                   user.name.first +
                                                       ' ' +
@@ -133,8 +137,8 @@ class _SendPageState extends State<SendPage> {
                                                   )),
                                             ),
                                             Padding(
-                                              padding:
-                                                  const EdgeInsets.only(top: 8.0),
+                                              padding: const EdgeInsets.only(
+                                                  top: 8.0),
                                               child: Text(
                                                 user.phone,
                                                 textAlign: TextAlign.center,
@@ -146,9 +150,9 @@ class _SendPageState extends State<SendPage> {
                                   ))
                               .toList(),
                         ),
+                ),
               ),
-            ),
-                )),
+            )),
             Padding(
               padding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, 0.0),
               child: Text('Your Contacts'),
@@ -159,10 +163,10 @@ class _SendPageState extends State<SendPage> {
                   child: users.length == 0
                       ? CupertinoActivityIndicator()
                       : Container(
-                        color: Colors.white,
-                        padding: const EdgeInsets.symmetric(
+                          color: Colors.white,
+                          padding: const EdgeInsets.symmetric(
                               horizontal: 16.0, vertical: 8.0),
-                        child: ListView(
+                          child: ListView(
                             children: users
                                 .map((user) => InkWell(
                                       onTap: () => Navigator.of(context).push(
@@ -229,7 +233,7 @@ class _SendPageState extends State<SendPage> {
                                     ))
                                 .toList(),
                           ),
-                      ),
+                        ),
                 )),
           ],
         ),
