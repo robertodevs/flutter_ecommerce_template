@@ -31,7 +31,7 @@ class ProductList extends StatelessWidget {
         fade: 0.5,
         pagination: SwiperCustomPagination(
           builder: (context, config) {
-            if (config!.itemCount! > 20) {
+            if (config.itemCount > 20) {
               print(
                   "The itemCount is too big, we suggest use FractionPaginationBuilder instead of DotSwiperPaginationBuilder in this sitituation");
             }
@@ -43,7 +43,7 @@ class ProductList extends StatelessWidget {
             if (config.indicatorLayout != PageIndicatorLayout.NONE &&
                 config.layout == SwiperLayout.DEFAULT) {
               return new PageIndicator(
-                count: config.itemCount!,
+                count: config.itemCount,
                 controller: config.pageController!,
                 layout: config.indicatorLayout,
                 size: size,
@@ -55,8 +55,8 @@ class ProductList extends StatelessWidget {
 
             List<Widget> dots = [];
 
-            int itemCount = config.itemCount!;
-            int activeIndex = config.activeIndex!;
+            int itemCount = config.itemCount;
+            int activeIndex = config.activeIndex;
 
             for (int i = 0; i < itemCount; ++i) {
               bool active = i == activeIndex;

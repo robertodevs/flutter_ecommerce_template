@@ -167,7 +167,7 @@ class _IntroPageState extends State<IntroPage> {
                       children: <Widget>[
                         Opacity(
                           opacity: pageIndex != 2 ? 1.0 : 0.0,
-                          child: ElevatedButton(
+                          child: TextButton(
                             child: Text(
                               'SKIP',
                               style: TextStyle(
@@ -183,7 +183,7 @@ class _IntroPageState extends State<IntroPage> {
                           ),
                         ),
                         pageIndex != 2
-                            ? ElevatedButton(
+                            ? TextButton(
                                 child: Text(
                                   'NEXT',
                                   style: TextStyle(
@@ -198,7 +198,7 @@ class _IntroPageState extends State<IntroPage> {
                                         curve: Curves.linear);
                                 },
                               )
-                            : ElevatedButton(
+                            : TextButton(
                                 child: Text(
                                   'FINISH',
                                   style: TextStyle(
