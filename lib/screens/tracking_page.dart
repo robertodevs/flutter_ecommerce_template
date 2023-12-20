@@ -1,5 +1,6 @@
 import 'package:ecommerce_int2/app_properties.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 
 class TrackingPage extends StatefulWidget {
@@ -42,7 +43,6 @@ class _TrackingPageState extends State<TrackingPage> {
             appBar: AppBar(
               backgroundColor: Colors.transparent,
               elevation: 0.0,
-              brightness: Brightness.light,
               iconTheme: IconThemeData(color: Colors.grey),
               title: Text(
                 'Shipped',
@@ -54,6 +54,7 @@ class _TrackingPageState extends State<TrackingPage> {
               ),
               leading: SizedBox(),
               actions: <Widget>[CloseButton()],
+              systemOverlayStyle: SystemUiOverlayStyle.dark,
             ),
             body: SafeArea(
               child: LayoutBuilder(
