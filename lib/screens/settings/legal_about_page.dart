@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:ecommerce_int2/app_properties.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class LegalAboutPage extends StatefulWidget {
   @override
@@ -16,20 +17,20 @@ class _LegalAboutPageState extends State<LegalAboutPage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         iconTheme: IconThemeData(
-            color: Colors.black,
-          ),
-        brightness: Brightness.light,
+          color: Colors.black,
+        ),
         backgroundColor: Colors.transparent,
         title: Text(
           'Settings',
           style: TextStyle(color: darkGrey),
         ),
         elevation: 0,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: SafeArea(
         bottom: true,
         child: Padding(
-          padding: const EdgeInsets.only(top:24.0,left: 24.0, right: 24.0),
+          padding: const EdgeInsets.only(top: 24.0, left: 24.0, right: 24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[

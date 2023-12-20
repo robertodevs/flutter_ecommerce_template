@@ -1,5 +1,6 @@
 import 'package:ecommerce_int2/app_properties.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class ChangeCountryPage extends StatefulWidget {
   @override
@@ -30,13 +31,13 @@ class _ChangeCountryPageState extends State<ChangeCountryPage> {
         iconTheme: IconThemeData(
           color: Colors.black,
         ),
-        brightness: Brightness.light,
         backgroundColor: Colors.transparent,
         title: Text(
           'Settings',
           style: TextStyle(color: darkGrey),
         ),
         elevation: 0,
+        systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: SafeArea(
         bottom: true,
