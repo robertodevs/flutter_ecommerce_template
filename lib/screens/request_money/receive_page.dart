@@ -3,6 +3,8 @@ import 'package:ecommerce_int2/models/user.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:flutter/services.dart';
+
 class ReceivePaymentPage extends StatelessWidget {
   final User user;
 
@@ -16,13 +18,12 @@ class ReceivePaymentPage extends StatelessWidget {
         iconTheme: IconThemeData(
           color: Colors.black,
         ),
-        brightness: Brightness.light,
         backgroundColor: Colors.transparent,
         title: Text(
           'Receive Payment',
           style: TextStyle(color: darkGrey),
         ),
-        elevation: 0,
+        elevation: 0, systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

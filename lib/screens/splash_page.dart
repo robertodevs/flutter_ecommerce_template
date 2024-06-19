@@ -1,6 +1,7 @@
 import 'package:ecommerce_int2/app_properties.dart';
-import 'package:ecommerce_int2/screens/auth/welcome_back_page.dart';
 import 'package:flutter/material.dart';
+
+import 'intro_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -34,7 +35,7 @@ class _SplashScreenState extends State<SplashScreen>
 
   void navigationPage() {
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (_) => WelcomeBackPage()));
+        .pushReplacement(MaterialPageRoute(builder: (_) => IntroPage()));
   }
 
   Widget build(BuildContext context) {

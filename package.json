@@ -1,0 +1,22 @@
+{
+  "name": "flutter_ecommerce_template",
+  "version": "1.0.0",
+  "description": "<p align=\"center\">\r <a href=\"https://www.buymeacoffee.com/SaNhE76x9\" target=\"_blank\"><img src=\"https://cdn.buymeacoffee.com/buttons/default-blue.png\" alt=\"Buy Me A Coffee\" style=\"height: 30px !important;width: 150px !important;\" ></a>\r </p>",
+  "main": "server.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "build": "npm install"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "expres": "^0.0.5",
+    "express": "^4.19.2"
+  }
+}
