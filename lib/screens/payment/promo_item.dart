@@ -131,10 +131,12 @@ class PromoItem extends StatelessWidget {
             top: 5,
             child: ShopProductDisplay(
               Product(
-                  'assets/headphones.png',
-                  'Boat roackerz 400 On-Ear Bluetooth Headphones',
-                  'description',
-                  45.3),
+                  id: 'promo1', // Asegúrate de dar un ID único
+                  imageUrls: ['https://firebasestorage.googleapis.com/v0/b/flutterecommercetemplate-72969.appspot.com/o/Iphone11_mariposa.jpg?alt=media&token=b7485a72-3b13-406e-9aca-908cd508049c',
+                  'https://firebasestorage.googleapis.com/v0/b/flutterecommercetemplate-72969.appspot.com/o/lumix%20camera.jpg?alt=media&token=e8c4f660-a223-4ac8-b41e-bd4566905faa'],
+                  name: 'Promo',
+                  description: 'camara y forro',
+                  price: 45.3),
               onPressed: () {},
             ),
           ),

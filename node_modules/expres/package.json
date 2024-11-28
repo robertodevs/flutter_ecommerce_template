@@ -1,0 +1,28 @@
+{
+  "name": "expres",
+  "version": "0.0.5",
+  "description": "Add express compatible methods to your response object",
+  "main": "expres.js",
+  "dependencies": {},
+  "devDependencies": {
+    "mocha": "*",
+    "supertest": "~0.3.1",
+    "clone": "~0.1.1"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cpsubrian/node-expres.git"
+  },
+  "homepage": "https://github.com/cpsubrian/node-expres",
+  "keywords": [
+    "res",
+    "response",
+    "express",
+    "middleware"
+  ],
+  "author": "Brian Link <cpsubrian@gmail.com>",
+  "license": "MIT"
+}

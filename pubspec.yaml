@@ -1,16 +1,6 @@
 name: ecommerce_int2
-description: It is about a complete ecommerce app for Android and iOS. 
+description: It is about a complete ecommerce app for Android and iOS.
 
-# The following defines the version and build number for your application.
-# A version number is three numbers separated by dots, like 1.2.43
-# followed by an optional build number separated by a +.
-# Both the version and the builder number may be overridden in flutter
-# build by specifying --build-name and --build-number, respectively.
-# In Android, build-name is used as versionName while build-number used as versionCode.
-# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
-# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
-# Read more about iOS versioning at
-# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 1.0.1
 
 environment:
@@ -22,62 +12,47 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.5  
-  card_swiper: ^2.0.4
-  flutter_staggered_grid_view: ^0.6.2
+  chewie: ^1.8.5
+  video_player: ^2.9.1
+  url_launcher: ^6.3.0
+  font_awesome_flutter: ^10.7.0
+  firebase_core: ^3.1.0
+  cloud_firestore: ^5.1.0
+  cupertino_icons: ^1.0.5
+  card_swiper: ^3.0.1
+  flutter_staggered_grid_view: ^0.7.0
   rubber: ^1.0.1
   pin_code_text_field: ^1.8.0
-  http: ^0.13.4
+  http: ^1.2.1
   flutter_rating_bar: ^4.0.0
-  intl: ^0.18.0
+  intl: ^0.19.0
   numberpicker: ^2.1.1
-  flutter_svg: ^2.0.2
-
-
+  flutter_svg: ^2.0.10+1
+  provider: ^6.1.2
+  cached_network_image: ^3.4.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_launcher_icons: ^0.12.0
+  flutter_launcher_icons: ^0.13.1
   build_runner: ^2.0.4
   json_serializable: ^6.6.1
-
+  flutter_rating_bar: ^4.0.1
 flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "assets/icons/shopeLogo.png"
 
-
-# For information on the generic Dart part of this file, see the
-# following page: https://www.dartlang.org/tools/pub/pubspec
-
-# The following section is specific to Flutter.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
 
   assets:
-  - assets/
-  - assets/icons/
+    - assets/
+    - assets/icons/
 
-  # An image asset can refer to one or more resolution-specific "variants", see
-  # https://flutter.io/assets-and-images/#resolution-aware.
-
-  # For details regarding adding assets from package dependencies, see
-  # https://flutter.io/assets-and-images/#from-packages
-
-  # To add custom fonts to your application, add a fonts section here,
-  # in this "flutter" section. Each entry in this list should have a
-  # "family" key with the font family name, and a "fonts" key with a
-  # list giving the asset and other descriptors for the font. For
-  # example:
   fonts:
-  - family: Montserrat
-    fonts:
-    - asset: fonts/Montserrat-Regular.ttf
-  - family: NunitoSans
-    fonts:
-    - asset: fonts/NunitoSans-Regular.ttf
-
+    - family: Montserrat
+      fonts:
+        - asset: fonts/Montserrat-Regular.ttf
+    - family: NunitoSans
+      fonts:
+        - asset: fonts/NunitoSans-Regular.ttf

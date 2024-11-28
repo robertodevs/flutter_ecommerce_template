@@ -15,7 +15,7 @@ class SelectCardPage extends StatelessWidget {
           iconTheme: IconThemeData(
             color: Colors.black,
           ),
-          brightness: Brightness.light,
+          //brightness: Brightness.light,
           backgroundColor: Colors.transparent,
           title: Text(
             'Select Card',

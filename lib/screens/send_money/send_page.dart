@@ -3,6 +3,7 @@ import 'package:ecommerce_int2/models/user.dart';
 import 'package:ecommerce_int2/screens/send_money/quick_send_amount_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import '../../app_properties.dart';
@@ -45,13 +46,12 @@ class _SendPageState extends State<SendPage> {
         iconTheme: IconThemeData(
           color: Colors.black,
         ),
-        brightness: Brightness.light,
         backgroundColor: Colors.transparent,
         title: Text(
           'Send Amount',
           style: TextStyle(color: darkGrey),
         ),
-        elevation: 0,
+        elevation: 0, systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: SafeArea(
         child: Column(
