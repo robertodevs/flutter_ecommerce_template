@@ -21,8 +21,8 @@ class ProductOption extends StatelessWidget {
         children: <Widget>[
           Positioned(
             left: 16.0,
-            child: Image.asset(
-              product.image,
+            child: Image.network(
+              product.imageUrls[0],  // Mostrar la primera URL de la lista
               height: 200,
               width: 200,
             ),

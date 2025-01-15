@@ -1,0 +1,12 @@
+specVersion: "v1beta"
+serviceId: "flutter_ecommerce_template"
+location: "us-central1"
+schema:
+  source: "./schema"
+  datasource:
+    postgresql:
+      database: "fdcdb"
+      cloudSql:
+        instanceId: "flutter_ecommerce_template-fdc"
+      # schemaValidation: "COMPATIBLE"
+connectorDirs: ["./connector"]

@@ -1,3 +1,21 @@
+<<<<<<< HEAD
+# flutter_ecommerce_template
+
+A new Flutter project.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
+=======
 <p align="center">
 <a href="https://www.buymeacoffee.com/SaNhE76x9" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-blue.png" alt="Buy Me A Coffee" style="height: 30px !important;width: 150px !important;" ></a>
 </p>
@@ -25,3 +43,4 @@ Flutter is Google’s portable UI toolkit for building beautiful, natively-compi
 If this is template is useful for you and you want to support me [buy me a coffe!](https://www.buymeacoffee.com/SaNhE76x9). This will give me motivation to keep doing more content like this. 
 
 Do you want to add more features? [Reach me out](https://lnk.bio/9dQ4)
+>>>>>>> 5ac9628f9e402416023f223a5514a2342064ea03

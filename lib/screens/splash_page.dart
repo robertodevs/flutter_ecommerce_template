@@ -1,6 +1,7 @@
 import 'package:ecommerce_int2/app_properties.dart';
-import 'package:ecommerce_int2/screens/auth/welcome_back_page.dart';
 import 'package:flutter/material.dart';
+import '../firestore_service.dart'; // Importar el servicio correctamente
+import 'intro_page.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -12,6 +13,9 @@ class _SplashScreenState extends State<SplashScreen>
   late Animation<double> opacity;
   late AnimationController controller;
 
+  // Crea una instancia de FirestoreService
+  final FirestoreService _firestoreService = FirestoreService();
+
   @override
   void initState() {
     super.initState();
@@ -22,8 +26,14 @@ class _SplashScreenState extends State<SplashScreen>
         setState(() {});
       });
     controller.forward().then((_) {
-      navigationPage();
+      _initializeApp();
     });
+  }
+
+  Future<void> _initializeApp() async {
+    await _firestoreService.initializeProducts(); // Llama a la función desde la instancia
+
+    navigationPage();
   }
 
   @override
@@ -34,9 +44,10 @@ class _SplashScreenState extends State<SplashScreen>
 
   void navigationPage() {
     Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: (_) => WelcomeBackPage()));
+        .pushReplacement(MaterialPageRoute(builder: (_) => IntroPage()));
   }
 
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
@@ -45,13 +56,13 @@ class _SplashScreenState extends State<SplashScreen>
       child: Container(
         decoration: BoxDecoration(color: transparentYellow),
         child: SafeArea(
-          child: new Scaffold(
+          child: Scaffold(
             body: Column(
               children: <Widget>[
                 Expanded(
                   child: Opacity(
                       opacity: opacity.value,
-                      child: new Image.asset('assets/logo.png')),
+                      child: Image.asset('assets/logo.png')),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),

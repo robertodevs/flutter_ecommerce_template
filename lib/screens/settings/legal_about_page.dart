@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:ecommerce_int2/app_properties.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class LegalAboutPage extends StatefulWidget {
   @override
@@ -18,13 +19,12 @@ class _LegalAboutPageState extends State<LegalAboutPage> {
         iconTheme: IconThemeData(
             color: Colors.black,
           ),
-        brightness: Brightness.light,
         backgroundColor: Colors.transparent,
         title: Text(
           'Settings',
           style: TextStyle(color: darkGrey),
         ),
-        elevation: 0,
+        elevation: 0, systemOverlayStyle: SystemUiOverlayStyle.dark,
       ),
       body: SafeArea(
         bottom: true,

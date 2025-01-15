@@ -1,48 +1,10 @@
-import 'package:ecommerce_int2/models/category.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'category_card.dart';
 import 'recommended_list.dart';
+import 'package:ecommerce_int2/screens/category/category_provider.dart';
 
 class TabView extends StatelessWidget {
-  List<Category> categories = [
-    Category(
-      Color(0xffFCE183),
-      Color(0xffF68D7F),
-      'Gadgets',
-      'assets/jeans_5.png',
-    ),
-    Category(
-      Color(0xffF749A2),
-      Color(0xffFF7375),
-      'Clothes',
-      'assets/jeans_5.png',
-    ),
-    Category(
-      Color(0xff00E9DA),
-      Color(0xff5189EA),
-      'Fashion',
-      'assets/jeans_5.png',
-    ),
-    Category(
-      Color(0xffAF2D68),
-      Color(0xff632376),
-      'Home',
-      'assets/jeans_5.png',
-    ),
-    Category(
-      Color(0xff36E892),
-      Color(0xff33B2B9),
-      'Beauty',
-      'assets/jeans_5.png',
-    ),
-    Category(
-      Color(0xffF123C4),
-      Color(0xff668CEA),
-      'Appliances',
-      'assets/jeans_5.png',
-    ),
-  ];
-
   final TabController tabController;
 
   TabView({
@@ -51,56 +13,77 @@ class TabView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(MediaQuery.of(context).size.height / 9);
+    // Obtén las categorías del CategoryProvider
+    final categories = Provider.of<CategoryProvider>(context).categories;
+
+    if (categories.isEmpty) {
+      // Manejo de caso cuando no hay categorías disponibles
+      return Center(child: Text('No categories available'));
+    }
+
     return TabBarView(
-        physics: NeverScrollableScrollPhysics(),
-        controller: tabController,
-        children: <Widget>[
-          Container(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Container(
-                    margin: EdgeInsets.all(8.0),
-                    height: MediaQuery.of(context).size.height / 9,
-                    width: MediaQuery.of(context).size.width,
+      physics: AlwaysScrollableScrollPhysics(),
+      controller: tabController,
+      children: <Widget>[
+        // Primer Tab
+        CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: LayoutBuilder(
+                builder: (context, constraints) {
+                  bool isDesktop = constraints.maxWidth > 600;
+
+                  // Define la altura del contenedor
+                  double containerHeight = isDesktop
+                      ? MediaQuery.of(context).size.height * 0.80  // Altura para escritorio
+                      : MediaQuery.of(context).size.height * 0.45; // Altura para móvil
+
+                  // Ajusta la altura de la imagen
+                  double imageHeight = isDesktop ? 250.0 : containerHeight * 0.80; // Aumenta el tamaño de la imagen
+
+                  return Container(
+                    width: constraints.maxWidth,
+                    height: containerHeight,
                     child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: categories.length,
-                        itemBuilder: (_, index) => CategoryCard(
-                              category: categories[index],
-                            ))),
-                SizedBox(
-                  height: 16.0,
-                ),
-                Flexible(child: RecommendedList()),
-              ],
+                      scrollDirection: Axis.horizontal,
+                      itemCount: categories.length,
+                      itemBuilder: (_, index) {
+                        final category = categories[index];
+
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                          child: CategoryCard(
+                            controller: AnimationController(
+                              vsync: Scaffold.of(context),
+                              duration: const Duration(milliseconds: 300),
+                            ),
+                            begin: category.begin,
+                            end: category.end,
+                            categoryName: category.name ?? 'Unnamed Category',
+                            imageUrl: category.imageUrls.isNotEmpty ? category.imageUrls[0] : '',
+                            category: category,
+                            rating: category.averageRating ?? 0.0,
+                            whatsappUrl: category.whatsappUrl ?? '',
+                            imageHeight: imageHeight,  // Usar la altura ajustada
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
+              ),
             ),
-          ),
-          Column(children: <Widget>[
-            SizedBox(
-              height: 16.0,
+
+            SliverToBoxAdapter(
+              child: SizedBox(height: 1.0), // Espacio entre la lista de categorías y la lista recomendada
             ),
-            Flexible(child: RecommendedList())
-          ]),
-          Column(children: <Widget>[
-            SizedBox(
-              height: 16.0,
+            SliverFillRemaining(
+              child: RecommendedList(),
             ),
-            Flexible(child: RecommendedList())
-          ]),
-          Column(children: <Widget>[
-            SizedBox(
-              height: 16.0,
-            ),
-            Flexible(child: RecommendedList())
-          ]),
-          Column(children: <Widget>[
-            SizedBox(
-              height: 16.0,
-            ),
-            Flexible(child: RecommendedList())
-          ]),
-        ]);
+          ],
+        ),
+        // Otros Tabs con lógica similar...
+      ],
+    );
   }
 }

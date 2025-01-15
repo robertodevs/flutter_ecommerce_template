@@ -29,8 +29,8 @@ class _ProductPageState extends State<ProductPage> {
     Widget viewProductButton = InkWell(
       onTap: () => Navigator.of(context).push(MaterialPageRoute(
           builder: (_) => ViewProductPage(
-                product: product,
-              ))),
+            product: product,
+          ))),
       child: Container(
         height: 80,
         width: width / 1.5,
@@ -72,7 +72,7 @@ class _ProductPageState extends State<ProductPage> {
           )
         ],
         title: Text(
-          'Headphones',
+          'Forros Para Su Celular',
           style: const TextStyle(
               color: darkGrey, fontWeight: FontWeight.w500, fontSize: 18.0),
         ),
@@ -116,7 +116,7 @@ class _ProductPageState extends State<ProductPage> {
                           color: Color.fromRGBO(253, 192, 84, 1),
                           borderRadius: BorderRadius.circular(4.0),
                           border:
-                              Border.all(color: Color(0xFFFFFFFF), width: 0.5),
+                          Border.all(color: Color(0xFFFFFFFF), width: 0.5),
                         ),
                         child: Center(
                           child: new Text("Details",
@@ -135,7 +135,7 @@ class _ProductPageState extends State<ProductPage> {
                 ),
                 Padding(
                     padding:
-                        EdgeInsets.only(left: 20.0, right: 40.0, bottom: 130),
+                    EdgeInsets.only(left: 20.0, right: 40.0, bottom: 130),
                     child: new Text(product.description,
                         style: const TextStyle(
                             color: const Color(0xfefefefe),
@@ -154,10 +154,10 @@ class _ProductPageState extends State<ProductPage> {
               decoration: BoxDecoration(
                   gradient: LinearGradient(
                       colors: [
-                    Color.fromRGBO(255, 255, 255, 0),
-                    Color.fromRGBO(253, 192, 84, 0.5),
-                    Color.fromRGBO(253, 192, 84, 1),
-                  ],
+                        Color.fromRGBO(255, 255, 255, 0),
+                        Color.fromRGBO(253, 192, 84, 0.5),
+                        Color.fromRGBO(253, 192, 84, 1),
+                      ],
                       begin: FractionalOffset.topCenter,
                       end: FractionalOffset.bottomCenter)),
               width: width,

@@ -1,4 +1,14 @@
 buildscript {
+<<<<<<< HEAD
+    repositories {
+        google()  // Repositorio de Google para las dependencias de Firebase
+        mavenCentral()  // Repositorio Maven Central
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.0.0'  // Asegúrate de tener la versión correcta del Gradle Plugin
+        classpath 'com.google.gms:google-services:4.3.15'  // Dependencia de Google Services (Firebase)
+        // Otras dependencias de Gradle si es necesario
+=======
     ext.kotlin_version = '1.7.10'
     repositories {
         google()
@@ -6,13 +16,36 @@ buildscript {
     }
 
     dependencies {
+        // START: FlutterFire Configuration
+        classpath 'com.google.gms:google-services:4.3.15'
+        // END: FlutterFire Configuration
         classpath 'com.android.tools.build:gradle:7.2.0'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+>>>>>>> 5ac9628f9e402416023f223a5514a2342064ea03
     }
 }
 
 allprojects {
     repositories {
+<<<<<<< HEAD
+        google()  // Repositorio de Google
+        mavenCentral()  // Repositorio Maven Central
+    }
+}
+
+rootProject.buildDir = "../build"  // Establece el directorio de construcción
+
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"  // Configura el directorio de construcción para los subproyectos
+}
+
+subprojects {
+    project.evaluationDependsOn(":app")  // Configuración adicional para subproyectos
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir  // Tarea para limpiar el proyecto
+=======
         google()
         mavenCentral()
     }
@@ -26,6 +59,7 @@ subprojects {
     project.evaluationDependsOn(':app')
 }
 
-task clean(type: Delete) {
+tasks.register("clean", Delete) {
     delete rootProject.buildDir
+>>>>>>> 5ac9628f9e402416023f223a5514a2342064ea03
 }

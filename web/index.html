@@ -1,6 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
+    <!-- Metaetiquetas básicas -->
+    <base href="$FLUTTER_BASE_HREF">
+    <meta charset="UTF-8">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="A new Flutter project.">
+
+    <!-- iOS meta tags & icons -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="flutter_ecommerce_template">
+    <link rel="apple-touch-icon" href="icons/Icon-192.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="favicon.png"/>
+
+    <title>flutter_ecommerce_template</title>
+
+    <!-- Archivo de manifest -->
+    <link rel="manifest" href="manifest.json">
+
+    <!-- CSS opcional para evitar parpadeo o estilos iniciales -->
+    <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden; /* Evitar scroll horizontal inesperado */
+    }
+  </style>
+</head>
+<body>
+<script src="flutter_bootstrap.js" async></script>
+=======
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
@@ -32,20 +67,16 @@
   <title>flutter_ecommerce_template</title>
   <link rel="manifest" href="manifest.json">
 
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = null;
-  </script>
   <!-- This script adds the flutter initialization JS code -->
   <script src="flutter.js" defer></script>
 </head>
 <body>
-  <script>
+<script>
     window.addEventListener('load', function(ev) {
       // Download main.dart.js
       _flutter.loader.loadEntrypoint({
         serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
+          serviceWorkerVersion: '{{flutter_service_worker_version}}', // Replace with correct template token
         },
         onEntrypointLoaded: function(engineInitializer) {
           engineInitializer.initializeEngine().then(function(appRunner) {
@@ -55,5 +86,6 @@
       });
     });
   </script>
+>>>>>>> 5ac9628f9e402416023f223a5514a2342064ea03
 </body>
 </html>

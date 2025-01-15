@@ -89,11 +89,19 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
+<<<<<<< HEAD
+            VALUE "CompanyName", "com.example" "\0"
+            VALUE "FileDescription", "flutter_ecommerce_template" "\0"
+            VALUE "FileVersion", VERSION_AS_STRING "\0"
+            VALUE "InternalName", "flutter_ecommerce_template" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
+=======
             VALUE "CompanyName", "com.int2" "\0"
             VALUE "FileDescription", "flutter_ecommerce_template" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "flutter_ecommerce_template" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2023 com.int2. All rights reserved." "\0"
+>>>>>>> 5ac9628f9e402416023f223a5514a2342064ea03
             VALUE "OriginalFilename", "flutter_ecommerce_template.exe" "\0"
             VALUE "ProductName", "flutter_ecommerce_template" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"

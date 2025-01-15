@@ -1,0 +1,14 @@
+{
+  "projects": {
+<<<<<<< HEAD
+    "default": "flutterecommercetemplate-72969"
+  }
+=======
+    "default": "flutterecommercetemplate-72969",
+    "y": "flutterecommercetemplate-72969"
+  },
+  "targets": {},
+  "etags": {},
+  "dataconnectEmulatorConfig": {}
+>>>>>>> 5ac9628f9e402416023f223a5514a2342064ea03
+}

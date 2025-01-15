@@ -1,0 +1,11 @@
+runtime: custom
+env: flex
+
+runtime_config:
+  nodejs_version: '20.14.0'
+automatic_scaling:
+  min_num_instances: 1  # Número mínimo de instancias
+  max_num_instances: 5  # Número máximo de instancias
+  cool_down_period_sec: 180  # Período de enfriamiento en segundos
+  cpu_utilization:
+    target_utilization: 0.65  # Utilización de CPU objetivo

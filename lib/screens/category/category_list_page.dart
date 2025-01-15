@@ -1,8 +1,9 @@
-import 'package:ecommerce_int2/app_properties.dart';
 import 'package:ecommerce_int2/models/category.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
+import 'package:provider/provider.dart';
+import '../../app_properties.dart';
+import 'category_provider.dart';
 import 'components/staggered_category_card.dart';
 
 class CategoryListPage extends StatefulWidget {
@@ -11,56 +12,20 @@ class CategoryListPage extends StatefulWidget {
 }
 
 class _CategoryListPageState extends State<CategoryListPage> {
-  List<Category> categories = [
-    Category(
-      Color(0xffFCE183),
-      Color(0xffF68D7F),
-      'Gadgets',
-      'assets/jeans_5.png',
-    ),
-    Category(
-      Color(0xffF749A2),
-      Color(0xffFF7375),
-      'Clothes',
-      'assets/jeans_5.png',
-    ),
-    Category(
-      Color(0xff00E9DA),
-      Color(0xff5189EA),
-      'Fashion',
-      'assets/jeans_5.png',
-    ),
-    Category(
-      Color(0xffAF2D68),
-      Color(0xff632376),
-      'Home',
-      'assets/jeans_5.png',
-    ),
-    Category(
-      Color(0xff36E892),
-      Color(0xff33B2B9),
-      'Beauty',
-      'assets/jeans_5.png',
-    ),
-    Category(
-      Color(0xffF123C4),
-      Color(0xff668CEA),
-      'Appliances',
-      'assets/jeans_5.png',
-    ),
-  ];
-
   List<Category> searchResults = [];
   TextEditingController searchController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
+    final categories = Provider.of<CategoryProvider>(context, listen: false).categories;
     searchResults = categories;
   }
 
   @override
   Widget build(BuildContext context) {
+    final categories = Provider.of<CategoryProvider>(context).categories;
+
     return Material(
       color: Color(0xffF9F9F9),
       child: Container(
@@ -92,17 +57,18 @@ class _CategoryListPageState extends State<CategoryListPage> {
               child: TextField(
                 controller: searchController,
                 decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: 'Search',
-                    prefixIcon: SvgPicture.asset(
-                      'assets/icons/search_icon.svg',
-                      fit: BoxFit.scaleDown,
-                    )),
+                  border: InputBorder.none,
+                  hintText: 'Search',
+                  prefixIcon: SvgPicture.asset(
+                    'assets/icons/search_icon.svg',
+                    fit: BoxFit.scaleDown,
+                  ),
+                ),
                 onChanged: (value) {
                   if (value.isNotEmpty) {
                     List<Category> tempList = [];
                     categories.forEach((category) {
-                      if (category.category.toLowerCase().contains(value)) {
+                      if (category.name.toLowerCase().contains(value.toLowerCase())) {
                         tempList.add(category);
                       }
                     });
@@ -124,18 +90,22 @@ class _CategoryListPageState extends State<CategoryListPage> {
               child: ListView.builder(
                 itemCount: searchResults.length,
                 itemBuilder: (_, index) => Padding(
-                  padding: EdgeInsets.symmetric(
-                    vertical: 16.0,
-                  ),
+                  padding: EdgeInsets.symmetric(vertical: 16.0),
                   child: StaggeredCardCard(
                     begin: searchResults[index].begin,
                     end: searchResults[index].end,
-                    categoryName: searchResults[index].category,
-                    assetPath: searchResults[index].image,
+                    categoryName: searchResults[index].name,
+                    imageUrl: searchResults[index].imageUrls.isNotEmpty
+                        ? searchResults[index].imageUrls[0]
+                        : '', // Selecciona la primera imagen o una URL vacía,
+                    description: searchResults[index].description, // Descripción
+                    rating: searchResults[index].averageRating, // Calificación
+                    whatsappUrl: searchResults[index].whatsappUrl, // URL WhatsApp
+                    category: searchResults[index],
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),

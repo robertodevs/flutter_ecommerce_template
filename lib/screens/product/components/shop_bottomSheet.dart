@@ -13,20 +13,23 @@ class ShopBottomSheet extends StatefulWidget {
 class _ShopBottomSheetState extends State<ShopBottomSheet> {
   List<Product> products = [
     Product(
-        'assets/headphones.png',
-        'Boat roackerz 400 On-Ear Bluetooth Headphones',
-        'description',
-        45.3),
+        id: 'roackerz 400',  // Agregar un ID único
+        imageUrls: ['assets/headphones.png'],
+        name: 'Boat roackerz 400 On-Ear Bluetooth Headphones',
+        description: 'description',
+        price: 45.3),
     Product(
-        'assets/headphones_2.png',
-        'Boat roackerz 100 On-Ear Bluetooth Headphones',
-        'description',
-        22.3),
+        id: 'roackerz 100',  // Agregar un ID único
+        imageUrls: ['assets/headphones_2.png'],
+        name: 'Boat roackerz 100 On-Ear Bluetooth Headphones',
+        description: 'description',
+        price: 22.3),
     Product(
-        'assets/headphones_3.png',
-        'Boat roackerz 300 On-Ear Bluetooth Headphones',
-        'description',
-        58.3)
+        id: 'roackerz 300',  // Agregar un ID único
+        imageUrls: ['assets/headphones_3.png'],
+        name: 'Boat roackerz 300 On-Ear Bluetooth Headphones',
+        description: 'description',
+        price: 58.3)
   ];
 
   @override

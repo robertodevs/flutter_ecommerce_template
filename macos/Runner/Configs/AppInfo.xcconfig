@@ -8,7 +8,14 @@
 PRODUCT_NAME = flutter_ecommerce_template
 
 // The application's bundle identifier
+<<<<<<< HEAD
+PRODUCT_BUNDLE_IDENTIFIER = com.example.flutterEcommerceTemplate
+
+// The copyright displayed in application information
+PRODUCT_COPYRIGHT = Copyright © 2025 com.example. All rights reserved.
+=======
 PRODUCT_BUNDLE_IDENTIFIER = com.int2.flutterEcommerceTemplate
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2023 com.int2. All rights reserved.
+>>>>>>> 5ac9628f9e402416023f223a5514a2342064ea03

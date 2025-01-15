@@ -17,12 +17,12 @@ class _CheckOutPageState extends State<CheckOutPage> {
   SwiperController swiperController = SwiperController();
 
   List<Product> products = [
-    Product('assets/headphones.png',
-        'Boat roackerz 400 On-Ear Bluetooth Headphones', 'description', 45.3),
-    Product('assets/headphones_2.png',
-        'Boat roackerz 100 On-Ear Bluetooth Headphones', 'description', 22.3),
-    Product('assets/headphones_3.png',
-        'Boat roackerz 300 On-Ear Bluetooth Headphones', 'description', 58.3)
+    Product(id: 'roackerz 400',imageUrls: ['assets/headphones.png'],
+        name: 'Boat roackerz 400 On-Ear Bluetooth Headphones', description: 'description', price: 45.3),
+    Product(id: 'roackerz 100',imageUrls: ['assets/headphones_2.png'],
+        name: 'Boat roackerz 100 On-Ear Bluetooth Headphones', description: 'description', price: 22.3),
+    Product(id: 'roackerz 300',imageUrls: ['assets/headphones_3.png'],
+        name: 'Boat roackerz 300 On-Ear Bluetooth Headphones', description: 'description', price: 58.3)
   ];
 
   @override
